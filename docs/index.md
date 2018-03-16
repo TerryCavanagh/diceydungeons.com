@@ -10,9 +10,9 @@ Here's the rough plan for the next few updates. I'm aiming to do these roughly o
 
 #### Milestone 2
 
-This milestone will focus on tidying the game up after the 7drl jam build. This partially means a basic graphical overhaul - no necessarily final graphics, but something more that the placeholder stuff there right now. 
+This milestone will focus on tidying the game up after the 7drl jam build. This partially means a basic graphical overhaul - not necessarily final graphics, but something more that the placeholder stuff there right now. 
 
-But I want to do a design pass, and fix up most of the big design flaws. In particular:
+But I also want to do a design pass, and fix up most of the big design flaws. In particular:
    - Enemies that shield a lot aren't fun. Gonna scrap the Squire, redesign the knight, and generally make enemy shielding rarer.
    - I want to rethink the Focus and Rage skills, and see if I can find a system that works better.
    - Single use items don't work. Rethink these.
