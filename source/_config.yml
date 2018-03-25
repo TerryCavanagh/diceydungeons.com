@@ -9,3 +9,5 @@ nextbuild: 2018-03-30 15:53:04 +0800
 plugins:
   - jekyll-feed
   - jekyll-timeago
+
+exclude: [Rakefile]
