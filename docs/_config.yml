@@ -1,3 +1,14 @@
-theme: jekyll-theme-slate
 title: Dicey Dungeons
-description: <a href="https://terrycavanaghgames.com/dice/">[Last playable build] 7drl build, 11th of March</a>
+description:
+show_downloads: false
+google_analytics:
+theme: jekyll-theme-slate
+header_pages:
+  - index.md
+  - blog.md
+
+nextbuild: 2018-03-30 15:53:04 +0800
+
+plugins:
+  - jekyll-feed
+  - jekyll-timeago

@@ -1,0 +1,47 @@
+---
+layout: default
+---
+
+<div class="home">
+  {%- if page.title -%}
+    <h1 class="page-heading">{{ page.heading }}</h1>
+  {%- endif -%}
+  
+  <h1 class="entry-title">
+    <center><a href="{{ post.url }}">{{ page.title }}</a></center>
+  </h1>
+  <div style="text-align:center; font-size: large; margin-top: -3%;"><span style="font-weight: bold;">{{ page.date | date: '%B %d, %Y' }}</span></div>
+  
+  <h5 class="entry-title">
+      <center><a href="{{ page.versionlink }}">[Play {{ page.title }} here]</a></center>
+  </h5> 
+  
+  {{ content }}
+  
+  <hr>
+  <h5 class="entry-title">
+      Older builds and release notes:
+  </h5>
+
+  {%- if site.posts.size > 0 -%}
+    <ul class="post-list">
+      {%- for post in site.posts -%}
+      <li>
+        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+        <span class="post-meta">{{ post.date | date: date_format }}</span>
+        <h3>
+          <a class="post-link" href="{{ post.url | relative_url }}">
+            {{ post.title | escape }}
+          </a>
+        </h3>
+        {%- if site.show_excerpts -%}
+          {{ post.excerpt }}
+        {%- endif -%}
+      </li>
+      {%- endfor -%}
+    </ul>
+
+    <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
+  {%- endif -%}
+
+</div>

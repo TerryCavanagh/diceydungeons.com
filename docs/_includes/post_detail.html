@@ -1,0 +1,9 @@
+{% if post.title %}
+  <center>
+  <h1 class="entry-title">
+      <a href="{{ post.versionlink }}">{{ post.title }}</a>
+  </h1>      
+  
+  <div style="font-weight:bold; margin-top: -3%;">{{ post.date | date: '%B %d, %Y' }}</div>
+  </center>
+{% endif %}
