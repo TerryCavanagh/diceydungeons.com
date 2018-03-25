@@ -12,3 +12,4 @@ layout: default
 
 <div style="text-align:center; font-size: large;">Want to learn more? Join us on discord!</div>
 <div style="text-align:center; font-size: large;"><a href="https://discord.gg/z7pCdCP"><img src="assets/images/dicecord.png"></a></div>
+
