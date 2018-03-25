@@ -4,7 +4,7 @@
       <a href="{{ post.versionlink }}">Play {{ post.title }} here</a>
   </h1>      
    <div style="text-align:center; font-size: large; margin-top: -7%;"><br>The latest build is <span style="font-weight: bold;">{{ post.versionnumber }}</span>, from <span style="font-weight: bold;">{{ post.date | date: '%B %d, %Y' }}</span>, {{ post.date | timeago }}.<br><a href="{{ post.url }}">[read the update notes]</a></div>
-  <a href="{{ post.versionlink }}"><img src="{{ post.topimage }}" width="640" height="360"></a>
+  <a href="{{ post.versionlink }}"><img src="{{ post.topimage }}" width="640"></a>
   <div style="text-align:center; font-size: large; margin-top: -1%;">The next build is due <span style="font-weight: bold;">{{ site.nextbuild | timeago }}!</span></div><br>
   </center>
 {% endif %}
