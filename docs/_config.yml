@@ -3,9 +3,6 @@ description:
 show_downloads: false
 google_analytics:
 theme: jekyll-theme-slate
-header_pages:
-  - index.md
-  - blog.md
 
 nextbuild: 2018-03-30 15:53:04 +0800
 
