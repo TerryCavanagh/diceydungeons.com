@@ -15,6 +15,8 @@ echo. 2>.nojekyll
 
 cd ..
 
-commit
-
-push
+call git pull
+call git add .
+call git add -u
+call git commit -a
+call git push
