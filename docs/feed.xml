@@ -1,4 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-03-30T09:14:35+01:00</updated><id>/</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.2</title><link href="/blog/2018/03/23/version-2.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.2" /><published>2018-03-23T07:53:04+00:00</published><updated>2018-03-23T07:53:04+00:00</updated><id>/blog/2018/03/23/version-2</id><content type="html" xml:base="/blog/2018/03/23/version-2.html">&lt;p&gt;Hey everyone! Welcome back!&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-03-30T23:35:23+01:00</updated><id>/</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.3</title><link href="/blog/2018/03/30/version-3.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.3" /><published>2018-03-30T08:53:04+01:00</published><updated>2018-03-30T08:53:04+01:00</updated><id>/blog/2018/03/30/version-3</id><content type="html" xml:base="/blog/2018/03/30/version-3.html">&lt;p&gt;Hey hey, it’s update 0.3!&lt;/p&gt;
+
+&lt;p&gt;Last week’s build was probably too easy. This one is definitely too hard. So it goes - it’s still very, very early days for this game. I’ll figure it out eventually! &lt;strong&gt;YAY FOR OPEN DEVELOPMENT!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;There are still lots of bugs in this build, including stuff that was reported last week. Honestly, this is the thing I’m finding hardest about this whole early-access-like thing I’m doing - my impulse is not to release anything until I know it’s all fixed and working and balanced - but I’m trying not to do that with this. Eventually, this game will start to firm up, and hopefully you’ll see it happen. Week after week. One version at a time. Bear with me!&lt;/p&gt;
+
+&lt;p&gt;Here’s what’s new in v0.3:&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version3/spreadsheets.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;A balance pass&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;Everything&lt;/em&gt; in the game has gotten a tweak this week - from enemies to equipment, level up distributions to level layouts - you name it. Some existing systems have been tweaked too - for example, the upgrade system is very different from last week.&lt;/p&gt;
+
+&lt;p&gt;Balance is an ongoing process that’s going to take time to get right, but I think this build is a step in the right direction - towards a version of the game I want to make: a deeper, more rewarding, more fun experience.&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version3/newcontent.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Loads of new content&lt;/div&gt;
+
+&lt;p&gt;This build brings a ton of new content. There are about 25 new pieces of equipment in the game this time round, as well as a bunch of new enemies, items and shops. A lot of this is because there are new &lt;strong&gt;types&lt;/strong&gt; of diceslots on equipment boards - &lt;strong&gt;Doubles&lt;/strong&gt;, which require matching dice to trigger, and &lt;strong&gt;Countdowns&lt;/strong&gt;, which take any dice and need to hit a target amount before they work.&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version3/ratking.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold;  margin-top: -3%;&quot;&gt;Bosses&lt;/div&gt;
+
+&lt;p&gt;If you’re good enough to get to the end of the dungeon, the final battle in 0.3 is one of three possible bosses. They’re all pretty tough. Good luck!&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold;&quot;&gt;What's next?&lt;/div&gt;
+
+&lt;p&gt;Next week I finally want to make some progress on a second class! This doesn’t mean that I’m done with the Warrior, far from it - but I think I’m at the point where designing a seperate path through the game will push things along in lots of unexplored directions, and do way more for the game than continuing to tweak the existing content.&lt;/p&gt;
+
+&lt;p&gt;Ok! Hope you enjoy this version! See you next week!&lt;/p&gt;</content><author><name></name></author><summary type="html">Hey hey, it’s update 0.3!</summary></entry><entry><title type="html">Dicey Dungeons 0.2</title><link href="/blog/2018/03/23/version-2.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.2" /><published>2018-03-23T07:53:04+00:00</published><updated>2018-03-23T07:53:04+00:00</updated><id>/blog/2018/03/23/version-2</id><content type="html" xml:base="/blog/2018/03/23/version-2.html">&lt;p&gt;Hey everyone! Welcome back!&lt;/p&gt;
 
 &lt;p&gt;So, I’m attempting to do this early access like thing where I release builds publically every week, warts and all. I’ve never done this before - actually, it makes me pretty nervous to show work that I don’t think is ready yet. But I think it’s worth trying to get over that, because it’s clearly a good approach for this project!&lt;/p&gt;
 
