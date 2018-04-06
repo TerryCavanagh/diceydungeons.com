@@ -1,4 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-04-06T11:57:30+01:00</updated><id>/</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.3</title><link href="/blog/2018/03/30/version-3.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.3" /><published>2018-03-30T08:53:04+01:00</published><updated>2018-03-30T08:53:04+01:00</updated><id>/blog/2018/03/30/version-3</id><content type="html" xml:base="/blog/2018/03/30/version-3.html">&lt;p&gt;Hey hey, it’s update 0.3!&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-04-07T00:28:59+01:00</updated><id>/</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.4</title><link href="/blog/2018/04/06/version-4.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.4" /><published>2018-04-06T08:53:04+01:00</published><updated>2018-04-06T08:53:04+01:00</updated><id>/blog/2018/04/06/version-4</id><content type="html" xml:base="/blog/2018/04/06/version-4.html">&lt;p&gt;Hey! It’s v0.4! This is the biggest update so far. Let’s jump right in! Here’s what’s new:&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version4/thief.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;The Thief&lt;/div&gt;
+
+&lt;p&gt;This week’s update is all about the new class, the &lt;em&gt;Thief&lt;/em&gt;. The Thief is pretty different from the warrior - it doesn’t get upgrades, it can’t use consumable items, and it can’t reroll - instead, it has to rely on it’s handy steal ability, which takes a random piece of enemy equipment every turn, and a bunch of new class specific equipment. The Thief class is a bit harder than the Warrior too, so good luck!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version4/bandit.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Fleeing from Combat&lt;/div&gt;
+
+&lt;p&gt;Things not going according to plan? You can now flee from any battle!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version4/skeleton.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;New enemies&lt;/div&gt;
+
+&lt;p&gt;There are four new enemies in this build, and lots of the existing enemies have gotten tweaked.&lt;/p&gt;
+
+&lt;p&gt;Also, there is now a designated boss on EVERY FLOOR, not just the final one. Some of the harder enemies have gotten a promotion! (If you’re wondering about where the Knight is this time round, they’re taking a holiday while I figure out how to redesign it as a new sub-boss!)&lt;/p&gt;
+
+&lt;p&gt;In addition, the Rat King has gotten a big level up, and there’s a brand new final boss this time around - the Vampire.&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version4/wizard.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Loads of bug fixes&lt;/div&gt;
+
+&lt;p&gt;More than two dozen bug fixes, mostly stuff reported from v0.3! Dicey Dungeons doesn’t have any in-game issue tracking yet, but you can submit bugs and feature requests &lt;a href=&quot;https://github.com/TerryCavanagh/diceydungeons.com/issues&quot;&gt;on the github page here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In order to replace the bugs that we’ve lost in this build, I’ve added several new ones. See if you can find them all!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version4/tapcontrols.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Tap Controls&lt;/div&gt;
+
+&lt;p&gt;The thief uses a lot more dice than the warrior, and all that dragging was starting to get a bit tiring. So this time I’m trying out alternate tap controls - you can now just tap a dice, and then tap the piece of equipment you want to assign it to. This probably needs a bit more tweaking.&lt;/p&gt;
+
+&lt;p&gt;I have vague plans that this thing will eventually end up on telephones, so will be experimenting a lot more with things like this as the weeks go by!&lt;/p&gt;
+
+&lt;p&gt;Thanks for checking out the latest build. For the next update, I’m hoping to focus on balance, polish, and at long last, ART. See you in two weeks!&lt;/p&gt;</content><author><name></name></author><summary type="html">Hey! It’s v0.4! This is the biggest update so far. Let’s jump right in! Here’s what’s new:</summary></entry><entry><title type="html">Dicey Dungeons 0.3</title><link href="/blog/2018/03/30/version-3.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.3" /><published>2018-03-30T08:53:04+01:00</published><updated>2018-03-30T08:53:04+01:00</updated><id>/blog/2018/03/30/version-3</id><content type="html" xml:base="/blog/2018/03/30/version-3.html">&lt;p&gt;Hey hey, it’s update 0.3!&lt;/p&gt;
 
 &lt;p&gt;Last week’s build was probably too easy. This one is definitely too hard. So it goes - it’s still very, very early days for this game. I’ll figure it out eventually! &lt;strong&gt;YAY FOR OPEN DEVELOPMENT!&lt;/strong&gt;&lt;/p&gt;
 
