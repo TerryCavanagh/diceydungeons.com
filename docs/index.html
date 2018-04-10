@@ -8,7 +8,7 @@
     <meta name="description" content="Dicey Dungeons : ">
 
     <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=">
-
+<script src="assets/js/moment.min.js"></script>
 <!-- Begin Jekyll SEO tag v2.4.0 -->
 <title>Dicey Dungeons</title>
 <meta name="generator" content="Jekyll v3.7.3" />
@@ -35,7 +35,7 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <div style="text-align:center; font-size: large;"><span style="font-weight: bold;">Dicey Dungeons</span> is an upcoming roguelike by <a href="http://www.distractionware.com">Terry Cavanagh</a>! It's about dice and stuff! Every friday, I upload a new work in progress build.</div>
+        <div style="text-align:center; font-size: large;"><span style="font-weight: bold;">Dicey Dungeons</span> is an upcoming roguelike by <a href="http://www.distractionware.com">Terry Cavanagh</a>! It's about dice and stuff! Every two weeks, I upload a new work in progress build.</div>
 <div style="text-align:center; font-size: small;">(to do: think of a better way to describe the game)</div>
 
 <div class="blog-index">  
@@ -44,11 +44,17 @@
   <center>
   <h1 class="entry-title">
       <a href="https://www.terrycavanaghgames.com/dice/4/">Play Dicey Dungeons 0.4 here</a>
-  </h1>      
-   <div style="text-align:center; font-size: large; margin-top: -7%;"><br />The latest build is <span style="font-weight: bold;">0.4</span>, from <span style="font-weight: bold;">April 06, 2018</span>, 4 days ago.<br /><a href="/blog/2018/04/06/version-4.html">[read the update notes]</a></div>
+  </h1>
+   <div style="text-align:center; font-size: large; margin-top: -7%;"><br />The latest build is <span style="font-weight: bold;">0.4</span>, from <span style="font-weight: bold;">April 06, 2018</span>, <span id="latestversion"></span>.<br /><a href="/blog/2018/04/06/version-4.html">[read the update notes]</a></div>
   <a href="https://www.terrycavanaghgames.com/dice/4/"><img src="/assets/images/version4/wizard.gif" width="640" /></a>
-  <div style="text-align:center; font-size: large; margin-top: -1%;">The next build is due <span style="font-weight: bold;">in 1 week and 3 days!</span></div><br />
+  <div style="text-align:center; font-size: large; margin-top: -1%;">The next build is due <span style="font-weight: bold;"><span id="nextversiondue"></span>!</span></div><br />
   </center>
+<script>
+  var latestversion = moment("2018-04-06T08:53:04+01:00");
+  var nextversiondue = moment("2018-04-20T08:53:04+01:00");
+  document.getElementById('latestversion').innerHTML = latestversion.fromNow();
+  document.getElementById('nextversiondue').innerHTML = nextversiondue.fromNow();
+</script>
 
 </div>
 
