@@ -1,4 +1,53 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-04-10T19:52:57+01:00</updated><id>/</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.4</title><link href="/blog/2018/04/06/version-4.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.4" /><published>2018-04-06T08:53:04+01:00</published><updated>2018-04-06T08:53:04+01:00</updated><id>/blog/2018/04/06/version-4</id><content type="html" xml:base="/blog/2018/04/06/version-4.html">&lt;p&gt;Hey! It’s v0.4! This is the biggest update so far. Let’s jump right in! Here’s what’s new:&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-04-21T18:43:22+01:00</updated><id>/</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.5</title><link href="/blog/2018/04/20/version-5.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.5" /><published>2018-04-20T08:53:04+01:00</published><updated>2018-04-20T08:53:04+01:00</updated><id>/blog/2018/04/20/version-5</id><content type="html" xml:base="/blog/2018/04/20/version-5.html">&lt;p&gt;It’s version 0.5! Whoa!&lt;/p&gt;
+
+&lt;p&gt;Welcome! If you’re dropping by for the first time, here’s what’s going on: &lt;em&gt;Dicey Dungeons&lt;/em&gt; is a game I started making for this year’s 7 day roguelike. It’s now a month and a half on, I’m still working on it, and it’s going very well! The game’s basicaly a roguelike inspired by Dream Quest and games like that - only it’s designed around dice instead of cards. You explore a dungeon, you find equipment, and you use dice on that equipment to activate it. I think it’s already pretty fun, and it’s getting better with every update!&lt;/p&gt;
+
+&lt;p&gt;I’m releasing new work in progress builds every two weeks. Here’s what I’ve been working on since the last update:&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version5/apprentice.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;I finally made some graphics&lt;/div&gt;
+
+&lt;p&gt;This has been a long time coming!&lt;/p&gt;
+
+&lt;p&gt;Moving to a two week schedule gives me more freedom to work on larger stuff for the game. This week, I used that extra time to finally add some graphics.&lt;/p&gt;
+
+&lt;p&gt;It’s still a bit rough in places, but I should be able to iterate on this stuff now and improve it as the weeks go by and LOOK LOOK, the little dice people have stubby little legs and big smiles! Aren’t they’re cute? Awwww&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version5/thiefvswolfpuppy.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Equipment fires without needing a confirmation&lt;/div&gt;
+
+&lt;p&gt;Two very radical changes to how equipment works this week: you need to fill all dice slots on a piece of equipment to use it, and equipment fires automatically once all the slots are full.&lt;/p&gt;
+
+&lt;p&gt;This might seem like a tiny change, but it has a pretty massive knock on effect to lots of things in the game. And I think it’s worth it! For me, the game just feels &lt;em&gt;substantially&lt;/em&gt; nicer to play with this change - I can’t go back to the old v0.4 way at all after this.&lt;/p&gt;
+
+&lt;p&gt;In particular this makes the Thief class a lot nicer to play - way less finicky mouse movement to trigger reusable equipment.&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version5/upgrades.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;New upgrade system&lt;/div&gt;
+
+&lt;p&gt;The old upgrade system was designed around the Warrior, but the new equipment UI rules broke it completely. So, I tried something new!&lt;/p&gt;
+
+&lt;p&gt;This new upgrade system is inspired by fellow dreamquestlike &lt;strong&gt;Slay the Spire&lt;/strong&gt; - every piece of equipment in the game can now be upgraded, and the effect of upgrading is unique to each piece of equipment. Upgrading the &lt;em&gt;Dagger&lt;/em&gt; gives it bonus +1 damage, for example, while upgrading the &lt;em&gt;Poison Needle&lt;/em&gt; lets it accept a broader range of dice, making it easier to use.&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version5/hardmode.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Hard Mode&lt;/div&gt;
+
+&lt;p&gt;v0.5 has a new HARD MODE! In this version, all enemy equipment is upgraded, and enemies get an extra 20% health. If you’ve been around since the start and find the game a bit easy now, this should provide a more interesting challenge!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version5/optimised.png&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Optimisation&lt;/div&gt;
+
+&lt;p&gt;Dicey Dungeons was hacked together for a game jam, and that meant that it was running quite a lot slower than it should have been.&lt;/p&gt;
+
+&lt;p&gt;I did a big optimisation pass this week that should substantially improve things - in my profiler tests, I was getting frame time reductions of up to 500%, depending on what was happening in the game at the time. There’s more I can do about this later, but these optimisations should leave the game a lot more stable and lightweight from here on out.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold;&quot;&gt;What's the plan for v0.6?&lt;/div&gt;
+
+&lt;p&gt;Next week I’m off to &lt;a href=&quot;http://amaze-berlin.de/&quot;&gt;AMAZE&lt;/a&gt; in Berlin, so I’m expecting a slightly smaller than normal update. To be honest, this feels like a good time to catch my breath, and figure out where this whole thing is going.&lt;/p&gt;
+
+&lt;p&gt;That said, I’d really like to get to work on a new class for the next update - I think the Thief is working really well, and I eventually see there being 5 or 6 classes in the final version. Let’s see how it goes!&lt;/p&gt;
+
+&lt;p&gt;Thanks for playing!&lt;/p&gt;</content><author><name></name></author><summary type="html">It’s version 0.5! Whoa!</summary></entry><entry><title type="html">Dicey Dungeons 0.4</title><link href="/blog/2018/04/06/version-4.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.4" /><published>2018-04-06T08:53:04+01:00</published><updated>2018-04-06T08:53:04+01:00</updated><id>/blog/2018/04/06/version-4</id><content type="html" xml:base="/blog/2018/04/06/version-4.html">&lt;p&gt;Hey! It’s v0.4! This is the biggest update so far. Let’s jump right in! Here’s what’s new:&lt;/p&gt;
 
 &lt;center&gt;&lt;img src=&quot;/assets/images/version4/thief.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
 &lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;The Thief&lt;/div&gt;
