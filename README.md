@@ -8,6 +8,6 @@ I am hoping to add some basic analytics to the game in later versions, as well a
 
 ## diceydungeons.com
 
-For up to date info about development of the game, see <a href="diceydungeons.com">diceydungeons.com</a>.
+For up to date info about development of the game, see <a href="http://diceydungeons.com">diceydungeons.com</a>.
 
 The Dicey Dungeons website is hosted on github pages from this repo. The `docs/` folder is the live website, and the `source/` folder is the Jekyll site used to generate it.
