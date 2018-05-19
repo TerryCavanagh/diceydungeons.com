@@ -1,4 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-05-06T18:19:56+02:00</updated><id>/</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.6</title><link href="/blog/2018/05/04/version-6.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.6" /><published>2018-05-04T04:00:00+02:00</published><updated>2018-05-04T04:00:00+02:00</updated><id>/blog/2018/05/04/version-6</id><content type="html" xml:base="/blog/2018/05/04/version-6.html">&lt;p&gt;Hey again! It’s v0.6! I’d sorta planned that this one would be a smaller update, since I was travelling for a bit of it. But it ended up being HUGE. Let’s jump in!&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-05-19T22:50:26+01:00</updated><id>/</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.7</title><link href="/blog/2018/05/18/version-7.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.7" /><published>2018-05-18T03:00:00+01:00</published><updated>2018-05-18T03:00:00+01:00</updated><id>/blog/2018/05/18/version-7</id><content type="html" xml:base="/blog/2018/05/18/version-7.html">&lt;p&gt;It’s here! Version 0.7! Let’s see what’s new this time!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version7/newmap.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Totally Redesigned Dungeon Exploration&lt;/div&gt;
+
+&lt;p&gt;By far the biggest change this time around: I’ve completely redesigned the exploration phase of the game.&lt;/p&gt;
+
+&lt;p&gt;The new maps are less than a 5th of the size of the old ones. It’s less complicated, it requires less clicking, and, I think, is suits the game much better than the old system. It boils this phase down to pure decision making.&lt;/p&gt;
+
+&lt;p&gt;Along those lines, other game elements have been simplified too - all the gold values have been reworked (You get exactly one gold per battle now, and equipment tends to cost between 2-5 gold), and experience points match the enemies you’re fighting (a level 2 enemy gives you 2 experience points) - making the game much more boardgamey, and much easier to make strategic decisions about.&lt;/p&gt;
+
+&lt;p&gt;There’s also a bunch of other little structural things - for example, I’ve spread the dungeon out over 5 floors instead of 3 (although it’s actually shorter now thanks to the smaller levels), and it’s all been redesigned so that you don’t need to fight every monster to finish a Dungeon. As a result of all of this, I think the stuff &lt;em&gt;outside&lt;/em&gt; of combat is pretty substantially improved in this version!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version7/guild.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Guilds&lt;/div&gt;
+
+&lt;p&gt;The best new thing in this update: Guilds! Guilds are my take on roguelike shrine mechanics - they don’t appear in every game, but when they do, they’ll offer you some strange wonderful new power… for a price. There a four in the game right now, and I’ll be adding more with each update!&lt;/p&gt;
+
+&lt;p&gt;I’ll probably end up reframing guilds in a later version (possibly as something curse themed), but what I’m aiming for is this mechanic where you can take on this extra, bonus challenge for fun. It’s usually a bad idea, but if you go for them, they change up the way you play the game, and open up new kinds of weirder playstyles you can try.&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version7/editor.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Editor Mode&lt;/div&gt;
+
+&lt;p&gt;I’ve implemented a first draft of an in game editor! The current version lets you arm a player with any equipment from the game you want, and fight any of the enemies in the game. Eventually, this mode will let you create full mods and challenges for the game. (It’s already seeing some very cool stuff happen on the &lt;a href=&quot;https://discord.gg/z7pCdCP&quot;&gt;Dicecord&lt;/a&gt; with people trying to make one turn infinite dice builds!)&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Decisions&lt;/div&gt;
+
+&lt;p&gt;In the v0.6 post, I mentioned wanting to catch my breath, and figure out where this whole thing is going.&lt;/p&gt;
+
+&lt;p&gt;Well, I’ve done that. I’ve made some big decisions! Expect a blog post in a couple of days.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold;&quot;&gt;So what about v0.8?&lt;/div&gt;
+
+&lt;p&gt;For the next update, I’m going to introduce another new class, the &lt;em&gt;Mage&lt;/em&gt;. This class will require a little firming up of some basic combat mechanics, so I’ll probably end up doing quite a lot of work on that.&lt;/p&gt;
+
+&lt;p&gt;Thanks for playing! See you in another two weeks!&lt;/p&gt;</content><author><name></name></author><summary type="html">It’s here! Version 0.7! Let’s see what’s new this time!</summary></entry><entry><title type="html">Dicey Dungeons 0.6</title><link href="/blog/2018/05/04/version-6.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.6" /><published>2018-05-04T03:00:00+01:00</published><updated>2018-05-04T03:00:00+01:00</updated><id>/blog/2018/05/04/version-6</id><content type="html" xml:base="/blog/2018/05/04/version-6.html">&lt;p&gt;Hey again! It’s v0.6! I’d sorta planned that this one would be a smaller update, since I was travelling for a bit of it. But it ended up being HUGE. Let’s jump in!&lt;/p&gt;
 
 &lt;center&gt;&lt;img src=&quot;/assets/images/version6/characters.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
 &lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;New Character: The Inventor&lt;/div&gt;
@@ -38,7 +73,7 @@
 
 &lt;p&gt;Things are going pretty well! I think it’s time I made some decisions about where this is all going!&lt;/p&gt;
 
-&lt;p&gt;Thanks for playing! See you in two weeks!&lt;/p&gt;</content><author><name></name></author><summary type="html">Hey again! It’s v0.6! I’d sorta planned that this one would be a smaller update, since I was travelling for a bit of it. But it ended up being HUGE. Let’s jump in!</summary></entry><entry><title type="html">Dicey Dungeons 0.5</title><link href="/blog/2018/04/20/version-5.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.5" /><published>2018-04-20T09:53:04+02:00</published><updated>2018-04-20T09:53:04+02:00</updated><id>/blog/2018/04/20/version-5</id><content type="html" xml:base="/blog/2018/04/20/version-5.html">&lt;p&gt;It’s version 0.5! Whoa!&lt;/p&gt;
+&lt;p&gt;Thanks for playing! See you in two weeks!&lt;/p&gt;</content><author><name></name></author><summary type="html">Hey again! It’s v0.6! I’d sorta planned that this one would be a smaller update, since I was travelling for a bit of it. But it ended up being HUGE. Let’s jump in!</summary></entry><entry><title type="html">Dicey Dungeons 0.5</title><link href="/blog/2018/04/20/version-5.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.5" /><published>2018-04-20T08:53:04+01:00</published><updated>2018-04-20T08:53:04+01:00</updated><id>/blog/2018/04/20/version-5</id><content type="html" xml:base="/blog/2018/04/20/version-5.html">&lt;p&gt;It’s version 0.5! Whoa!&lt;/p&gt;
 
 &lt;p&gt;Welcome! If you’re dropping by for the first time, here’s what’s going on: &lt;em&gt;Dicey Dungeons&lt;/em&gt; is a game I started making for this year’s 7 day roguelike. It’s now a month and a half on, I’m still working on it, and it’s going very well! The game’s basically a roguelike inspired by Dream Quest and games like that - only it’s designed around dice instead of cards. You explore a dungeon, you find equipment, and you use dice on that equipment to activate it. I think it’s already pretty fun, and it’s getting better with every update!&lt;/p&gt;
 
@@ -87,7 +122,7 @@
 
 &lt;p&gt;That said, I’d really like to get to work on a new class for the next update - I think the Thief is working really well, and I eventually see there being 5 or 6 classes in the final version. Let’s see how it goes!&lt;/p&gt;
 
-&lt;p&gt;Thanks for playing!&lt;/p&gt;</content><author><name></name></author><summary type="html">It’s version 0.5! Whoa!</summary></entry><entry><title type="html">Dicey Dungeons 0.4</title><link href="/blog/2018/04/06/version-4.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.4" /><published>2018-04-06T09:53:04+02:00</published><updated>2018-04-06T09:53:04+02:00</updated><id>/blog/2018/04/06/version-4</id><content type="html" xml:base="/blog/2018/04/06/version-4.html">&lt;p&gt;Hey! It’s v0.4! This is the biggest update so far. Let’s jump right in! Here’s what’s new:&lt;/p&gt;
+&lt;p&gt;Thanks for playing!&lt;/p&gt;</content><author><name></name></author><summary type="html">It’s version 0.5! Whoa!</summary></entry><entry><title type="html">Dicey Dungeons 0.4</title><link href="/blog/2018/04/06/version-4.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.4" /><published>2018-04-06T08:53:04+01:00</published><updated>2018-04-06T08:53:04+01:00</updated><id>/blog/2018/04/06/version-4</id><content type="html" xml:base="/blog/2018/04/06/version-4.html">&lt;p&gt;Hey! It’s v0.4! This is the biggest update so far. Let’s jump right in! Here’s what’s new:&lt;/p&gt;
 
 &lt;center&gt;&lt;img src=&quot;/assets/images/version4/thief.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
 &lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;The Thief&lt;/div&gt;
@@ -122,7 +157,7 @@
 
 &lt;p&gt;I have vague plans that this thing will eventually end up on telephones, so will be experimenting a lot more with things like this as the weeks go by!&lt;/p&gt;
 
-&lt;p&gt;Thanks for checking out the latest build. For the next update, I’m hoping to focus on balance, polish, and at long last, ART. See you in two weeks!&lt;/p&gt;</content><author><name></name></author><summary type="html">Hey! It’s v0.4! This is the biggest update so far. Let’s jump right in! Here’s what’s new:</summary></entry><entry><title type="html">Dicey Dungeons 0.3</title><link href="/blog/2018/03/30/version-3.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.3" /><published>2018-03-30T09:53:04+02:00</published><updated>2018-03-30T09:53:04+02:00</updated><id>/blog/2018/03/30/version-3</id><content type="html" xml:base="/blog/2018/03/30/version-3.html">&lt;p&gt;Hey hey, it’s update 0.3!&lt;/p&gt;
+&lt;p&gt;Thanks for checking out the latest build. For the next update, I’m hoping to focus on balance, polish, and at long last, ART. See you in two weeks!&lt;/p&gt;</content><author><name></name></author><summary type="html">Hey! It’s v0.4! This is the biggest update so far. Let’s jump right in! Here’s what’s new:</summary></entry><entry><title type="html">Dicey Dungeons 0.3</title><link href="/blog/2018/03/30/version-3.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.3" /><published>2018-03-30T08:53:04+01:00</published><updated>2018-03-30T08:53:04+01:00</updated><id>/blog/2018/03/30/version-3</id><content type="html" xml:base="/blog/2018/03/30/version-3.html">&lt;p&gt;Hey hey, it’s update 0.3!&lt;/p&gt;
 
 &lt;p&gt;Last week’s build was probably too easy. This one is definitely too hard. So it goes - it’s still very, very early days for this game. I’ll figure it out eventually! &lt;strong&gt;YAY FOR OPEN DEVELOPMENT!&lt;/strong&gt;&lt;/p&gt;
 
@@ -151,7 +186,7 @@
 
 &lt;p&gt;Next week I finally want to make some progress on a second class! This doesn’t mean that I’m done with the Warrior, far from it - but I think I’m at the point where designing a seperate path through the game will push things along in lots of unexplored directions, and do way more for the game than continuing to tweak the existing content.&lt;/p&gt;
 
-&lt;p&gt;Ok! Hope you enjoy this version! See you next week!&lt;/p&gt;</content><author><name></name></author><summary type="html">Hey hey, it’s update 0.3!</summary></entry><entry><title type="html">Dicey Dungeons 0.2</title><link href="/blog/2018/03/23/version-2.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.2" /><published>2018-03-23T08:53:04+01:00</published><updated>2018-03-23T08:53:04+01:00</updated><id>/blog/2018/03/23/version-2</id><content type="html" xml:base="/blog/2018/03/23/version-2.html">&lt;p&gt;Hey everyone! Welcome back!&lt;/p&gt;
+&lt;p&gt;Ok! Hope you enjoy this version! See you next week!&lt;/p&gt;</content><author><name></name></author><summary type="html">Hey hey, it’s update 0.3!</summary></entry><entry><title type="html">Dicey Dungeons 0.2</title><link href="/blog/2018/03/23/version-2.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.2" /><published>2018-03-23T07:53:04+00:00</published><updated>2018-03-23T07:53:04+00:00</updated><id>/blog/2018/03/23/version-2</id><content type="html" xml:base="/blog/2018/03/23/version-2.html">&lt;p&gt;Hey everyone! Welcome back!&lt;/p&gt;
 
 &lt;p&gt;So, I’m attempting to do this early access like thing where I release builds publically every week, warts and all. I’ve never done this before - actually, it makes me pretty nervous to show work that I don’t think is ready yet. But I think it’s worth trying to get over that, because it’s clearly a good approach for this project!&lt;/p&gt;
 
@@ -194,7 +229,7 @@
 
 &lt;p&gt;I’m trying not to plan more than a week ahead right now, but my next big goal with the game is to add another class, the Thief. That’s gonna wait until after this week though, because next, I’d like to slow down a bit and start properly balancing the game.&lt;/p&gt;
 
-&lt;p&gt;There’s lots of stuff in the game now, but none of it is really balanced properly yet. I don’t think I can really go much further until I get a handle on that. So! Week three! Balance update! See you next friday!&lt;/p&gt;</content><author><name></name></author><summary type="html">Hey everyone! Welcome back!</summary></entry><entry><title type="html">Dicey Dungeons 0.1 (7drl)</title><link href="/blog/2018/03/12/version-1.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.1 (7drl)" /><published>2018-03-12T08:53:04+01:00</published><updated>2018-03-12T08:53:04+01:00</updated><id>/blog/2018/03/12/version-1</id><content type="html" xml:base="/blog/2018/03/12/version-1.html">&lt;center&gt;&lt;img src=&quot;/assets/images/version1/day7.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;p&gt;There’s lots of stuff in the game now, but none of it is really balanced properly yet. I don’t think I can really go much further until I get a handle on that. So! Week three! Balance update! See you next friday!&lt;/p&gt;</content><author><name></name></author><summary type="html">Hey everyone! Welcome back!</summary></entry><entry><title type="html">Dicey Dungeons 0.1 (7drl)</title><link href="/blog/2018/03/12/version-1.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.1 (7drl)" /><published>2018-03-12T07:53:04+00:00</published><updated>2018-03-12T07:53:04+00:00</updated><id>/blog/2018/03/12/version-1</id><content type="html" xml:base="/blog/2018/03/12/version-1.html">&lt;center&gt;&lt;img src=&quot;/assets/images/version1/day7.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
 
 &lt;p&gt;Hello! I made a game for this year’s 7 Day Roguelike. It’s called &lt;a href=&quot;https://itch.io/jam/7drl-challenge-2018/rate/234586&quot;&gt;Dicey Dungeons&lt;/a&gt; and you can &lt;a href=&quot;https://terrycavanaghgames.com/dice/&quot;&gt;go play it right now&lt;/a&gt;!&lt;/p&gt;
 

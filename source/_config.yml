@@ -4,7 +4,7 @@ show_downloads: false
 google_analytics:
 theme: jekyll-theme-slate
 
-nextbuild: 2018-05-18 10:00:00 +0800
+nextbuild: 2018-06-01 10:00:00 +0800
 
 plugins:
   - jekyll-feed
