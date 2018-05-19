@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-05-19T22:50:26+01:00</updated><id>/</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.7</title><link href="/blog/2018/05/18/version-7.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.7" /><published>2018-05-18T03:00:00+01:00</published><updated>2018-05-18T03:00:00+01:00</updated><id>/blog/2018/05/18/version-7</id><content type="html" xml:base="/blog/2018/05/18/version-7.html">&lt;p&gt;It’s here! Version 0.7! Let’s see what’s new this time!&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-05-19T23:05:54+01:00</updated><id>/</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.7</title><link href="/blog/2018/05/18/version-7.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.7" /><published>2018-05-18T03:00:00+01:00</published><updated>2018-05-18T03:00:00+01:00</updated><id>/blog/2018/05/18/version-7</id><content type="html" xml:base="/blog/2018/05/18/version-7.html">&lt;p&gt;It’s here! Version 0.7! Let’s see what’s new this time!&lt;/p&gt;
 
 &lt;center&gt;&lt;img src=&quot;/assets/images/version7/newmap.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
 &lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Totally Redesigned Dungeon Exploration&lt;/div&gt;
 
-&lt;p&gt;By far the biggest change this time around: I’ve completely redesigned the exploration phase of the game.&lt;/p&gt;
+&lt;p&gt;For this version, I’ve completely redesigned the exploration phase of the game.&lt;/p&gt;
 
-&lt;p&gt;The new maps are less than a 5th of the size of the old ones. It’s less complicated, it requires less clicking, and, I think, is suits the game much better than the old system. It boils this phase down to pure decision making.&lt;/p&gt;
+&lt;p&gt;The new maps are less than a 5th of the size of the old ones. It’s less complicated, it requires less clicking, and, I think, suits the game much better than the old system. It boils this phase down to pure decision making.&lt;/p&gt;
 
 &lt;p&gt;Along those lines, other game elements have been simplified too - all the gold values have been reworked (You get exactly one gold per battle now, and equipment tends to cost between 2-5 gold), and experience points match the enemies you’re fighting (a level 2 enemy gives you 2 experience points) - making the game much more boardgamey, and much easier to make strategic decisions about.&lt;/p&gt;
 
@@ -14,9 +14,9 @@
 &lt;center&gt;&lt;img src=&quot;/assets/images/version7/guild.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
 &lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Guilds&lt;/div&gt;
 
-&lt;p&gt;The best new thing in this update: Guilds! Guilds are my take on roguelike shrine mechanics - they don’t appear in every game, but when they do, they’ll offer you some strange wonderful new power… for a price. There a four in the game right now, and I’ll be adding more with each update!&lt;/p&gt;
+&lt;p&gt;The best new thing in this update: Guilds! Guilds are my take on roguelike shrine mechanics - they don’t appear everytime you play, but when they do, they’ll offer you some strange wonderful new power… for a price. There a four in the game right now, and I’ll be adding more with each update!&lt;/p&gt;
 
-&lt;p&gt;I’ll probably end up reframing guilds in a later version (possibly as something curse themed), but what I’m aiming for is this mechanic where you can take on this extra, bonus challenge for fun. It’s usually a bad idea, but if you go for them, they change up the way you play the game, and open up new kinds of weirder playstyles you can try.&lt;/p&gt;
+&lt;p&gt;I’ll probably end up reframing guilds in a later version (possibly as something curse themed), but what I’m aiming for is this mechanic where you can take on this extra, bonus challenge for fun. Guilds are always a big risk, but if you go for them, they change up the way you play the game, and open up new kinds of weirder playstyles you can try.&lt;/p&gt;
 
 &lt;center&gt;&lt;img src=&quot;/assets/images/version7/editor.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
 &lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Editor Mode&lt;/div&gt;
