@@ -5,8 +5,7 @@
   </h1>
    <div style="text-align:center; font-size: large; margin-top: -7%;"><br>The latest build is <span style="font-weight: bold;">{{ post.versionnumber }}</span>, from <span style="font-weight: bold;">{{ post.date | date: '%B %d, %Y' }}</span>, <span id="latestversion"></span>.<br><a href="{{ post.url }}">[read the update notes]</a></div>
   <a href="{{ post.versionlink }}"><img src="{{ post.topimage }}" width="640"></a>
-  <div style="text-align:center; font-size: large; margin-top: -1%;">The next build is due <span style="font-weight: bold;"><span id="nextversiondue"></span>!</span></div><small><small>(Unfortunately, version v0.8 has been delayed by a week. Sorry! <a href="http://distractionware.com/blog/2018/05/new-dicey-dungeons-build-coming-on-the-8th-instead/">more info here!</a>)</small></small><br><br>
-  </center>
+  <div style="text-align:center; font-size: large; margin-top: -1%;">The next build is due <span style="font-weight: bold;"><span id="nextversiondue"></span>!</span></div></center>
 <script>
   var latestversion = moment("{{ post.date | date_to_xmlschema  }}");
   var nextversiondue = moment("{{ site.nextbuild | date_to_xmlschema  }}");

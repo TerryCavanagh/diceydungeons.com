@@ -1,4 +1,47 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-06-08T00:29:43+01:00</updated><id>/</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.7</title><link href="/blog/2018/05/18/version-7.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.7" /><published>2018-05-18T03:00:00+01:00</published><updated>2018-05-18T03:00:00+01:00</updated><id>/blog/2018/05/18/version-7</id><content type="html" xml:base="/blog/2018/05/18/version-7.html">&lt;p&gt;It’s here! Version 0.7! Let’s see what’s new this time!&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-06-08T23:53:44+01:00</updated><id>/</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.8</title><link href="/blog/2018/06/08/version-8.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.8" /><published>2018-06-08T03:00:00+01:00</published><updated>2018-06-08T03:00:00+01:00</updated><id>/blog/2018/06/08/version-8</id><content type="html" xml:base="/blog/2018/06/08/version-8.html">&lt;p&gt;At long last, version 0.8! Thanks for bearing with me with this delayed build - I’m very glad I took the extra week to do this new class properly! Let’s have a look at it!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version8/witchmoves.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;The Witch&lt;/div&gt;
+
+&lt;p&gt;So! The Witch! How do I describe the Witch?&lt;/p&gt;
+
+&lt;p&gt;The witch is &lt;em&gt;complicated&lt;/em&gt;. Definitely not a class to pick for your first game. In the final version of the game, the Witch will probably be one of the last characters you unlock.&lt;/p&gt;
+
+&lt;p&gt;However, the witch is also &lt;em&gt;powerful&lt;/em&gt;. Unlike the other classes, the witch isn’t limited to whatever equipment she brings to the fight - the witch has four spell slots, which can be changed at any time. This means that you can, for example, cast four copies of a lockpick spell - and then use the dice you get from &lt;em&gt;THOSE&lt;/em&gt; spells to cast even more spells, which combine and so on and so on…&lt;/p&gt;
+
+&lt;p&gt;In other words, the witch is a class for people who like building unstoppable machines.&lt;/p&gt;
+
+&lt;p&gt;I am very sure a lot of you are going to hate it, just like I’m very sure it’s going to be some people’s favourite class. I’m so happy with how it’s come together!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version8/elements.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Elemental Magic&lt;/div&gt;
+
+&lt;p&gt;I spent a &lt;em&gt;lot&lt;/em&gt; of time on this update working on deepening the elemental magic system in the game. A lot of these changes are pretty subtle, but they dramatically improve the range of interesting things that are possible! This is still a work in progress, but here are the big changes:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;FIRE:&lt;/strong&gt; All fire attacks now also inflict a &lt;strong&gt;BURN&lt;/strong&gt; status effect. Burn causes your dice to catch fire - you can still use them, but you’ll take some damage if you do.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ICE:&lt;/strong&gt; Ice has been majorly nerfed in v0.8! The &lt;strong&gt;FROZEN&lt;/strong&gt; status effect no longer locks up a dice, but instead changes its value to 1. For some classes, this is devastating - for others, not really a big deal.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;LIGHTNING:&lt;/strong&gt; The old stun behaviour has basically just been renamed Lightning. &lt;strong&gt;SHOCKING&lt;/strong&gt; an enemy with a lightning spell causes a piece of equipment to lock up! (you can drop a dice on it to release it).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;EARTH:&lt;/strong&gt; Finally, Earth damage, which I’m really happy about - attacking with earth causes a &lt;strong&gt;WEAKEN&lt;/strong&gt; status effect, which downgrades equipment. There’s actually a whole separate downgrade variation for every single piece of equipment in the game now, just like the upgrade variations!&lt;/p&gt;
+
+&lt;p&gt;Also, while I was at it, I scrapped the concept of poison and elemental immunity from the game, and instead replaced it with resistances, which I think are a lot more interesting. (This should mean that, for example, bringing a fire build against a Dragon isn’t hopeless anymore!)&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version8/7drl.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Team Dicey Dungeons&lt;/div&gt;
+
+&lt;p&gt;You might have seen &lt;a href=&quot;http://distractionware.com/blog/2018/05/help-wanted-art-director-for-dicey-dungeons/&quot;&gt;(on my blog)&lt;/a&gt;, that I put up an ad for an Art Director for the game! I got a lot of submissions, and it’s a very tough decision - but I hope to have some news about that soon.&lt;/p&gt;
+
+&lt;p&gt;Ahhhhhh, look at that 7drl screenshot! This game has come such a long way :D&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold;&quot;&gt;So what about v0.9?&lt;/div&gt;
+
+&lt;p&gt;Making new content is really fun, but it’s probably about time I slowed down and started fixing some broken stuff. There are over &lt;a href=&quot;https://github.com/TerryCavanagh/diceydungeons.com/issues&quot;&gt;100 open issues on the bug tracker&lt;/a&gt;, including a few crash bugs, so for v0.9 I wanna tackle as many of them as I can.&lt;/p&gt;
+
+&lt;p&gt;There’s a good reason for that too. &lt;em&gt;v0.9 will be the LAST free public build of the game&lt;/em&gt; - so I want it to be polished, and stable! I’ll be continuing with this whole open development thing after that, but from behind a paywall (on &lt;a href=&quot;https://itch.io/&quot;&gt;itch.io&lt;/a&gt;!). I’ll have more information about that next update!&lt;/p&gt;
+
+&lt;p&gt;Thanks for playing! See you in another two weeks!&lt;/p&gt;</content><author><name></name></author><summary type="html">At long last, version 0.8! Thanks for bearing with me with this delayed build - I’m very glad I took the extra week to do this new class properly! Let’s have a look at it!</summary></entry><entry><title type="html">Dicey Dungeons 0.7</title><link href="/blog/2018/05/18/version-7.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.7" /><published>2018-05-18T03:00:00+01:00</published><updated>2018-05-18T03:00:00+01:00</updated><id>/blog/2018/05/18/version-7</id><content type="html" xml:base="/blog/2018/05/18/version-7.html">&lt;p&gt;It’s here! Version 0.7! Let’s see what’s new this time!&lt;/p&gt;
 
 &lt;center&gt;&lt;img src=&quot;/assets/images/version7/newmap.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
 &lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Totally Redesigned Dungeon Exploration&lt;/div&gt;
