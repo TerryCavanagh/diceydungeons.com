@@ -1,4 +1,57 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-06-08T23:53:44+01:00</updated><id>/</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.8</title><link href="/blog/2018/06/08/version-8.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.8" /><published>2018-06-08T03:00:00+01:00</published><updated>2018-06-08T03:00:00+01:00</updated><id>/blog/2018/06/08/version-8</id><content type="html" xml:base="/blog/2018/06/08/version-8.html">&lt;p&gt;At long last, version 0.8! Thanks for bearing with me with this delayed build - I’m very glad I took the extra week to do this new class properly! Let’s have a look at it!&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-06-23T22:57:49+01:00</updated><id>/</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.9</title><link href="/blog/2018/06/22/version-9.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.9" /><published>2018-06-22T03:00:00+01:00</published><updated>2018-06-22T03:00:00+01:00</updated><id>/blog/2018/06/22/version-9</id><content type="html" xml:base="/blog/2018/06/22/version-9.html">&lt;p&gt;Hey! It’s version 0.9! We’re almost four months in now, gosh!&lt;/p&gt;
+
+&lt;p&gt;This new build is light on new features, but covers some very overdue balance and design changes that I think make the game a lot better. Let’s take a look!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version9/newspellbook.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Witch Redesigns&lt;/div&gt;
+
+&lt;p&gt;There are lots of changes to the Witch class this time around. She finds more powerful, tempting spells now, and some of the existing powerful Witch spells like Fury and Meteor have been made much cheaper and more viable. Also, it’s now possible to prepare a spell in advance (or two, if you choose the level up perk).&lt;/p&gt;
+
+&lt;p&gt;The Witch is still the most complex class in the game, but I’m hoping these changes make her a little less scary to play!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version9/iceage.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Enemy Design Pass&lt;/div&gt;
+
+&lt;p&gt;Something I’ve wanted to do for a &lt;em&gt;very&lt;/em&gt; long time is a take a step back, and take a fresh look at all the enemies in the game, and how they could be better. So, I did a complete audit! (It’s very long, and full of spoilers, but you can &lt;a href=&quot;https://pastebin.com/raw/5AvMgfKa&quot;&gt;read it here if you like&lt;/a&gt;.)&lt;/p&gt;
+
+&lt;p&gt;This is major - virtually every enemy in the game has been tweaked. Six old enemies have been removed completely (including two bosses), and there are ten new ones. Also, some existing enemies, like Druid, have changed so much that they’re basically brand new.&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version9/cursed.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;New Status Effects&lt;/div&gt;
+
+&lt;p&gt;Following on from v0.8’s elemental magic pass, I did a bunch of work on the Status Effects this time around. Specifically:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;SILENCE:&lt;/strong&gt; Silence prevents you from using your class skills and limit breaks. The big change here is that it can now be broken, for the price of two dice.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;CURSE:&lt;/strong&gt; The old curse effect used to set all your dice to 1, like a freeze all spell. I needed something new here.&lt;/p&gt;
+
+&lt;p&gt;New Curse causes your equipment to fail 50% of the time, forcing you to play carefully and think about what order you’re going to play your equipment in. (I liked how this worked out so much that I make a new guild based around it!)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;LOCK:&lt;/strong&gt; The v0.7 and before times freeze behaviour, which prevented you from using a dice at all, has found a new home as Lock, which is appropriately super rare now.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;BLIND:&lt;/strong&gt; This new status effect prevents you from seeing the values on your dice - though you can &lt;em&gt;maybe&lt;/em&gt; still figure out what they are, depending on what you’ve got equipped…&lt;/p&gt;
+
+&lt;p&gt;I also fixed a bunch of little things with the elemental attacks - you might find Ice attacks more effective now, for example, since many fewer enemies benefit from having reliable 1s. Shielding and Poison still need a closer look, but I’ll be diving into that for v0.10.&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version9/editor.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Editor Improvements&lt;/div&gt;
+
+&lt;p&gt;Finally, I did more work on the editor! As well as some UI improvements, you can now create custom enemies, and try fighting against them.&lt;/p&gt;
+
+&lt;p&gt;I’m hoping to do a little work on the editor with every update from now on. I want it to be super easy and fun to make your own levels and mods, right from day 1!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version9/bugtracks.png&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Lots of bug fixes&lt;/div&gt;
+
+&lt;p&gt;According to my &lt;a href=&quot;https://github.com/TerryCavanagh/diceydungeons.com/issues&quot;&gt;github issues tracker&lt;/a&gt;, I closed nearly 70 issues over the last two weeks! Still lots more bugs to fix, but the game’s way more stable now.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold;&quot;&gt;So what about v0.10?&lt;/div&gt;
+
+&lt;p&gt;The next update is going to be a big one!&lt;/p&gt;
+
+&lt;p&gt;This one, v0.9 is the last free public build of the game - from v0.10 onwards, I will be &lt;strong&gt;SELLING ALPHA ACCESS&lt;/strong&gt; to the game on &lt;a href=&quot;https://itch.io/&quot;&gt;itch.io&lt;/a&gt;. I’m also excited to finally introduce the rest of the team - both the game’s artist and musician have recently started working on the game, and I’m can’t wait to show you all what they’ve been up to.&lt;/p&gt;
+
+&lt;p&gt;Thanks for playing! See you in two weeks!&lt;/p&gt;</content><author><name></name></author><summary type="html">Hey! It’s version 0.9! We’re almost four months in now, gosh!</summary></entry><entry><title type="html">Dicey Dungeons 0.8</title><link href="/blog/2018/06/08/version-8.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.8" /><published>2018-06-08T03:00:00+01:00</published><updated>2018-06-08T03:00:00+01:00</updated><id>/blog/2018/06/08/version-8</id><content type="html" xml:base="/blog/2018/06/08/version-8.html">&lt;p&gt;At long last, version 0.8! Thanks for bearing with me with this delayed build - I’m very glad I took the extra week to do this new class properly! Let’s have a look at it!&lt;/p&gt;
 
 &lt;center&gt;&lt;img src=&quot;/assets/images/version8/witchmoves.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
 &lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;The Witch&lt;/div&gt;
