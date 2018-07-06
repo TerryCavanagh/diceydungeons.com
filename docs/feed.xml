@@ -1,4 +1,46 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-06-23T22:57:49+01:00</updated><id>/</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.9</title><link href="/blog/2018/06/22/version-9.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.9" /><published>2018-06-22T03:00:00+01:00</published><updated>2018-06-22T03:00:00+01:00</updated><id>/blog/2018/06/22/version-9</id><content type="html" xml:base="/blog/2018/06/22/version-9.html">&lt;p&gt;Hey! It’s version 0.9! We’re almost four months in now, gosh!&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-07-06T21:05:56+01:00</updated><id>/</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.10</title><link href="/blog/2018/07/06/version-10.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.10" /><published>2018-07-06T03:00:00+01:00</published><updated>2018-07-06T03:00:00+01:00</updated><id>/blog/2018/07/06/version-10</id><content type="html" xml:base="/blog/2018/07/06/version-10.html">&lt;p&gt;Here we are! Version 0.10! The first &lt;strong&gt;commercial&lt;/strong&gt; version! The game’s getting closer and closer to release! Let’s see what’s new.&lt;/p&gt;
+
+&lt;center&gt;&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/xShpQ85jCVE?rel=0&quot; frameborder=&quot;0&quot; allow=&quot;autoplay; encrypted-media&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold;&quot;&gt;Dicey Dungeons Teaser&lt;/div&gt;
+
+&lt;p&gt;Please welcome the rest of team Dicey Dungeons! You can see a little preview of what they’ve been working on in this trailer!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version10/artvart.jpg&quot; width=&quot;500&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Art: Marlowe Dobbe&lt;/div&gt;
+
+&lt;p&gt;Dicey Dungeons new art director is Marlowe Dobbe! Marlowe is an amazing illustrator, animator, and game developer from Portland, Oregon. Her work ranges from animation for the D&amp;amp;D podcast Very Random Encounters, to &lt;a href=&quot;http://marlowe.dobbe.com/lost-wage-rampage&quot;&gt;Lost Wage Rampage&lt;/a&gt;, to the &lt;a href=&quot;http://marlowe.dobbe.com/walouija&quot;&gt;WAL-OUIJI board&lt;/a&gt;, which she describes as “a joke that went too far”. You can &lt;a href=&quot;https://www.instagram.com/marlowedobbe/&quot;&gt;check out her instragram here&lt;/a&gt;, where she’ll be posting lots of work in progress Dicey Dungeons artwork over the next few weeks! (she’s also &lt;a href=&quot;https://twitter.com/marlowedobbe&quot;&gt;on twitter, here&lt;/a&gt;!)&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version10/chipzel.png&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Music: Chipzel&lt;/div&gt;
+
+&lt;p&gt;And on music, I’m very excited to announce that I’ve teamed up again with Niamh Houston, aka Chipzel! You might know her from her work on &lt;a href=&quot;http://superhexagon.com/&quot;&gt;Super Hexagon&lt;/a&gt; - but she’s also released three albums and worked on all sorts of cool projects, ranging from an Adventure Time game to a remix for Crypt of the NecroDancer. You can find her work at &lt;a href=&quot;http://chipzel.co.uk/&quot;&gt;http://chipzel.co.uk/&lt;/a&gt;, or &lt;a href=&quot;https://twitter.com/chipzel/&quot;&gt;follow her on twitter&lt;/a&gt;, where she’ll no doubt be sharing her work on Dicey Dungeons music!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version10/banner.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;itch.io launch&lt;/div&gt;
+
+&lt;p&gt;As of this version, &lt;a href=&quot;https://terrycavanagh.itch.io/dicey-dungeons&quot;&gt;Dicey Dungeons is now on sale for $7.50 on itch.io&lt;/a&gt;! Itch is where I’ll be continuing to post regular alpha versions, every two weeks. The current version on itch.io is still using placeholder art and music, but I’m very excited to be finally implementing Marlowe and Niamh’s work over the past few weeks into the NEXT version!&lt;/p&gt;
+
+&lt;p&gt;(If you got in early enough on my discord (way back before v0.7), you’ll be getting a free itch.io code. More details about that on the discord! Oh, and the old alpha versions aren’t going anywhere, btw!)&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version10/robot.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;New Character: The Robot&lt;/div&gt;
+
+&lt;p&gt;For this update, I added the game’s fifth character class, &lt;strong&gt;The Robot&lt;/strong&gt;! The robot falls somewhere between the Thief and the Inventor in terms of complexity - definitely easier than the Witch, but definitely harder than the Warrior.&lt;/p&gt;
+
+&lt;p&gt;The class is all about push your luck mechanics - instead of rolling dice every turn, you have a dice counter that ticks up everytime you &lt;em&gt;choose&lt;/em&gt; to roll a dice. Doing well as the robot means knowing when to roll, and when to stop.&lt;/p&gt;
+
+&lt;p&gt;Personally I’m finding the robot super refreshing to play! I hope you enjoy!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version10/zh09.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Chinese Localisation&lt;/div&gt;
+
+&lt;p&gt;Thanks to the &lt;a href=&quot;https://www.indienova.com/corp/gutenberg/en&quot;&gt;IndieNova&lt;/a&gt; project, there is now a simplified chinese localisation of Dicey Dungeons v0.9 - and one for v0.10 will be coming in a few days!&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold;&quot;&gt;So what about v0.11?&lt;/div&gt;
+
+&lt;p&gt;The next update is really exciting for me, because that’s when I’m going to finally start implement Marlowe and Niamh’s work into the game! They’ve both been doing amazing work over the last few weeks, and I can wait to have it in the game and show it all to you!&lt;/p&gt;
+
+&lt;p&gt;Thanks for playing! See you in two weeks!&lt;/p&gt;</content><author><name></name></author><summary type="html">Here we are! Version 0.10! The first commercial version! The game’s getting closer and closer to release! Let’s see what’s new.</summary></entry><entry><title type="html">Dicey Dungeons 0.9</title><link href="/blog/2018/06/22/version-9.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.9" /><published>2018-06-22T03:00:00+01:00</published><updated>2018-06-22T03:00:00+01:00</updated><id>/blog/2018/06/22/version-9</id><content type="html" xml:base="/blog/2018/06/22/version-9.html">&lt;p&gt;Hey! It’s version 0.9! We’re almost four months in now, gosh!&lt;/p&gt;
 
 &lt;p&gt;This new build is light on new features, but covers some very overdue balance and design changes that I think make the game a lot better. Let’s take a look!&lt;/p&gt;
 
