@@ -1,4 +1,37 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-04T22:23:18+01:00</updated><id>/</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.10</title><link href="/blog/2018/07/06/version-10.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.10" /><published>2018-07-06T03:00:00+01:00</published><updated>2018-07-06T03:00:00+01:00</updated><id>/blog/2018/07/06/version-10</id><content type="html" xml:base="/blog/2018/07/06/version-10.html">&lt;p&gt;Here we are! Version 0.10! The first &lt;strong&gt;commercial&lt;/strong&gt; version! The game’s getting closer and closer to release! Let’s see what’s new.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-06T01:29:43+01:00</updated><id>/</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.11</title><link href="/blog/2018/08/05/version-11.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.11" /><published>2018-08-05T16:00:00+01:00</published><updated>2018-08-05T16:00:00+01:00</updated><id>/blog/2018/08/05/version-11</id><content type="html" xml:base="/blog/2018/08/05/version-11.html">&lt;p&gt;Whoa, so this build’s really late! Sorry about that! But I’m really excited to finally be able to share it with everyone, at last!&lt;/p&gt;
+
+&lt;p&gt;One thing I should say right away: this version has less content in it than v0.10 - unfortunately, the Robot and the Witch still need to be implemented in the new engine, and the editor currently isn’t working. All will be making a return soon in future versions, though.&lt;/p&gt;
+
+&lt;p&gt;This new version is an absolutely huge overhaul of the entire game. Let’s have a look!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version11/overworld.jpg&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;New Art and Music&lt;/div&gt;
+
+&lt;p&gt;This version of Dicey Dungeons finally introduces the work of &lt;a href=&quot;http://marlowe.dobbe.com/&quot;&gt;Marlowe Dobbe&lt;/a&gt;, the game’s artist, and &lt;a href=&quot;https://chipzel.co.uk/&quot;&gt;Chipzel&lt;/a&gt;, the game’s musician!&lt;/p&gt;
+
+&lt;p&gt;Like the design, the music and art in the game is a still a work in progress, and there are placeholders and unfinished pieces everywhere - but getting it to this point represents a major step forward. I hope you like what our team has put together so far, and the direction we’re headed in!&lt;/p&gt;
+
+&lt;p&gt;This might be wishful thinking, but I think getting the game to this point was the really hard bit. Now that we’re finally here, I think things will go &lt;em&gt;much&lt;/em&gt; smooter.&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version11/combat.jpg&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Sound Effects&lt;/div&gt;
+
+&lt;p&gt;Another thing that’s new to this version: the game finally has sound effects! They’re also by Chipzel, who’d in charge of all things musical in the game!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version11/newtranslations.jpg&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Now in Korean and German&lt;/div&gt;
+
+&lt;p&gt;This version has two new translations of the game - Korean, by &lt;a href=&quot;http://team-sm.tistory.com/7&quot;&gt;BADA IM&lt;/a&gt;, and German, by &lt;a href=&quot;https://indiegametranslations.com/&quot;&gt;Thomas Faust&lt;/a&gt;!&lt;/p&gt;
+
+&lt;p&gt;(I should say that both translations are still in an alpha stage - unfortuantely I wasn’t able to get a playable build to either of them before this release, so they were unable to do things like check text widths or how things look in context. Still, like everything else, they should both get better and better as the game continues to develop!)&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold;&quot;&gt;So what about v0.12?&lt;/div&gt;
+
+&lt;p&gt;This was a tough update. This probably won’t come as a surprise, but I’ve decided that it’s time to ditch the two week update schedule. It was great early in the project to keep up momentum - but now that we’re nearing the end, I feel like it’s doing more harm than good. Stressed out people don’t do their best work!&lt;/p&gt;
+
+&lt;p&gt;Instead, I’m switching to “regular” updates - which will still come out every couple of weeks or so - but without any advance warning! If you want to get notified of new versions, you can follow me on &lt;a href=&quot;https://terrycavanagh.itch.io/dicey-dungeons&quot;&gt;itch.io&lt;/a&gt;, twitter &lt;a href=&quot;https://twitter.com/terrycavanagh&quot;&gt;@terrycavanagh&lt;/a&gt;, or &lt;a href=&quot;https://discord.gg/z7pCdCP&quot;&gt;join the discord&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;For v0.12, I’m excited to be getting back to design, and thinking about the final character. I’m also hoping to reintroduce the Robot and the Witch in our new engine. Thanks for playing!&lt;/p&gt;</content><author><name></name></author><summary type="html">Whoa, so this build’s really late! Sorry about that! But I’m really excited to finally be able to share it with everyone, at last!</summary></entry><entry><title type="html">Dicey Dungeons 0.10</title><link href="/blog/2018/07/06/version-10.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.10" /><published>2018-07-06T03:00:00+01:00</published><updated>2018-07-06T03:00:00+01:00</updated><id>/blog/2018/07/06/version-10</id><content type="html" xml:base="/blog/2018/07/06/version-10.html">&lt;p&gt;Here we are! Version 0.10! The first &lt;strong&gt;commercial&lt;/strong&gt; version! The game’s getting closer and closer to release! Let’s see what’s new.&lt;/p&gt;
 
 &lt;center&gt;&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/xShpQ85jCVE?rel=0&quot; frameborder=&quot;0&quot; allow=&quot;autoplay; encrypted-media&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/center&gt;
 &lt;div style=&quot;text-align:center; font-size: large; font-weight: bold;&quot;&gt;Dicey Dungeons Teaser&lt;/div&gt;
@@ -367,14 +400,4 @@
 
 &lt;p&gt;I’m trying not to plan more than a week ahead right now, but my next big goal with the game is to add another class, the Thief. That’s gonna wait until after this week though, because next, I’d like to slow down a bit and start properly balancing the game.&lt;/p&gt;
 
-&lt;p&gt;There’s lots of stuff in the game now, but none of it is really balanced properly yet. I don’t think I can really go much further until I get a handle on that. So! Week three! Balance update! See you next friday!&lt;/p&gt;</content><author><name></name></author><summary type="html">Hey everyone! Welcome back!</summary></entry><entry><title type="html">Dicey Dungeons 0.1 (7drl)</title><link href="/blog/2018/03/12/version-1.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.1 (7drl)" /><published>2018-03-12T07:53:04+00:00</published><updated>2018-03-12T07:53:04+00:00</updated><id>/blog/2018/03/12/version-1</id><content type="html" xml:base="/blog/2018/03/12/version-1.html">&lt;center&gt;&lt;img src=&quot;/assets/images/version1/day7.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
-
-&lt;p&gt;Hello! I made a game for this year’s 7 Day Roguelike. It’s called &lt;a href=&quot;https://itch.io/jam/7drl-challenge-2018/rate/234586&quot;&gt;Dicey Dungeons&lt;/a&gt; and you can &lt;a href=&quot;https://terrycavanaghgames.com/dice/&quot;&gt;go play it right now&lt;/a&gt;!&lt;/p&gt;
-
-&lt;p&gt;Only… well, it’s a bit broken. So much so that I freaked out a little bit about sharing it publicly at first. These days, I usually keep pretty quiet about prototypes - it’s been a long time since I shared something this rough.&lt;/p&gt;
-
-&lt;p&gt;The thing is, &lt;i&gt;I really like this game&lt;/i&gt;. I think with a bit more work, this currently broken idea of a game could be really, really great. So I’m going to spend a little more time on it. Give it another two weeks. See where it goes.&lt;/p&gt;
-
-&lt;p&gt;This does means putting State Machine on hold for a few weeks, but I think that’s probably a good thing. Ruari and I have been working solidly on that for close to two and a half years, and I think we’re overdue a little creative break. (Ruari’s actually working on &lt;a href=&quot;https://twitter.com/randomnine/status/965324342996471808&quot;&gt;a very cool sideproject of his own&lt;/a&gt; that he should have some news about soon…)&lt;/p&gt;
-
-&lt;p&gt;I plan to be a bit more open about the development of this, &lt;a href=&quot;https://discord.gg/z7pCdCP&quot;&gt;so I’ve set up a discord?&lt;/a&gt; Yeah, I dunno, I just thought I’d try it! DICE PLANET.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>
+&lt;p&gt;There’s lots of stuff in the game now, but none of it is really balanced properly yet. I don’t think I can really go much further until I get a handle on that. So! Week three! Balance update! See you next friday!&lt;/p&gt;</content><author><name></name></author><summary type="html">Hey everyone! Welcome back!</summary></entry></feed>
