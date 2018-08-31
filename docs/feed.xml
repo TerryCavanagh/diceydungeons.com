@@ -1,4 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-06T16:11:15+01:00</updated><id>/</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.11</title><link href="/blog/2018/08/05/version-11.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.11" /><published>2018-08-05T16:00:00+01:00</published><updated>2018-08-05T16:00:00+01:00</updated><id>/blog/2018/08/05/version-11</id><content type="html" xml:base="/blog/2018/08/05/version-11.html">&lt;p&gt;Whoa, so this build’s really late! Sorry about that! But I’m really excited to finally be able to share it with everyone, at last!&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-31T22:33:22+01:00</updated><id>/</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.12</title><link href="/blog/2018/08/31/version-12.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.12" /><published>2018-08-31T16:00:00+01:00</published><updated>2018-08-31T16:00:00+01:00</updated><id>/blog/2018/08/31/version-12</id><content type="html" xml:base="/blog/2018/08/31/version-12.html">&lt;p&gt;Surprise! It’s version v0.12 of Dicey Dungeons! Let’s see what’s new!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version12/newwitch.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;All five characters are playable again&lt;/div&gt;
+
+&lt;p&gt;The Witch is back! The Robot too! And so is the editor!&lt;/p&gt;
+
+&lt;p&gt;I was pretty unhappy about having to push this stuff back from v0.11, so I’m really, really glad to see em back in the game. The Witch, in particular, is still my favourite character.&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version12/robotvkraken.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;New Music&lt;/div&gt;
+
+&lt;p&gt;Chipzel’s been super busy over the last couple of weeks, and has two new tracks this time! A new combat track, and a new Boss theme! I’ve basically been listening to both on a loop now for last few weeks :D&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version12/greenforest.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;New Art&lt;/div&gt;
+
+&lt;p&gt;Marlowe’s been busy too! This version has lots of new Art - new combat backgrounds for every location, coloured in character art to replace the previous sketches, and little improvements everywhere. (Marlowe also has a bunch of animations ready to go, but they’re not in the game &lt;em&gt;just&lt;/em&gt; yet.)&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version12/girlscout.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;New Enemies&lt;/div&gt;
+
+&lt;p&gt;Couple of brand new enemies this time round, and some existing enemies (like Keymaster, Girl Scout and Crystalina) have had a complete redesign.&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version12/wordsofmagic.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Now in French&lt;/div&gt;
+
+&lt;p&gt;Dicey Dungeons is finally available in French, thanks to &lt;a href=&quot;https://twitter.com/wom_fr?lang=en&quot;&gt;Words of Magic&lt;/a&gt;!&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold;&quot;&gt;So what about v0.13?&lt;/div&gt;
+
+&lt;p&gt;I’m still working on the final character, so that’s definitely the focus from here.&lt;/p&gt;
+
+&lt;p&gt;I’ve spent a lot of my time over the last month or so programming, and I think that’s slowed things down a lot. So, I recently put out a &lt;a href=&quot;http://distractionware.com/blog/2018/08/help-wanted-additional-programmer-for-dicey-dungeons/&quot;&gt;help wanted ad for a programmer&lt;/a&gt; to join the team. The idea is, they can focus on the big tech problems, and I can get back to focusing on design. Applications are open till Monday, so if you’re interested, check it out!&lt;/p&gt;
+
+&lt;p&gt;Thanks for playing! See you in a few weeks!&lt;/p&gt;</content><author><name></name></author><summary type="html">Surprise! It’s version v0.12 of Dicey Dungeons! Let’s see what’s new!</summary></entry><entry><title type="html">Dicey Dungeons 0.11</title><link href="/blog/2018/08/05/version-11.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.11" /><published>2018-08-05T16:00:00+01:00</published><updated>2018-08-05T16:00:00+01:00</updated><id>/blog/2018/08/05/version-11</id><content type="html" xml:base="/blog/2018/08/05/version-11.html">&lt;p&gt;Whoa, so this build’s really late! Sorry about that! But I’m really excited to finally be able to share it with everyone, at last!&lt;/p&gt;
 
 &lt;p&gt;One thing I should say right away: this version has less content in it than v0.10 - unfortunately, the Robot and the Witch still need to be implemented in the new engine, and the editor currently isn’t working. All will be making a return soon in future versions, though.&lt;/p&gt;
 
@@ -357,47 +392,4 @@
 
 &lt;p&gt;Next week I finally want to make some progress on a second class! This doesn’t mean that I’m done with the Warrior, far from it - but I think I’m at the point where designing a seperate path through the game will push things along in lots of unexplored directions, and do way more for the game than continuing to tweak the existing content.&lt;/p&gt;
 
-&lt;p&gt;Ok! Hope you enjoy this version! See you next week!&lt;/p&gt;</content><author><name></name></author><summary type="html">Hey hey, it’s update 0.3!</summary></entry><entry><title type="html">Dicey Dungeons 0.2</title><link href="/blog/2018/03/23/version-2.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.2" /><published>2018-03-23T07:53:04+00:00</published><updated>2018-03-23T07:53:04+00:00</updated><id>/blog/2018/03/23/version-2</id><content type="html" xml:base="/blog/2018/03/23/version-2.html">&lt;p&gt;Hey everyone! Welcome back!&lt;/p&gt;
-
-&lt;p&gt;So, I’m attempting to do this early access like thing where I release builds publically every week, warts and all. I’ve never done this before - actually, it makes me pretty nervous to show work that I don’t think is ready yet. But I think it’s worth trying to get over that, because it’s clearly a good approach for this project!&lt;/p&gt;
-
-&lt;p&gt;Dicey Dungeons is still pretty rough. It’s &lt;em&gt;very&lt;/em&gt; early in development, after all. However, I think this week’s build shows that things are starting to take shape, and I hope you all like where it’s going.&lt;/p&gt;
-
-&lt;p&gt;Here’s what’s new with 0.2 of Dicey Dungeons.&lt;/p&gt;
-
-&lt;center&gt;&lt;img src=&quot;/assets/images/version2/newui.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;UI Makeover&lt;/div&gt;
-
-&lt;p&gt;Probably the most noticable change in the new build, I made a start at doing some proper graphics for the game! Hopefully things are a bit more legible now, and nicer to look at.&lt;/p&gt;
-
-&lt;center&gt;&lt;img src=&quot;/assets/images/version2/healthshop.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold;  margin-top: -3%;&quot;&gt;Money and Shops&lt;/div&gt;
-
-&lt;p&gt;The biggest gameplay change this time around is the addition of Gold and Shops to the game. There’s at least one shop on every floor, which sell various items, equipment and bonuses. (They’re not really balanced yet, though.)&lt;/p&gt;
-
-&lt;center&gt;&lt;img src=&quot;/assets/images/version2/upgrade.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold;  margin-top: -3%;&quot;&gt;Equipment Upgrading&lt;/div&gt;
-
-&lt;p&gt;I’m trying out another new system in this build, Equipment Upgrading! Most weapons and armour can be upgraded now, which adds a permanent dice to that piece of equipment everytime you use it.&lt;/p&gt;
-
-&lt;p&gt;It’s currently pretty over powered, so check it out before I nerf it!&lt;/p&gt;
-
-&lt;center&gt;&lt;img src=&quot;/assets/images/version2/itemshop.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold;  margin-top: -3%;&quot;&gt;New Item System&lt;/div&gt;
-
-&lt;p&gt;Two of the biggest problems with the 7drl version: The Warrior’s &lt;b&gt;Rage&lt;/b&gt; and &lt;b&gt;Focus&lt;/b&gt; skills didn’t work, because associating a HP cost with them made ‘em too expensive, and single use items weren’t worth equipping, because it was never worth sacrificing an inventory space for them.&lt;/p&gt;
-
-&lt;p&gt;My solution to both problems is a new item system! Now, items are kept seperately from your inventory, and take the place of the second and third warrior skills. Eventually, different classes might have different skill/item layouts.&lt;/p&gt;
-
-&lt;p&gt;Like everything else here, this’ll be getting refined and improved as the weeks go by.&lt;/p&gt;
-
-&lt;center&gt;&lt;img src=&quot;/assets/images/version2/banshee.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold;  margin-top: -3%;&quot;&gt;New Equipment and Enemies&lt;/div&gt;
-
-&lt;p&gt;There’s lot of new equipment (e.g. Claws), enemies (e.g. Banshee) and status effects (e.g. Silence) in there. Some of the existing equipment and enemies have been removed (Yeti) or redesigned (Squire). I forgot to fix the Knight though, sorry D:&lt;/p&gt;
-
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold;&quot;&gt;What's next?&lt;/div&gt;
-
-&lt;p&gt;I’m trying not to plan more than a week ahead right now, but my next big goal with the game is to add another class, the Thief. That’s gonna wait until after this week though, because next, I’d like to slow down a bit and start properly balancing the game.&lt;/p&gt;
-
-&lt;p&gt;There’s lots of stuff in the game now, but none of it is really balanced properly yet. I don’t think I can really go much further until I get a handle on that. So! Week three! Balance update! See you next friday!&lt;/p&gt;</content><author><name></name></author><summary type="html">Hey everyone! Welcome back!</summary></entry></feed>
+&lt;p&gt;Ok! Hope you enjoy this version! See you next week!&lt;/p&gt;</content><author><name></name></author><summary type="html">Hey hey, it’s update 0.3!</summary></entry></feed>
