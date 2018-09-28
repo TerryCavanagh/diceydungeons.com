@@ -1,4 +1,56 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-31T22:33:22+01:00</updated><id>/</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.12</title><link href="/blog/2018/08/31/version-12.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.12" /><published>2018-08-31T16:00:00+01:00</published><updated>2018-08-31T16:00:00+01:00</updated><id>/blog/2018/08/31/version-12</id><content type="html" xml:base="/blog/2018/08/31/version-12.html">&lt;p&gt;Surprise! It’s version v0.12 of Dicey Dungeons! Let’s see what’s new!&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-09-29T00:33:13+01:00</updated><id>/</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.13</title><link href="/blog/2018/09/28/version-13.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.13" /><published>2018-09-28T16:00:00+01:00</published><updated>2018-09-28T16:00:00+01:00</updated><id>/blog/2018/09/28/version-13</id><content type="html" xml:base="/blog/2018/09/28/version-13.html">&lt;p&gt;Announcing v0.13 of Dicey Dungeons! This one’s a big one, so let’s jump right in:&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version13/jestergameplay.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;The Jester&lt;/div&gt;
+
+&lt;p&gt;The sixth and final character in Dicey Dungeons is &lt;em&gt;The Jester&lt;/em&gt;! I’ve known since the early weeks of development that I wanted to make a deckbuilding class for Dicey Dungeons, but it wasn’t until now that I had enough pieces in place to make it all happen!&lt;/p&gt;
+
+&lt;p&gt;When the Jester finds equipment, it gets added to a deck that you draw from randomly. You can have three pieces of equipment in play at any time, and you keep drawing until you can’t play any more cards. The key thing that makes this all work, though, is the &lt;em&gt;Snap!&lt;/em&gt; mechanic!&lt;/p&gt;
+
+&lt;p&gt;If the Jester has matching pieces of equipment, you can &lt;em&gt;Snap!&lt;/em&gt; them and convert them into new dice!&lt;/p&gt;
+
+&lt;p&gt;I really like how this character shaped up! I’m presenting it as an “alpha” in this version, mostly because I think there’s a lot more room to explore here, which I’m very excited to do over the next few versions.&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version13/jesteranimate.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Animations and overworld sprites&lt;/div&gt;
+
+&lt;p&gt;Introducing animates! About half the enemies are currently animated, and the rest are coming soon!&lt;/p&gt;
+
+&lt;p&gt;As well as the combat animations, we also have new adorable overworld sprites!&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;New Music and sound effects&lt;/div&gt;
+
+&lt;p&gt;We also have new music and sound effects! This time around we reworked our sound tech a little to support different sound effects for different equipment. There’s also a new work in progress combat track!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version13/mods.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Modding API&lt;/div&gt;
+
+&lt;p&gt;A major development for people interested in modding: this version introduces a whole new modding API by &lt;a href=&quot;https://twitter.com/larsiusprime&quot;&gt;Lars Doucet&lt;/a&gt;!&lt;/p&gt;
+
+&lt;p&gt;Basically, modding is kind of a three part problem - first, you need the infrastructure to support swapping in custom assets, then, you need to expose stuff from the game into files that can be modified, and thirdly, ideally, you need an editor that can modify those files.&lt;/p&gt;
+
+&lt;p&gt;This is part one. Lars has implemented his &lt;a href=&quot;https://github.com/larsiusprime/polymod&quot;&gt;polymod framework&lt;/a&gt; into Dicey Dungeons! It makes it possible to override and append Dicey Dungeon’s assets, and combine multiple mods together! It’s the start of something very cool, and I’m looking forward to seeing what people manage to do with it!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version13/translations.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;11 translations, and counting&lt;/div&gt;
+
+&lt;p&gt;This version of Dicey Dungeons brings SIX new translations! The Spanish translation is by &lt;a href=&quot;http://nextlevellocalization.com/index.html&quot;&gt;Felipe Mercader&lt;/a&gt;, while Portuguese, Italian, Polish, Russian and Brazilian Portuguese are by &lt;a href=&quot;https://www.mobygames.com/company/eds-wordland-ltd&quot;&gt;EDS Wordland&lt;/a&gt; and their international team of translators!&lt;/p&gt;
+
+&lt;p&gt;(I’m still planning a couple more languages - Turkish, Japanese, Traditional Chinese and Irish, and then that’s probably it!)&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Native Versions&lt;/div&gt;
+
+&lt;p&gt;Finally, v0.13 introduces native Windows, Mac and Linux versions of Dicey Dungeons! This will be our last HTML5 build, which I think we’ve very much outgrown now. From here until we launch on steam, we’re going to be focusing on the desktop builds.&lt;/p&gt;
+
+&lt;p&gt;These new versions were made possible by our new programmer &lt;a href=&quot;https://twitter.com/jdbaudi&quot;&gt;Justo Delgado&lt;/a&gt;, who joined the Dicey Dungeons team a few weeks ago!&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold;&quot;&gt;So what about v0.14?&lt;/div&gt;
+
+&lt;p&gt;The Jester is the final character - so, this marks a major milestone in the game. From here on out, my focus is going to be on tying everything together - which includes quest systems for repeated playthroughs, end game content, and in particular, lots of work to deepen and expand on what’s already in there. I see the six characters as they currently are as rough sketches - and I’m very, very excited to start filling out the details. I wanna make this game as great as I know it can be.&lt;/p&gt;
+
+&lt;p&gt;This milestone does mean that the end is in sight, though, so recently I’ve been doing some serious thinking about when it’s actually going to be finished. I don’t think the late 2018 estimate is likely anymore, but I think we’re seriously looking at a launch early in the new year.&lt;/p&gt;
+
+&lt;p&gt;Thanks for playing, and I hope you enjoy the new character! See you in the next update!&lt;/p&gt;</content><author><name></name></author><summary type="html">Announcing v0.13 of Dicey Dungeons! This one’s a big one, so let’s jump right in:</summary></entry><entry><title type="html">Dicey Dungeons 0.12</title><link href="/blog/2018/08/31/version-12.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.12" /><published>2018-08-31T16:00:00+01:00</published><updated>2018-08-31T16:00:00+01:00</updated><id>/blog/2018/08/31/version-12</id><content type="html" xml:base="/blog/2018/08/31/version-12.html">&lt;p&gt;Surprise! It’s version v0.12 of Dicey Dungeons! Let’s see what’s new!&lt;/p&gt;
 
 &lt;center&gt;&lt;img src=&quot;/assets/images/version12/newwitch.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
 &lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;All five characters are playable again&lt;/div&gt;
@@ -363,33 +415,4 @@
 
 &lt;p&gt;I have vague plans that this thing will eventually end up on telephones, so will be experimenting a lot more with things like this as the weeks go by!&lt;/p&gt;
 
-&lt;p&gt;Thanks for checking out the latest build. For the next update, I’m hoping to focus on balance, polish, and at long last, ART. See you in two weeks!&lt;/p&gt;</content><author><name></name></author><summary type="html">Hey! It’s v0.4! This is the biggest update so far. Let’s jump right in! Here’s what’s new:</summary></entry><entry><title type="html">Dicey Dungeons 0.3</title><link href="/blog/2018/03/30/version-3.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.3" /><published>2018-03-30T08:53:04+01:00</published><updated>2018-03-30T08:53:04+01:00</updated><id>/blog/2018/03/30/version-3</id><content type="html" xml:base="/blog/2018/03/30/version-3.html">&lt;p&gt;Hey hey, it’s update 0.3!&lt;/p&gt;
-
-&lt;p&gt;Last week’s build was probably too easy. This one is definitely too hard. So it goes - it’s still very, very early days for this game. I’ll figure it out eventually! &lt;strong&gt;YAY FOR OPEN DEVELOPMENT!&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;There are still lots of bugs in this build, including stuff that was reported last week. Honestly, this is the thing I’m finding hardest about this whole early-access-like thing I’m doing - my impulse is not to release anything until I know it’s all fixed and working and balanced - but I’m trying not to do that with this. Eventually, this game will start to firm up, and hopefully you’ll see it happen. Week after week. One version at a time. Bear with me!&lt;/p&gt;
-
-&lt;p&gt;Here’s what’s new in v0.3:&lt;/p&gt;
-
-&lt;center&gt;&lt;img src=&quot;/assets/images/version3/spreadsheets.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;A balance pass&lt;/div&gt;
-
-&lt;p&gt;&lt;em&gt;Everything&lt;/em&gt; in the game has gotten a tweak this week - from enemies to equipment, level up distributions to level layouts - you name it. Some existing systems have been tweaked too - for example, the upgrade system is very different from last week.&lt;/p&gt;
-
-&lt;p&gt;Balance is an ongoing process that’s going to take time to get right, but I think this build is a step in the right direction - towards a version of the game I want to make: a deeper, more rewarding, more fun experience.&lt;/p&gt;
-
-&lt;center&gt;&lt;img src=&quot;/assets/images/version3/newcontent.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Loads of new content&lt;/div&gt;
-
-&lt;p&gt;This build brings a ton of new content. There are about 25 new pieces of equipment in the game this time round, as well as a bunch of new enemies, items and shops. A lot of this is because there are new &lt;strong&gt;types&lt;/strong&gt; of diceslots on equipment boards - &lt;strong&gt;Doubles&lt;/strong&gt;, which require matching dice to trigger, and &lt;strong&gt;Countdowns&lt;/strong&gt;, which take any dice and need to hit a target amount before they work.&lt;/p&gt;
-
-&lt;center&gt;&lt;img src=&quot;/assets/images/version3/ratking.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold;  margin-top: -3%;&quot;&gt;Bosses&lt;/div&gt;
-
-&lt;p&gt;If you’re good enough to get to the end of the dungeon, the final battle in 0.3 is one of three possible bosses. They’re all pretty tough. Good luck!&lt;/p&gt;
-
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold;&quot;&gt;What's next?&lt;/div&gt;
-
-&lt;p&gt;Next week I finally want to make some progress on a second class! This doesn’t mean that I’m done with the Warrior, far from it - but I think I’m at the point where designing a seperate path through the game will push things along in lots of unexplored directions, and do way more for the game than continuing to tweak the existing content.&lt;/p&gt;
-
-&lt;p&gt;Ok! Hope you enjoy this version! See you next week!&lt;/p&gt;</content><author><name></name></author><summary type="html">Hey hey, it’s update 0.3!</summary></entry></feed>
+&lt;p&gt;Thanks for checking out the latest build. For the next update, I’m hoping to focus on balance, polish, and at long last, ART. See you in two weeks!&lt;/p&gt;</content><author><name></name></author><summary type="html">Hey! It’s v0.4! This is the biggest update so far. Let’s jump right in! Here’s what’s new:</summary></entry></feed>
