@@ -1,4 +1,37 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-09-29T01:06:37+01:00</updated><id>/</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.13</title><link href="/blog/2018/09/28/version-13.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.13" /><published>2018-09-28T16:00:00+01:00</published><updated>2018-09-28T16:00:00+01:00</updated><id>/blog/2018/09/28/version-13</id><content type="html" xml:base="/blog/2018/09/28/version-13.html">&lt;p&gt;Announcing v0.13 of Dicey Dungeons! This one’s a big one, so let’s jump right in:&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-10-13T18:33:11+01:00</updated><id>/</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.14</title><link href="/blog/2018/10/13/version-14.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.14" /><published>2018-10-13T16:00:00+01:00</published><updated>2018-10-13T16:00:00+01:00</updated><id>/blog/2018/10/13/version-14</id><content type="html" xml:base="/blog/2018/10/13/version-14.html">&lt;p&gt;Surprise! It’s v0.14 of Dicey Dungeons! I know, it’s a saturday, and v0.13 was only two weeks ago, but after getting the final character up and running, I thought it was a good time to stop and polish up a few things. This build is mostly about polishing up some rough edges, and consolidating what we’ve got so far - but there’s some cool new stuff as well! Let’s have a look!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version14/finalecard.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Trading Posts, Booster Packs and Finale Cards&lt;/div&gt;
+
+&lt;p&gt;Trying out a couple of new systems this time around, the biggest of which is the Trading Post. Trading Posts will offer to swap something you have for something else - usually something rare or unusual…&lt;/p&gt;
+
+&lt;p&gt;I’ve also made some improvements to the Jester, although it’s still in Alpha for this version. The Jester can now finds Booster Packs, which offer a combination of three cards, some good, some bad - take all of them or none of them. Also, I’ve introduced &lt;em&gt;Finale Cards&lt;/em&gt;! Finale Cards are powerful cards that only appear for the Jester if you use everything else in your hand in a single turn!&lt;/p&gt;
+
+&lt;p&gt;I’ve also made dozens of little changes to all the characters, including changes to starting equipment and item distribution. Still planning a major design pass soon, but these improvements should help things a little until then.&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version14/scathach.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;All enemies are animated!&lt;/div&gt;
+
+&lt;p&gt;Lots of art edits in the this build! In particular, every enemy in the game is animated now! Ahhhh! And…&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;New combat music, new sound effects!&lt;/div&gt;
+
+&lt;p&gt;Chipzel’s got an awesome new combat track for this version, but that’s not all - now that we’ve moved to desktop builds, we don’t have to worry so much about file size limits. So, this build includes all eight work in progress tracks that we’ve had over the last three versions, v0.11, v0.12 and v0.13!&lt;/p&gt;
+
+&lt;p&gt;Some of these are rougher than others, of course - they’re all at an unfinished stage - but I think having all of them in the game really makes things come together! This version also has a bunch of new sound effects, and remasters of sounds from previous versions.&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version14/soytari.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Turkish Translation&lt;/div&gt;
+
+&lt;p&gt;One new translation this time around, Turkish! (random aside: Turkish has a cool &lt;a href=&quot;http://www.i18nguy.com/unicode/turkish-i18n.html&quot;&gt;string encoding&lt;/a&gt; tech challenge that was pretty fun to figure out!)&lt;/p&gt;
+
+&lt;p&gt;I had a quicker than usual turn around on localisations this time, so I didn’t have time to get the newer Jester content translated yet. We’ll catch up for the next version!&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold;&quot;&gt;So what about v0.15?&lt;/div&gt;
+
+&lt;p&gt;The game’s next milestone is the quest system, and we’ve been making some &lt;a href=&quot;https://twitter.com/marlowedobbe/status/1048659008196763648&quot;&gt;pretty exciting progress&lt;/a&gt; on that. Looking forward to sharing more of that once it’s ready.&lt;/p&gt;
+
+&lt;p&gt;Thanks for playing! See you in the next update!&lt;/p&gt;</content><author><name></name></author><summary type="html">Surprise! It’s v0.14 of Dicey Dungeons! I know, it’s a saturday, and v0.13 was only two weeks ago, but after getting the final character up and running, I thought it was a good time to stop and polish up a few things. This build is mostly about polishing up some rough edges, and consolidating what we’ve got so far - but there’s some cool new stuff as well! Let’s have a look!</summary></entry><entry><title type="html">Dicey Dungeons 0.13</title><link href="/blog/2018/09/28/version-13.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.13" /><published>2018-09-28T16:00:00+01:00</published><updated>2018-09-28T16:00:00+01:00</updated><id>/blog/2018/09/28/version-13</id><content type="html" xml:base="/blog/2018/09/28/version-13.html">&lt;p&gt;Announcing v0.13 of Dicey Dungeons! This one’s a big one, so let’s jump right in:&lt;/p&gt;
 
 &lt;center&gt;&lt;img src=&quot;/assets/images/version13/jestergameplay.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
 &lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;The Jester&lt;/div&gt;
@@ -380,39 +413,4 @@
 
 &lt;p&gt;That said, I’d really like to get to work on a new class for the next update - I think the Thief is working really well, and I eventually see there being 5 or 6 classes in the final version. Let’s see how it goes!&lt;/p&gt;
 
-&lt;p&gt;Thanks for playing!&lt;/p&gt;</content><author><name></name></author><summary type="html">It’s version 0.5! Whoa!</summary></entry><entry><title type="html">Dicey Dungeons 0.4</title><link href="/blog/2018/04/06/version-4.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.4" /><published>2018-04-06T08:53:04+01:00</published><updated>2018-04-06T08:53:04+01:00</updated><id>/blog/2018/04/06/version-4</id><content type="html" xml:base="/blog/2018/04/06/version-4.html">&lt;p&gt;Hey! It’s v0.4! This is the biggest update so far. Let’s jump right in! Here’s what’s new:&lt;/p&gt;
-
-&lt;center&gt;&lt;img src=&quot;/assets/images/version4/thief.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;The Thief&lt;/div&gt;
-
-&lt;p&gt;This week’s update is all about the new class, the &lt;em&gt;Thief&lt;/em&gt;. The Thief is pretty different from the warrior - it doesn’t get upgrades, it can’t use consumable items, and it can’t reroll - instead, it has to rely on it’s handy steal ability, which takes a random piece of enemy equipment every turn, and a bunch of new class specific equipment. The Thief class is a bit harder than the Warrior too, so good luck!&lt;/p&gt;
-
-&lt;center&gt;&lt;img src=&quot;/assets/images/version4/bandit.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Fleeing from Combat&lt;/div&gt;
-
-&lt;p&gt;Things not going according to plan? You can now flee from any battle!&lt;/p&gt;
-
-&lt;center&gt;&lt;img src=&quot;/assets/images/version4/skeleton.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;New enemies&lt;/div&gt;
-
-&lt;p&gt;There are four new enemies in this build, and lots of the existing enemies have gotten tweaked.&lt;/p&gt;
-
-&lt;p&gt;Also, there is now a designated boss on EVERY FLOOR, not just the final one. Some of the harder enemies have gotten a promotion! (If you’re wondering about where the Knight is this time round, they’re taking a holiday while I figure out how to redesign it as a new sub-boss!)&lt;/p&gt;
-
-&lt;p&gt;In addition, the Rat King has gotten a big level up, and there’s a brand new final boss this time around - the Vampire.&lt;/p&gt;
-
-&lt;center&gt;&lt;img src=&quot;/assets/images/version4/wizard.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Loads of bug fixes&lt;/div&gt;
-
-&lt;p&gt;More than two dozen bug fixes, mostly stuff reported from v0.3! Dicey Dungeons doesn’t have any in-game issue tracking yet, but you can submit bugs and feature requests &lt;a href=&quot;https://github.com/TerryCavanagh/diceydungeons.com/issues&quot;&gt;on the github page here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;In order to replace the bugs that we’ve lost in this build, I’ve added several new ones. See if you can find them all!&lt;/p&gt;
-
-&lt;center&gt;&lt;img src=&quot;/assets/images/version4/tapcontrols.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Tap Controls&lt;/div&gt;
-
-&lt;p&gt;The thief uses a lot more dice than the warrior, and all that dragging was starting to get a bit tiring. So this time I’m trying out alternate tap controls - you can now just tap a dice, and then tap the piece of equipment you want to assign it to. This probably needs a bit more tweaking.&lt;/p&gt;
-
-&lt;p&gt;I have vague plans that this thing will eventually end up on telephones, so will be experimenting a lot more with things like this as the weeks go by!&lt;/p&gt;
-
-&lt;p&gt;Thanks for checking out the latest build. For the next update, I’m hoping to focus on balance, polish, and at long last, ART. See you in two weeks!&lt;/p&gt;</content><author><name></name></author><summary type="html">Hey! It’s v0.4! This is the biggest update so far. Let’s jump right in! Here’s what’s new:</summary></entry></feed>
+&lt;p&gt;Thanks for playing!&lt;/p&gt;</content><author><name></name></author><summary type="html">It’s version 0.5! Whoa!</summary></entry></feed>
