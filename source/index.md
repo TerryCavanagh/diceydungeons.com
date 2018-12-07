@@ -2,8 +2,7 @@
 layout: default
 ---
 
-<div style="text-align:center; font-size: large;"><span style="font-weight: bold;">Dicey Dungeons</span> is an upcoming roguelike by <a href="http://www.distractionware.com">Terry Cavanagh</a>! It's about dice and stuff! Every couple of weeks, I upload a new work in progress build.</div>
-<div style="text-align:center; font-size: small;">(to do: think of a better way to describe the game)</div>
+<div style="text-align:center; font-size: large; margin-top: -4%;"><span style="font-weight: bold;">Dicey Dungeons</span> is an upcoming deckbuilding rpg by <a href="http://www.distractionware.com">Terry Cavanagh</a>, <a href="">Chipzel</a>, and <a href="">Marlowe Dobbe</a>! Play as one of six cursed heroes, and work together to fight and take down the Goddess of Fortune, Lady Luck herself.</div>
 
 <div class="blog-index">  
   {% assign post = site.posts.first %}

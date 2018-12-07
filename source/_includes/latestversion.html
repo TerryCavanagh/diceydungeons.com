@@ -1,11 +1,10 @@
 {% if post.title %}
   <center>
-  <h1 class="entry-title">
-      <a href="{{ post.versionlink }}">Play {{ post.title }} here</a>
-  </h1>
-   <div style="text-align:center; font-size: large; margin-top: -7%;"><br>The latest build is <span style="font-weight: bold;">{{ post.versionnumber }}</span>, from <span style="font-weight: bold;">{{ post.date | date: '%B %d, %Y' }}</span>, <span id="latestversion"></span>.<br><a href="{{ post.url }}">[read the update notes]</a></div>
   <a href="{{ post.versionlink }}"><img src="{{ post.topimage }}" width="640"></a>
-  <div style="text-align:center; font-size: large; margin-top: -1%;">New builds come out every couple of weeks!</div></center>
+  <h1 class="entry-title" style="margin-top: -3%;">
+     Latest version: {{ post.title }}
+  </h1>
+   <div style="text-align:center; font-size: large; margin-top: -3%;">from <span style="font-weight: bold;">{{ post.date | date: '%B %d, %Y' }}</span>.  <a href="{{ post.url }}">[read the update notes]</a><br><br><span style="font-weight: bold;">Update, 7th Dec 2018</span>: <a href="http://distractionware.com/blog/2018/12/whens-the-next-update-coming-out/">When is the next update coming out?</a><br><br><a href="https://store.steampowered.com/app/861540/Dicey_Dungeons/">Wishlist us on steam</a> to get a reminder when the game comes out!<br> Or, play the latest alpha ({{ post.versionnumber }}) right now on <a href="{{ post.versionlink }}">itch.io</a>!<br><br></div></center>
 <script>
   var latestversion = moment("{{ post.date | date_to_xmlschema  }}");
   var nextversiondue = moment("{{ site.nextbuild | date_to_xmlschema  }}");
