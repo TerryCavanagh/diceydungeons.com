@@ -1,4 +1,56 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-12-11T19:32:28+00:00</updated><id>/feed.xml</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.14</title><link href="/blog/2018/10/13/version-14.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.14" /><published>2018-10-13T16:00:00+01:00</published><updated>2018-10-13T16:00:00+01:00</updated><id>/blog/2018/10/13/version-14</id><content type="html" xml:base="/blog/2018/10/13/version-14.html">&lt;p&gt;Surprise! It’s v0.14 of Dicey Dungeons! I know, it’s a saturday, and v0.13 was only two weeks ago, but after getting the final character up and running, I thought it was a good time to stop and polish up a few things. This build is mostly about polishing up some rough edges, and consolidating what we’ve got so far - but there’s some cool new stuff as well! Let’s have a look!&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-12-25T10:16:02+00:00</updated><id>/feed.xml</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.15</title><link href="/blog/2018/12/25/version-15.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.15" /><published>2018-12-25T01:00:00+00:00</published><updated>2018-12-25T01:00:00+00:00</updated><id>/blog/2018/12/25/version-15</id><content type="html" xml:base="/blog/2018/12/25/version-15.html">&lt;p&gt;Merry Christmas, everyone! Ho ho ho! I bring presents!&lt;/p&gt;
+
+&lt;p&gt;It’s been a while since the last Dicey Dungeons update. Thank you for your patience! The whole team has been working really hard on this one, and we’re very excited to finally share it. Let’s see what’s new!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version15/rosebattle.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Quests&lt;/div&gt;
+
+&lt;p&gt;The heart of this update is the game’s new quest system. Quests are alternate game modes for each character, evolved from the old guild system. They’re about showing you a new side of each character, making you think differently about them, while providing some interesting challenges on the way!&lt;/p&gt;
+
+&lt;p&gt;Each quest is a tweak to the basic rules - there’s one for the Warrior that makes you lose max HP when you level up, one for the thief that lets you keep enemy equipment, one for the Witch that gives you a predictable sequence of dice, and lots more. I’m eventually planning to have 36 of them, six for each character (this build has 20).&lt;/p&gt;
+
+&lt;p&gt;Still to come is the “progression” side of this system, where quests, characters and content are unlocked as you play through the game. Since this is a very separate problem to the actual quest design, I figured I’d take the time to think about it properly - so for this version, everything is open and unlocked right from the start.&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version15/cleverhandyman.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Smarter Enemies&lt;/div&gt;
+
+&lt;p&gt;Most of my own time since the last update was spent on this: figuring out how to make the enemies smarter. I wrote a &lt;a href=&quot;http://distractionware.com/blog/2018/12/how-enemy-ai-works-in-dicey-dungeons/&quot;&gt;very in-depth blog post about it here&lt;/a&gt;, but basically: you can now just rely on the enemies in Dicey Dungeons to make smart moves - no more exploits and weird edge cases. It just works!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version15/youwin.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Lots of art improvements&lt;/div&gt;
+
+&lt;p&gt;Since the last update, Marlowe has been focused on doing a huge polish pass on all the game’s artwork! This includes new animated backgrounds for every scene, animated player characters, and just lots and lots of subtle improvements to basically everything in the game.&lt;/p&gt;
+
+&lt;p&gt;In addition to that, thanks to our programmer Justo, we now have proper 4K support! If you’re playing the game on a 4K screen, it should automatically detect that and use 4K textures everywhere! (You can try toggling these on and off by going into the settings on the main menu.)&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version15/shovel.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Tooltips, Enemy Move previews, and animation speed controls&lt;/div&gt;
+
+&lt;p&gt;We’re not planning to tackle the actual tutorial until the next version of the game, but this version finally introduces a few very helpful tutorial-esque features for new players. You can now mouse over status effects to see what they do, preview the enemy moves on your own turn, and slow down the combat animations until you get the hang of how things work!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version15/scripts.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Underlying tech improvements&lt;/div&gt;
+
+&lt;p&gt;This probably won’t matter to most players, but anyone interested in modding should be very excited about this update! This version moves lots of the game’s internal data into spreadsheets, making it possible to access and modify all sorts of things that weren’t possible before - quest data, level up rewards, rule tweaks, equipment actions, and more. Even better, lots of this runs off a fully programmable &lt;a href=&quot;https://github.com/HaxeFoundation/hscript&quot;&gt;hscript interpreter&lt;/a&gt; - so you can, for example, design equipment that messes with in game variables.&lt;/p&gt;
+
+&lt;p&gt;The documentation for all this isn’t there yet, and the in-game editor is still running behind the what the mod system is actually capable of - but if that doesn’t deter you, then check it out!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version15/languages.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;New Translations&lt;/div&gt;
+
+&lt;p&gt;Two new translations this time, Japanese and Traditional Chinese! Our Japanese translation is by Go Endo of &lt;a href=&quot;http://www.kakehashigames.com/&quot;&gt;Kakehashi Games&lt;/a&gt;, while our Traditional Chinese translation is by whiteblack.&lt;/p&gt;
+
+&lt;p&gt;As always, all translations are in alpha, and some are more complete than others! One of the great things about doing localisations for a game while it’s in development is that I can get feedback on it as we go, and iterate on that to make all of the localisations as great as they can possibly be. If you have any feedback on any of the translations, I’d love to hear it! (I have a place to give &lt;a href=&quot;https://github.com/TerryCavanagh/diceydungeons.com/issues/512&quot;&gt;feedback for translation issues here&lt;/a&gt;!)&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold;&quot;&gt;So what about v0.16?&lt;/div&gt;
+
+&lt;p&gt;I’m planning to basically take the rest of the year off now, and start thinking about v0.16 in the new year.&lt;/p&gt;
+
+&lt;p&gt;The next big thing on my radar is to finally start making some progress on our story, and maybe adding some very short cutscenes to the game. I’m excited to see how that goes! We’re also planning to reintroduce and finalise the Jester as one of the main cast (they’re absent from this build while I try to figure them out). Also, very excited to show you what &lt;a href=&quot;https://twitter.com/marlowedobbe/status/1062164254642466817&quot;&gt;Chipzel’s been working on recently&lt;/a&gt; for the audio side of things…&lt;/p&gt;
+
+&lt;p&gt;If you’ve somehow found yourself reading this blog post without having played the game, then I’ve got good news! The alpha of Dicey Dungeons is currently part of &lt;a href=&quot;https://terrycavanagh.itch.io/dicey-dungeons&quot;&gt;itch.io’s winter sale, with 20% off!&lt;/a&gt; This is your last chance to get the game cheap, since the game won’t be on sale again until after it launches!&lt;/p&gt;
+
+&lt;p&gt;Thanks for playing. See you next year!&lt;/p&gt;</content><author><name></name></author><summary type="html">Merry Christmas, everyone! Ho ho ho! I bring presents!</summary></entry><entry><title type="html">Dicey Dungeons 0.14</title><link href="/blog/2018/10/13/version-14.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.14" /><published>2018-10-13T16:00:00+01:00</published><updated>2018-10-13T16:00:00+01:00</updated><id>/blog/2018/10/13/version-14</id><content type="html" xml:base="/blog/2018/10/13/version-14.html">&lt;p&gt;Surprise! It’s v0.14 of Dicey Dungeons! I know, it’s a saturday, and v0.13 was only two weeks ago, but after getting the final character up and running, I thought it was a good time to stop and polish up a few things. This build is mostly about polishing up some rough edges, and consolidating what we’ve got so far - but there’s some cool new stuff as well! Let’s have a look!&lt;/p&gt;
 
 &lt;center&gt;&lt;img src=&quot;/assets/images/version14/finalecard.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
 &lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Trading Posts, Booster Packs and Finale Cards&lt;/div&gt;
@@ -364,53 +416,4 @@
 
 &lt;p&gt;Things are going pretty well! I think it’s time I made some decisions about where this is all going!&lt;/p&gt;
 
-&lt;p&gt;Thanks for playing! See you in two weeks!&lt;/p&gt;</content><author><name></name></author><summary type="html">Hey again! It’s v0.6! I’d sorta planned that this one would be a smaller update, since I was travelling for a bit of it. But it ended up being HUGE. Let’s jump in!</summary></entry><entry><title type="html">Dicey Dungeons 0.5</title><link href="/blog/2018/04/20/version-5.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.5" /><published>2018-04-20T08:53:04+01:00</published><updated>2018-04-20T08:53:04+01:00</updated><id>/blog/2018/04/20/version-5</id><content type="html" xml:base="/blog/2018/04/20/version-5.html">&lt;p&gt;It’s version 0.5! Whoa!&lt;/p&gt;
-
-&lt;p&gt;Welcome! If you’re dropping by for the first time, here’s what’s going on: &lt;em&gt;Dicey Dungeons&lt;/em&gt; is a game I started making for this year’s 7 day roguelike. It’s now a month and a half on, I’m still working on it, and it’s going very well! The game’s basically a roguelike inspired by Dream Quest and games like that - only it’s designed around dice instead of cards. You explore a dungeon, you find equipment, and you use dice on that equipment to activate it. I think it’s already pretty fun, and it’s getting better with every update!&lt;/p&gt;
-
-&lt;p&gt;I’m releasing new work in progress builds every two weeks. Here’s what I’ve been working on since the last update:&lt;/p&gt;
-
-&lt;center&gt;&lt;img src=&quot;/assets/images/version5/apprentice.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;I finally made some graphics&lt;/div&gt;
-
-&lt;p&gt;This has been a long time coming!&lt;/p&gt;
-
-&lt;p&gt;Moving to a two week schedule gives me more freedom to work on larger stuff for the game. This week, I used that extra time to finally add some graphics.&lt;/p&gt;
-
-&lt;p&gt;It’s still a bit rough in places, but I should be able to iterate on this stuff now and improve it as the weeks go by and LOOK LOOK, the little dice people have stubby little legs and big smiles! Aren’t they’re cute? Awwww&lt;/p&gt;
-
-&lt;center&gt;&lt;img src=&quot;/assets/images/version5/thiefvswolfpuppy.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Equipment fires without needing a confirmation&lt;/div&gt;
-
-&lt;p&gt;Two very radical changes to how equipment works this week: you need to fill all dice slots on a piece of equipment to use it, and equipment fires automatically once all the slots are full.&lt;/p&gt;
-
-&lt;p&gt;This might seem like a tiny change, but it has a pretty massive knock on effect to lots of things in the game. And I think it’s worth it! For me, the game just feels &lt;em&gt;substantially&lt;/em&gt; nicer to play with this change - I can’t go back to the old v0.4 way at all after this.&lt;/p&gt;
-
-&lt;p&gt;In particular this makes the Thief class a lot nicer to play - way less finicky mouse movement to trigger reusable equipment.&lt;/p&gt;
-
-&lt;center&gt;&lt;img src=&quot;/assets/images/version5/upgrades.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;New upgrade system&lt;/div&gt;
-
-&lt;p&gt;The old upgrade system was designed around the Warrior, but the new equipment UI rules broke it completely. So, I tried something new!&lt;/p&gt;
-
-&lt;p&gt;This new upgrade system is inspired by fellow dreamquestlike &lt;strong&gt;Slay the Spire&lt;/strong&gt; - every piece of equipment in the game can now be upgraded, and the effect of upgrading is unique to each piece of equipment. Upgrading the &lt;em&gt;Dagger&lt;/em&gt; gives it bonus +1 damage, for example, while upgrading the &lt;em&gt;Poison Needle&lt;/em&gt; lets it accept a broader range of dice, making it easier to use.&lt;/p&gt;
-
-&lt;center&gt;&lt;img src=&quot;/assets/images/version5/hardmode.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Hard Mode&lt;/div&gt;
-
-&lt;p&gt;v0.5 has a new HARD MODE! In this version, all enemy equipment is upgraded, and enemies get an extra 20% health. If you’ve been around since the start and find the game a bit easy now, this should provide a more interesting challenge!&lt;/p&gt;
-
-&lt;center&gt;&lt;img src=&quot;/assets/images/version5/optimised.png&quot; /&gt;&lt;/center&gt;
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Optimisation&lt;/div&gt;
-
-&lt;p&gt;Dicey Dungeons was hacked together for a game jam, and that meant that it was running quite a lot slower than it should have been.&lt;/p&gt;
-
-&lt;p&gt;I did a big optimisation pass this week that should substantially improve things - in my profiler tests, I was getting frame time reductions of up to 500%, depending on what was happening in the game at the time. There’s more I can do about this later, but these optimisations should leave the game a lot more stable and lightweight from here on out.&lt;/p&gt;
-
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold;&quot;&gt;What's the plan for v0.6?&lt;/div&gt;
-
-&lt;p&gt;Next week I’m off to &lt;a href=&quot;http://amaze-berlin.de/&quot;&gt;AMAZE&lt;/a&gt; in Berlin, so I’m expecting a slightly smaller than normal update. To be honest, this feels like a good time to catch my breath, and figure out where this whole thing is going.&lt;/p&gt;
-
-&lt;p&gt;That said, I’d really like to get to work on a new class for the next update - I think the Thief is working really well, and I eventually see there being 5 or 6 classes in the final version. Let’s see how it goes!&lt;/p&gt;
-
-&lt;p&gt;Thanks for playing!&lt;/p&gt;</content><author><name></name></author><summary type="html">It’s version 0.5! Whoa!</summary></entry></feed>
+&lt;p&gt;Thanks for playing! See you in two weeks!&lt;/p&gt;</content><author><name></name></author><summary type="html">Hey again! It’s v0.6! I’d sorta planned that this one would be a smaller update, since I was travelling for a bit of it. But it ended up being HUGE. Let’s jump in!</summary></entry></feed>
