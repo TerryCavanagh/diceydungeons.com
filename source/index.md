@@ -12,3 +12,5 @@ layout: default
 <div style="text-align:center; font-size: large;">Want to learn more? Join us on discord!</div>
 <div style="text-align:center; font-size: large;"><a href="https://discord.gg/PBW2t76"><img src="assets/images/dicecord.png"></a></div>
 
+<div style="text-align:center; font-size: small;">(If you're having problems getting the game to run, <a href="techsupport.html">read our tech support page here</a>.)</div>
+
