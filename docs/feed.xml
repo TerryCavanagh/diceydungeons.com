@@ -1,4 +1,103 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-02-11T14:06:31+00:00</updated><id>/feed.xml</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.15</title><link href="/blog/2018/12/25/version-15.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.15" /><published>2018-12-25T01:00:00+00:00</published><updated>2018-12-25T01:00:00+00:00</updated><id>/blog/2018/12/25/version-15</id><content type="html" xml:base="/blog/2018/12/25/version-15.html">&lt;p&gt;Merry Christmas, everyone! Ho ho ho! I bring presents!&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-02-27T23:42:15+00:00</updated><id>/feed.xml</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.16</title><link href="/blog/2019/02/27/version-16.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.16" /><published>2019-02-27T01:00:00+00:00</published><updated>2019-02-27T01:00:00+00:00</updated><id>/blog/2019/02/27/version-16</id><content type="html" xml:base="/blog/2019/02/27/version-16.html">&lt;p&gt;It’s version 16! Wow. Whoa! We’ve come such a long way since that janky 7drl prototype!&lt;/p&gt;
+
+&lt;p&gt;This update is huge! Let’s see what’s new!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version16/amdicenow.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;The Story&lt;/div&gt;
+
+&lt;p&gt;Dicey Dungeons finally has a story. We’ve been talking about this on the team for months and months, so it’s really amazing to finally have it in the game. It’s writen by &lt;a href=&quot;https://twitter.com/hollygramazio&quot;&gt;Holly Gramazio&lt;/a&gt; (whose previous digital games writing includes the amazing &lt;a href=&quot;http://severalbees.com/blackbird/how-to-be-a-blackbird.html&quot;&gt;How to be a Blackbird&lt;/a&gt; and &lt;a href=&quot;http://onenightinskegness.com/&quot;&gt;One Night in Skegness&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;We want the story in Dicey Dungeons to be minimal, funny, and seemlessly part of the world. I wanted it to bring all the different parts of the game together, and make everything feel more connected - and I couldn’t be happier with how it’s turning out.&lt;/p&gt;
+
+&lt;p&gt;This version just has three character introduction cutscenes, some “introduction” lines by Lady Luck, and very occasional monster “last words”. There’s more coming, though!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version16/bambam.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;The Tutorial&lt;/div&gt;
+
+&lt;p&gt;We also finally have a tutorial! This will appear in the game the first time you play the first Warrior episode. (we still don’t have quest progression, though, sorry)&lt;/p&gt;
+
+&lt;p&gt;My goal with the tutorial was to make a kind of “youtube annotations” style thing, where you can just play as normal and little pop ups appear to tell you stuff from time to time. Depending on how this goes down, I might do similar ones for the other five characters.&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version16/newsnap.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Return of the Jester&lt;/div&gt;
+
+&lt;p&gt;The Jester’s back! Ahhhh!&lt;/p&gt;
+
+&lt;p&gt;I’ve talked &lt;a href=&quot;http://distractionware.com/blog/2019/02/design-diary-the-jester/&quot;&gt;a LOT&lt;/a&gt; about this already recently, so I’ll just say, it’s really good to have them back. The new Jester features five quests so far (including the temporary “classic hardmode”).&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version16/youchooseyoulose.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;A huge design revamp&lt;/div&gt;
+
+&lt;p&gt;We’ve getting closer and closer to the end of development, and I’m getting to the point where I want to “settle” the design of certain elements. There was a lot of stuff that I haven’t touched for months - so for this update, I decided to do a complete top to bottom revamp of everything.&lt;/p&gt;
+
+&lt;p&gt;This is probably the biggest actual change with this update - virtually everything in the game has had a tweak, from dungeon generation and equipment distribution, to level up rewards, to enemy design - it amounts to hundreds of tiny tiny changes. Feedback welcome - I’m sure I’ll be iterating on all this stuff a lot more before launch.&lt;/p&gt;
+
+&lt;p&gt;Just to pick a few big things in particular:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Dungeons now have six floors instead of 5, making things very slightly longer.&lt;/li&gt;
+  &lt;li&gt;All characters have new level up rewards and new level pacing, designed to tune things ever so slightly harder.&lt;/li&gt;
+  &lt;li&gt;The game now has occasional “Super Enemies” - enemies that appear 1 level higher than usual, with remixed equipment.&lt;/li&gt;
+  &lt;li&gt;In particular, Inventor equipment distribution has changed &lt;em&gt;dramatically&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And an example of a few random small things:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Removed “are you sure?” style prompts from almost everywhere - when buying equipment, collecting chests, etc.&lt;/li&gt;
+  &lt;li&gt;Counter Spell works for any dice now by default, and the upgraded version is useable twice.&lt;/li&gt;
+  &lt;li&gt;Upgraded Healing Crystals cure poison.&lt;/li&gt;
+  &lt;li&gt;New map blueprint layouts for dungeons.&lt;/li&gt;
+  &lt;li&gt;Inventor doesn’t start with scrap metal anymore.&lt;/li&gt;
+  &lt;li&gt;The Rat King is back, with a new design.&lt;/li&gt;
+  &lt;li&gt;The Dragon has had a complete redesign, and is possibly the hardest boss now.&lt;/li&gt;
+  &lt;li&gt;Renamed “Quests” to “Episodes”.&lt;/li&gt;
+  &lt;li&gt;Witch can now get up to four prepared spells, or one prepared slot and three upgraded slots.&lt;/li&gt;
+  &lt;li&gt;Removed Fuse, added new “Ruby Weapon” to Robot’s “You Choose, You Lose” episode. (previously named Dice for a Price)&lt;/li&gt;
+  &lt;li&gt;Redesigned Vampiric Tendencies with a focus on a new piece of equipment, “Venus Fly Trap”.&lt;/li&gt;
+  &lt;li&gt;Fixed the equipment screen, finally!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This process included doing a complete audit of every enemy in the game, again - which I’ll be posting about on my blog soon!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version16/scripts.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;More Modding Support&lt;/div&gt;
+
+&lt;p&gt;This version of the game moves a huge amount of new things into scripts and data files that modders can modify. Including!&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Script hooks at several points throughout the game&lt;/li&gt;
+  &lt;li&gt;Level generation&lt;/li&gt;
+  &lt;li&gt;User variables&lt;/li&gt;
+  &lt;li&gt;The ability to use &lt;em&gt;any&lt;/em&gt; piece of equipment as a skillcard&lt;/li&gt;
+  &lt;li&gt;Custom characters&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;All of this, of course, runs on top of &lt;a href=&quot;https://github.com/larsiusprime/polymod&quot;&gt;Lars’ polymod system&lt;/a&gt;, and uses &lt;a href=&quot;https://github.com/HaxeFoundation/hscript&quot;&gt;hscript powered scripting&lt;/a&gt;. Honestly, I think this update should bring the game up 95% of what modders have been asking for. There’s a &lt;em&gt;lot&lt;/em&gt; of new stuff to play with here!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version16/stereohead.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;New Music&lt;/div&gt;
+
+&lt;p&gt;Some brand new tunes this time around, as well as some updates to old songs, and remix ideas that Niamh is trying out!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version16/shopa.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;An Irish Translation&lt;/div&gt;
+
+&lt;p&gt;Just in time for Seachtain na Gaeilge, I’m really proud to debut our new Irish translation, by Mícheál J. Ó Meachair and Kevin P. Scannell of &lt;a href=&quot;https://riomhacadamh.wordpress.com/&quot;&gt;Ríomhacadamh&lt;/a&gt;. (I’ll be putting together a small Irish testing group very soon if there are any gaeilgeoirs out there are interested in having a look - &lt;a href=&quot;http://distractionware.com/email/&quot;&gt;get in touch&lt;/a&gt;!)&lt;/p&gt;
+
+&lt;p&gt;A heads up that ALL translations this time are a little out of date - i.e. all the new cutscene text is in English. We’re waiting to finalise the game’s script before we get all that translated.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold;&quot;&gt;So what about v0.17?&lt;/div&gt;
+
+&lt;p&gt;Well, I have some big news on that.&lt;/p&gt;
+
+&lt;p&gt;v0.17 is &lt;em&gt;probably going to be the last alpha&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Yep! After v0.17, the next version will be v1.0, which will remain on &lt;a href=&quot;https://terrycavanagh.itch.io/dicey-dungeons&quot;&gt;itch.io&lt;/a&gt;, but also, finally, &lt;a href=&quot;https://store.steampowered.com/app/861540/Dicey_Dungeons/&quot;&gt;coming to steam&lt;/a&gt;. (More information about when coming as soon as I know!)&lt;/p&gt;
+
+&lt;p&gt;I think with this update, we’re now far enough along that the end is very much in sight! v0.17 will likely be shorter and smaller than the last two updates, and more about getting the game stable while the team knuckles down and finishes the game. We’re doing it this way so that we can just focus as much as possible on the final version, but also, we wanna hold some surprises back for the launch!&lt;/p&gt;
+
+&lt;p&gt;However, I am planning to put together a smaller testing group for the release canditates. If you’ve been an active player since the early version, I might be getting in touch soon!&lt;/p&gt;
+
+&lt;p&gt;Thanks for playing. I hope you enjoy the new version!&lt;/p&gt;</content><author><name></name></author><summary type="html">It’s version 16! Wow. Whoa! We’ve come such a long way since that janky 7drl prototype!</summary></entry><entry><title type="html">Dicey Dungeons 0.15</title><link href="/blog/2018/12/25/version-15.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.15" /><published>2018-12-25T01:00:00+00:00</published><updated>2018-12-25T01:00:00+00:00</updated><id>/blog/2018/12/25/version-15</id><content type="html" xml:base="/blog/2018/12/25/version-15.html">&lt;p&gt;Merry Christmas, everyone! Ho ho ho! I bring presents!&lt;/p&gt;
 
 &lt;p&gt;It’s been a while since the last Dicey Dungeons update. Thank you for your patience! The whole team has been working really hard on this one, and we’re very excited to finally share it. Let’s see what’s new!&lt;/p&gt;
 
@@ -376,44 +475,4 @@
 
 &lt;p&gt;For the next update, I’m going to introduce another new class, the &lt;em&gt;Mage&lt;/em&gt;. This class will require a little firming up of some basic combat mechanics, so I’ll probably end up doing quite a lot of work on that.&lt;/p&gt;
 
-&lt;p&gt;Thanks for playing! See you in another two weeks!&lt;/p&gt;</content><author><name></name></author><summary type="html">It’s here! Version 0.7! Let’s see what’s new this time!</summary></entry><entry><title type="html">Dicey Dungeons 0.6</title><link href="/blog/2018/05/04/version-6.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.6" /><published>2018-05-04T03:00:00+01:00</published><updated>2018-05-04T03:00:00+01:00</updated><id>/blog/2018/05/04/version-6</id><content type="html" xml:base="/blog/2018/05/04/version-6.html">&lt;p&gt;Hey again! It’s v0.6! I’d sorta planned that this one would be a smaller update, since I was travelling for a bit of it. But it ended up being HUGE. Let’s jump in!&lt;/p&gt;
-
-&lt;center&gt;&lt;img src=&quot;/assets/images/version6/characters.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;New Character: The Inventor&lt;/div&gt;
-
-&lt;p&gt;I figured it was time I tried out some weirder character ideas!&lt;/p&gt;
-
-&lt;p&gt;The &lt;em&gt;Inventor&lt;/em&gt; is a new class focused on abilities that you get for one fight only, called gadgets. (Gadgets replace items.)&lt;/p&gt;
-
-&lt;p&gt;The Inventor is a class with some pretty big pros and cons - on the plus side, they get gadgets, which are super powerful, and they find some of the most powerful equipment in the game just lying around. However! The Inventor’s compulsive need to tinker with things results it in scrapping most of your equipment for parts!&lt;/p&gt;
-
-&lt;p&gt;Playing the Inventor well requires thinking ahead and planning what you think you’ll need, and what you think you can do without. I hope you enjoy it! Like everything in the game, it’s a work in progress, and should improve as time goes by!&lt;/p&gt;
-
-&lt;center&gt;&lt;img src=&quot;/assets/images/version6/snowman.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;New Warrior&lt;/div&gt;
-
-&lt;p&gt;Some pretty major changes to the Warrior this time - they’ve lost the ability to use items, which are now redesigned as “gadgets”, and are unique to the new Inventor class. However, to compensate, they get a new dice tweak ability to go with their reroll skill.&lt;/p&gt;
-
-&lt;p&gt;I want Warrior to be the introductory class, so the changes I’ve made &lt;em&gt;mostly&lt;/em&gt; make it easier. As well as the skill change, they also find more powerful equipment, and there are a load of tweaks to add variety to the range of viable builds you can try.&lt;/p&gt;
-
-&lt;p&gt;(The thief has also had a few tweaks, but they’re a lot less dramatic.)&lt;/p&gt;
-
-&lt;center&gt;&lt;img src=&quot;/assets/images/version6/rogue.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;New enemies, and new Enemy AI&lt;/div&gt;
-
-&lt;p&gt;I spent almost a week of this fortnight on Enemy AI - it’s had a complete rewrite! Enemies can handle much more complicated situations now, allowing them to do new things like use reusable equipment, and make decisions about dice to set aside.&lt;/p&gt;
-
-&lt;p&gt;It’s enabled me to make a couple of more sophisticated enemies to match, so this build introduces &lt;strong&gt;five new enemies&lt;/strong&gt;, and a new &lt;strong&gt;final boss&lt;/strong&gt;, the Crime Lord.&lt;/p&gt;
-
-&lt;center&gt;&lt;img src=&quot;/assets/images/version6/limitbreak.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Limit Breaks&lt;/div&gt;
-
-&lt;p&gt;New mechanic I’m trying out: Limit Breaks! Each character has a special skill that they can use once they’ve taken enough damage.&lt;/p&gt;
-
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold;&quot;&gt;What's the plan for v0.7?&lt;/div&gt;
-
-&lt;p&gt;I think I’m long overdue a polish update, so for v0.7 I’m planning to slow down a little, and do some work on balance, polish and structure.&lt;/p&gt;
-
-&lt;p&gt;Things are going pretty well! I think it’s time I made some decisions about where this is all going!&lt;/p&gt;
-
-&lt;p&gt;Thanks for playing! See you in two weeks!&lt;/p&gt;</content><author><name></name></author><summary type="html">Hey again! It’s v0.6! I’d sorta planned that this one would be a smaller update, since I was travelling for a bit of it. But it ended up being HUGE. Let’s jump in!</summary></entry></feed>
+&lt;p&gt;Thanks for playing! See you in another two weeks!&lt;/p&gt;</content><author><name></name></author><summary type="html">It’s here! Version 0.7! Let’s see what’s new this time!</summary></entry></feed>
