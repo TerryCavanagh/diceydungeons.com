@@ -1,4 +1,63 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-02-27T23:42:15+00:00</updated><id>/feed.xml</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.16</title><link href="/blog/2019/02/27/version-16.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.16" /><published>2019-02-27T01:00:00+00:00</published><updated>2019-02-27T01:00:00+00:00</updated><id>/blog/2019/02/27/version-16</id><content type="html" xml:base="/blog/2019/02/27/version-16.html">&lt;p&gt;It’s version 16! Wow. Whoa! We’ve come such a long way since that janky 7drl prototype!&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-05-21T12:33:19+09:30</updated><id>/feed.xml</id><title type="html">Dicey Dungeons</title><entry><title type="html">Dicey Dungeons 0.17</title><link href="/blog/2019/05/20/version-17.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.17" /><published>2019-05-20T10:30:00+09:30</published><updated>2019-05-20T10:30:00+09:30</updated><id>/blog/2019/05/20/version-17</id><content type="html" xml:base="/blog/2019/05/20/version-17.html">&lt;p&gt;It’s finally here! Version 17, the very last alpha before launch! I’m so excited to show you what we’ve been working on!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version17/universe.jpg&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Parallel Universe&lt;/div&gt;
+
+&lt;p&gt;Since the last version, I’ve been slowly working on something that I’m very proud of - it’s a new episode for the Warrior, named &lt;strong&gt;Parallel Universe&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;I basically think of Dicey Dungeons as a game about exploring different design tangents of this same, core set of mechanics. And there was one really, really big direction that I hadn’t explored much of at all until now: Status Effects.&lt;/p&gt;
+
+&lt;p&gt;Parallel Universe is an episode that changes what every single status effect in the game does. For example: Poison locks up your gear behind a countdown, Freeze reduces the value of every single dice by 1, Lock forces you to play one dice at a time. And much more, of course. All of these status effect changes mean that the old equipment isn’t balanced for them - so I decided to change every single piece of equipment you find in this mode too. It’s practically a whole new game, using the same basic rules.&lt;/p&gt;
+
+&lt;p&gt;I like this new mode so much that I’m planning to make it a core mode for every single character - at launch, I’ll have Parallel Universe modes for everyone!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version17/elimination.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Elimination Rounds&lt;/div&gt;
+
+&lt;p&gt;I added “Hard Mode” to the game way back in v0.5, yikes! Since then, it hasn’t had much attention - for the last few builds, it’s been present as “Classic Hardmode” while I figured out what I wanted to do with it.&lt;/p&gt;
+
+&lt;p&gt;Anyway, I’ve figured it out, and for this update, I’ve given the hard mode a big design pass! It’s now called the &lt;strong&gt;Elimination Round&lt;/strong&gt;, and, like &lt;strong&gt;Parallel Universe&lt;/strong&gt;, it’s a standard mode for each character.&lt;/p&gt;
+
+&lt;p&gt;I’ve come round to thinking that having consistent challenges that are the same across all characters is actually more interesting than trying to make every single episode unique - rather than varying everything, varying just one core thing (in this case, upgraded enemy equipment, which works really well!) highlights lots of interesting things about how the rules fits together - and I really like the contrast of having both Parallel Universe and Elimination Round side by side.&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version17/cactus.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;New Enemies&lt;/div&gt;
+
+&lt;p&gt;I was planning to hold these back until v1.0, but I couldn’t help myself. There are two new enemies in v0.17 - the Cactus, a common level 3 enemy, and the Warlock, a rare level 5. (Lots more planned for launch!)&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version17/witchspellbook.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Lots of art and audio improvements&lt;/div&gt;
+
+&lt;p&gt;The new version adds a lot of little art improvements to all parts of the game! This includes things like UI improvements, new VFX for things like attacks and Robot errors - way too many things to list, to be honest! You might also notice a few new audio touches, including a new version of the very first combat track Chipzel made for the game!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version17/gardice.jpg&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;More Modding Support&lt;/div&gt;
+
+&lt;p&gt;We’re now on modding version v0.7.0! This build adds support for custom graphics, which I’m hoping will soon lead to new mods with extra enemies! It also lots of new improvements to equipment modding and scripting that should open up exciting new possibilities for anyone interested in jumping in while we’re still in alpha!&lt;/p&gt;
+
+&lt;p&gt;This modding stuff is really fun to work on. Once the core game is done, I’m looking forward to really shifting focus to the editor and the scripting side of the game for the first big post launch update!&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;/assets/images/version17/v017chinese.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Translation Updates&lt;/div&gt;
+
+&lt;p&gt;All the translations in Dicey Dungeons are trying to hit a moving target right now, and are always going to be a little bit out of date - but this update in particular is a major improvement to all of the translations in the game. All of the cutscene text, tutorial text and lady luck intro text is translated into 16 languages now!&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold;&quot;&gt;So what about v1.0?&lt;/div&gt;
+
+&lt;p&gt;There’s not much time left now before the game’s finally “done”. From here on out, we’re gonna be keeping our heads down, finishing up the content and adding as much polish as we can before our big v1.0 launch on steam.&lt;/p&gt;
+
+&lt;p&gt;If you’ve been playing the alphas up till now, thank you so much &amp;lt;3 I can’t tell you how much I’ve enjoyed this whole open development thing, and how great it’s been to get so much feedback along the way.&lt;/p&gt;
+
+&lt;p&gt;v0.17 is the final alpha of Dicey Dungeons. The next version is v1.0. What this means:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;I’m gonna end the alpha on &lt;a href=&quot;https://terrycavanagh.itch.io/dicey-dungeons&quot;&gt;itch.io&lt;/a&gt; on &lt;strong&gt;June 1st&lt;/strong&gt;. After that, the game won’t be on sale again until launch!&lt;/li&gt;
+  &lt;li&gt;We’re gonna launch the game at some point this summer, not sure when yet. It’ll happen at the same time on both &lt;a href=&quot;https://store.steampowered.com/app/861540&quot;&gt;Steam&lt;/a&gt; and &lt;a href=&quot;https://terrycavanagh.itch.io/dicey-dungeons&quot;&gt;Itch.io&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;We’re thinking we’ll probably be $14.99 on steam, so this is your last chance to get the game at a discount! Don’t say I didn’t warn you!&lt;/li&gt;
+  &lt;li&gt;If you’ve bought the game on itch, you’ll get a code for steam when it launches. You will still be able to play the game on itch after the alpha ends. (if you own it on itch!)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Thanks you so much for playing. I hope you enjoy the final alpha!&lt;/p&gt;</content><author><name></name></author><summary type="html">It’s finally here! Version 17, the very last alpha before launch! I’m so excited to show you what we’ve been working on!</summary></entry><entry><title type="html">Dicey Dungeons 0.16</title><link href="/blog/2019/02/27/version-16.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.16" /><published>2019-02-27T11:30:00+10:30</published><updated>2019-02-27T11:30:00+10:30</updated><id>/blog/2019/02/27/version-16</id><content type="html" xml:base="/blog/2019/02/27/version-16.html">&lt;p&gt;It’s version 16! Wow. Whoa! We’ve come such a long way since that janky 7drl prototype!&lt;/p&gt;
 
 &lt;p&gt;This update is huge! Let’s see what’s new!&lt;/p&gt;
 
@@ -97,7 +156,7 @@
 
 &lt;p&gt;However, I am planning to put together a smaller testing group for the release canditates. If you’ve been an active player since the early version, I might be getting in touch soon!&lt;/p&gt;
 
-&lt;p&gt;Thanks for playing. I hope you enjoy the new version!&lt;/p&gt;</content><author><name></name></author><summary type="html">It’s version 16! Wow. Whoa! We’ve come such a long way since that janky 7drl prototype!</summary></entry><entry><title type="html">Dicey Dungeons 0.15</title><link href="/blog/2018/12/25/version-15.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.15" /><published>2018-12-25T01:00:00+00:00</published><updated>2018-12-25T01:00:00+00:00</updated><id>/blog/2018/12/25/version-15</id><content type="html" xml:base="/blog/2018/12/25/version-15.html">&lt;p&gt;Merry Christmas, everyone! Ho ho ho! I bring presents!&lt;/p&gt;
+&lt;p&gt;Thanks for playing. I hope you enjoy the new version!&lt;/p&gt;</content><author><name></name></author><summary type="html">It’s version 16! Wow. Whoa! We’ve come such a long way since that janky 7drl prototype!</summary></entry><entry><title type="html">Dicey Dungeons 0.15</title><link href="/blog/2018/12/25/version-15.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.15" /><published>2018-12-25T11:30:00+10:30</published><updated>2018-12-25T11:30:00+10:30</updated><id>/blog/2018/12/25/version-15</id><content type="html" xml:base="/blog/2018/12/25/version-15.html">&lt;p&gt;Merry Christmas, everyone! Ho ho ho! I bring presents!&lt;/p&gt;
 
 &lt;p&gt;It’s been a while since the last Dicey Dungeons update. Thank you for your patience! The whole team has been working really hard on this one, and we’re very excited to finally share it. Let’s see what’s new!&lt;/p&gt;
 
@@ -149,7 +208,7 @@
 
 &lt;p&gt;If you’ve somehow found yourself reading this blog post without having played the game, then I’ve got good news! The alpha of Dicey Dungeons is currently part of &lt;a href=&quot;https://terrycavanagh.itch.io/dicey-dungeons&quot;&gt;itch.io’s winter sale, with 20% off!&lt;/a&gt; This is your last chance to get the game cheap, since the game won’t be on sale again until after it launches!&lt;/p&gt;
 
-&lt;p&gt;Thanks for playing. See you next year!&lt;/p&gt;</content><author><name></name></author><summary type="html">Merry Christmas, everyone! Ho ho ho! I bring presents!</summary></entry><entry><title type="html">Dicey Dungeons 0.14</title><link href="/blog/2018/10/13/version-14.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.14" /><published>2018-10-13T16:00:00+01:00</published><updated>2018-10-13T16:00:00+01:00</updated><id>/blog/2018/10/13/version-14</id><content type="html" xml:base="/blog/2018/10/13/version-14.html">&lt;p&gt;Surprise! It’s v0.14 of Dicey Dungeons! I know, it’s a saturday, and v0.13 was only two weeks ago, but after getting the final character up and running, I thought it was a good time to stop and polish up a few things. This build is mostly about polishing up some rough edges, and consolidating what we’ve got so far - but there’s some cool new stuff as well! Let’s have a look!&lt;/p&gt;
+&lt;p&gt;Thanks for playing. See you next year!&lt;/p&gt;</content><author><name></name></author><summary type="html">Merry Christmas, everyone! Ho ho ho! I bring presents!</summary></entry><entry><title type="html">Dicey Dungeons 0.14</title><link href="/blog/2018/10/14/version-14.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.14" /><published>2018-10-14T01:30:00+10:30</published><updated>2018-10-14T01:30:00+10:30</updated><id>/blog/2018/10/14/version-14</id><content type="html" xml:base="/blog/2018/10/14/version-14.html">&lt;p&gt;Surprise! It’s v0.14 of Dicey Dungeons! I know, it’s a saturday, and v0.13 was only two weeks ago, but after getting the final character up and running, I thought it was a good time to stop and polish up a few things. This build is mostly about polishing up some rough edges, and consolidating what we’ve got so far - but there’s some cool new stuff as well! Let’s have a look!&lt;/p&gt;
 
 &lt;center&gt;&lt;img src=&quot;/assets/images/version14/finalecard.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
 &lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Trading Posts, Booster Packs and Finale Cards&lt;/div&gt;
@@ -182,7 +241,7 @@
 
 &lt;p&gt;The game’s next milestone is the quest system, and we’ve been making some &lt;a href=&quot;https://twitter.com/marlowedobbe/status/1048659008196763648&quot;&gt;pretty exciting progress&lt;/a&gt; on that. Looking forward to sharing more of that once it’s ready.&lt;/p&gt;
 
-&lt;p&gt;Thanks for playing! See you in the next update!&lt;/p&gt;</content><author><name></name></author><summary type="html">Surprise! It’s v0.14 of Dicey Dungeons! I know, it’s a saturday, and v0.13 was only two weeks ago, but after getting the final character up and running, I thought it was a good time to stop and polish up a few things. This build is mostly about polishing up some rough edges, and consolidating what we’ve got so far - but there’s some cool new stuff as well! Let’s have a look!</summary></entry><entry><title type="html">Dicey Dungeons 0.13</title><link href="/blog/2018/09/28/version-13.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.13" /><published>2018-09-28T16:00:00+01:00</published><updated>2018-09-28T16:00:00+01:00</updated><id>/blog/2018/09/28/version-13</id><content type="html" xml:base="/blog/2018/09/28/version-13.html">&lt;p&gt;Announcing v0.13 of Dicey Dungeons! This one’s a big one, so let’s jump right in:&lt;/p&gt;
+&lt;p&gt;Thanks for playing! See you in the next update!&lt;/p&gt;</content><author><name></name></author><summary type="html">Surprise! It’s v0.14 of Dicey Dungeons! I know, it’s a saturday, and v0.13 was only two weeks ago, but after getting the final character up and running, I thought it was a good time to stop and polish up a few things. This build is mostly about polishing up some rough edges, and consolidating what we’ve got so far - but there’s some cool new stuff as well! Let’s have a look!</summary></entry><entry><title type="html">Dicey Dungeons 0.13</title><link href="/blog/2018/09/29/version-13.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.13" /><published>2018-09-29T00:30:00+09:30</published><updated>2018-09-29T00:30:00+09:30</updated><id>/blog/2018/09/29/version-13</id><content type="html" xml:base="/blog/2018/09/29/version-13.html">&lt;p&gt;Announcing v0.13 of Dicey Dungeons! This one’s a big one, so let’s jump right in:&lt;/p&gt;
 
 &lt;center&gt;&lt;img src=&quot;/assets/images/version13/jestergameplay.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
 &lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;The Jester&lt;/div&gt;
@@ -234,7 +293,7 @@
 
 &lt;p&gt;This milestone does mean that the end is in sight, though, so recently I’ve been doing some serious thinking about when it’s actually going to be finished. I don’t think the late 2018 estimate is likely anymore, but I think we’re seriously looking at a launch early in the new year.&lt;/p&gt;
 
-&lt;p&gt;Thanks for playing, and I hope you enjoy the new character! See you in the next update!&lt;/p&gt;</content><author><name></name></author><summary type="html">Announcing v0.13 of Dicey Dungeons! This one’s a big one, so let’s jump right in:</summary></entry><entry><title type="html">Dicey Dungeons 0.12</title><link href="/blog/2018/08/31/version-12.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.12" /><published>2018-08-31T16:00:00+01:00</published><updated>2018-08-31T16:00:00+01:00</updated><id>/blog/2018/08/31/version-12</id><content type="html" xml:base="/blog/2018/08/31/version-12.html">&lt;p&gt;Surprise! It’s version v0.12 of Dicey Dungeons! Let’s see what’s new!&lt;/p&gt;
+&lt;p&gt;Thanks for playing, and I hope you enjoy the new character! See you in the next update!&lt;/p&gt;</content><author><name></name></author><summary type="html">Announcing v0.13 of Dicey Dungeons! This one’s a big one, so let’s jump right in:</summary></entry><entry><title type="html">Dicey Dungeons 0.12</title><link href="/blog/2018/09/01/version-12.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.12" /><published>2018-09-01T00:30:00+09:30</published><updated>2018-09-01T00:30:00+09:30</updated><id>/blog/2018/09/01/version-12</id><content type="html" xml:base="/blog/2018/09/01/version-12.html">&lt;p&gt;Surprise! It’s version v0.12 of Dicey Dungeons! Let’s see what’s new!&lt;/p&gt;
 
 &lt;center&gt;&lt;img src=&quot;/assets/images/version12/newwitch.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
 &lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;All five characters are playable again&lt;/div&gt;
@@ -269,7 +328,7 @@
 
 &lt;p&gt;I’ve spent a lot of my time over the last month or so programming, and I think that’s slowed things down a lot. So, I recently put out a &lt;a href=&quot;http://distractionware.com/blog/2018/08/help-wanted-additional-programmer-for-dicey-dungeons/&quot;&gt;help wanted ad for a programmer&lt;/a&gt; to join the team. The idea is, they can focus on the big tech problems, and I can get back to focusing on design. Applications are open till Monday, so if you’re interested, check it out!&lt;/p&gt;
 
-&lt;p&gt;Thanks for playing! See you in a few weeks!&lt;/p&gt;</content><author><name></name></author><summary type="html">Surprise! It’s version v0.12 of Dicey Dungeons! Let’s see what’s new!</summary></entry><entry><title type="html">Dicey Dungeons 0.11</title><link href="/blog/2018/08/05/version-11.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.11" /><published>2018-08-05T16:00:00+01:00</published><updated>2018-08-05T16:00:00+01:00</updated><id>/blog/2018/08/05/version-11</id><content type="html" xml:base="/blog/2018/08/05/version-11.html">&lt;p&gt;Whoa, so this build’s really late! Sorry about that! But I’m really excited to finally be able to share it with everyone, at last!&lt;/p&gt;
+&lt;p&gt;Thanks for playing! See you in a few weeks!&lt;/p&gt;</content><author><name></name></author><summary type="html">Surprise! It’s version v0.12 of Dicey Dungeons! Let’s see what’s new!</summary></entry><entry><title type="html">Dicey Dungeons 0.11</title><link href="/blog/2018/08/06/version-11.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.11" /><published>2018-08-06T00:30:00+09:30</published><updated>2018-08-06T00:30:00+09:30</updated><id>/blog/2018/08/06/version-11</id><content type="html" xml:base="/blog/2018/08/06/version-11.html">&lt;p&gt;Whoa, so this build’s really late! Sorry about that! But I’m really excited to finally be able to share it with everyone, at last!&lt;/p&gt;
 
 &lt;p&gt;One thing I should say right away: this version has less content in it than v0.10 - unfortunately, the Robot and the Witch still need to be implemented in the new engine, and the editor currently isn’t working. All will be making a return soon in future versions, though.&lt;/p&gt;
 
@@ -302,7 +361,7 @@
 
 &lt;p&gt;Instead, I’m switching to “regular” updates - which will still come out every couple of weeks or so - but without any advance warning! If you want to get notified of new versions, you can follow me on &lt;a href=&quot;https://terrycavanagh.itch.io/dicey-dungeons&quot;&gt;itch.io&lt;/a&gt;, twitter &lt;a href=&quot;https://twitter.com/terrycavanagh&quot;&gt;@terrycavanagh&lt;/a&gt;, or &lt;a href=&quot;https://discord.gg/z7pCdCP&quot;&gt;join the discord&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;For v0.12, I’m excited to be getting back to design, and thinking about the final character. I’m also hoping to reintroduce the Robot and the Witch in our new engine. Thanks for playing!&lt;/p&gt;</content><author><name></name></author><summary type="html">Whoa, so this build’s really late! Sorry about that! But I’m really excited to finally be able to share it with everyone, at last!</summary></entry><entry><title type="html">Dicey Dungeons 0.10</title><link href="/blog/2018/07/06/version-10.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.10" /><published>2018-07-06T03:00:00+01:00</published><updated>2018-07-06T03:00:00+01:00</updated><id>/blog/2018/07/06/version-10</id><content type="html" xml:base="/blog/2018/07/06/version-10.html">&lt;p&gt;Here we are! Version 0.10! The first &lt;strong&gt;commercial&lt;/strong&gt; version! The game’s getting closer and closer to release! Let’s see what’s new.&lt;/p&gt;
+&lt;p&gt;For v0.12, I’m excited to be getting back to design, and thinking about the final character. I’m also hoping to reintroduce the Robot and the Witch in our new engine. Thanks for playing!&lt;/p&gt;</content><author><name></name></author><summary type="html">Whoa, so this build’s really late! Sorry about that! But I’m really excited to finally be able to share it with everyone, at last!</summary></entry><entry><title type="html">Dicey Dungeons 0.10</title><link href="/blog/2018/07/06/version-10.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.10" /><published>2018-07-06T11:30:00+09:30</published><updated>2018-07-06T11:30:00+09:30</updated><id>/blog/2018/07/06/version-10</id><content type="html" xml:base="/blog/2018/07/06/version-10.html">&lt;p&gt;Here we are! Version 0.10! The first &lt;strong&gt;commercial&lt;/strong&gt; version! The game’s getting closer and closer to release! Let’s see what’s new.&lt;/p&gt;
 
 &lt;center&gt;&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/xShpQ85jCVE?rel=0&quot; frameborder=&quot;0&quot; allow=&quot;autoplay; encrypted-media&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/center&gt;
 &lt;div style=&quot;text-align:center; font-size: large; font-weight: bold;&quot;&gt;Dicey Dungeons Teaser&lt;/div&gt;
@@ -344,7 +403,7 @@
 
 &lt;p&gt;The next update is really exciting for me, because that’s when I’m going to finally start implement Marlowe and Niamh’s work into the game! They’ve both been doing amazing work over the last few weeks, and I can wait to have it in the game and show it all to you!&lt;/p&gt;
 
-&lt;p&gt;Thanks for playing! See you in two weeks!&lt;/p&gt;</content><author><name></name></author><summary type="html">Here we are! Version 0.10! The first commercial version! The game’s getting closer and closer to release! Let’s see what’s new.</summary></entry><entry><title type="html">Dicey Dungeons 0.9</title><link href="/blog/2018/06/22/version-9.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.9" /><published>2018-06-22T03:00:00+01:00</published><updated>2018-06-22T03:00:00+01:00</updated><id>/blog/2018/06/22/version-9</id><content type="html" xml:base="/blog/2018/06/22/version-9.html">&lt;p&gt;Hey! It’s version 0.9! We’re almost four months in now, gosh!&lt;/p&gt;
+&lt;p&gt;Thanks for playing! See you in two weeks!&lt;/p&gt;</content><author><name></name></author><summary type="html">Here we are! Version 0.10! The first commercial version! The game’s getting closer and closer to release! Let’s see what’s new.</summary></entry><entry><title type="html">Dicey Dungeons 0.9</title><link href="/blog/2018/06/22/version-9.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.9" /><published>2018-06-22T11:30:00+09:30</published><updated>2018-06-22T11:30:00+09:30</updated><id>/blog/2018/06/22/version-9</id><content type="html" xml:base="/blog/2018/06/22/version-9.html">&lt;p&gt;Hey! It’s version 0.9! We’re almost four months in now, gosh!&lt;/p&gt;
 
 &lt;p&gt;This new build is light on new features, but covers some very overdue balance and design changes that I think make the game a lot better. Let’s take a look!&lt;/p&gt;
 
@@ -397,7 +456,7 @@
 
 &lt;p&gt;This one, v0.9 is the last free public build of the game - from v0.10 onwards, I will be &lt;strong&gt;SELLING ALPHA ACCESS&lt;/strong&gt; to the game on &lt;a href=&quot;https://itch.io/&quot;&gt;itch.io&lt;/a&gt;. I’m also excited to finally introduce the rest of the team - both the game’s artist and musician have recently started working on the game, and I’m can’t wait to show you all what they’ve been up to.&lt;/p&gt;
 
-&lt;p&gt;Thanks for playing! See you in two weeks!&lt;/p&gt;</content><author><name></name></author><summary type="html">Hey! It’s version 0.9! We’re almost four months in now, gosh!</summary></entry><entry><title type="html">Dicey Dungeons 0.8</title><link href="/blog/2018/06/08/version-8.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.8" /><published>2018-06-08T03:00:00+01:00</published><updated>2018-06-08T03:00:00+01:00</updated><id>/blog/2018/06/08/version-8</id><content type="html" xml:base="/blog/2018/06/08/version-8.html">&lt;p&gt;At long last, version 0.8! Thanks for bearing with me with this delayed build - I’m very glad I took the extra week to do this new class properly! Let’s have a look at it!&lt;/p&gt;
+&lt;p&gt;Thanks for playing! See you in two weeks!&lt;/p&gt;</content><author><name></name></author><summary type="html">Hey! It’s version 0.9! We’re almost four months in now, gosh!</summary></entry><entry><title type="html">Dicey Dungeons 0.8</title><link href="/blog/2018/06/08/version-8.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.8" /><published>2018-06-08T11:30:00+09:30</published><updated>2018-06-08T11:30:00+09:30</updated><id>/blog/2018/06/08/version-8</id><content type="html" xml:base="/blog/2018/06/08/version-8.html">&lt;p&gt;At long last, version 0.8! Thanks for bearing with me with this delayed build - I’m very glad I took the extra week to do this new class properly! Let’s have a look at it!&lt;/p&gt;
 
 &lt;center&gt;&lt;img src=&quot;/assets/images/version8/witchmoves.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
 &lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;The Witch&lt;/div&gt;
@@ -440,39 +499,4 @@
 
 &lt;p&gt;There’s a good reason for that too. &lt;em&gt;v0.9 will be the LAST free public build of the game&lt;/em&gt; - so I want it to be polished, and stable! I’ll be continuing with this whole open development thing after that, but from behind a paywall (on &lt;a href=&quot;https://itch.io/&quot;&gt;itch.io&lt;/a&gt;!). I’ll have more information about that next update!&lt;/p&gt;
 
-&lt;p&gt;Thanks for playing! See you in another two weeks!&lt;/p&gt;</content><author><name></name></author><summary type="html">At long last, version 0.8! Thanks for bearing with me with this delayed build - I’m very glad I took the extra week to do this new class properly! Let’s have a look at it!</summary></entry><entry><title type="html">Dicey Dungeons 0.7</title><link href="/blog/2018/05/18/version-7.html" rel="alternate" type="text/html" title="Dicey Dungeons 0.7" /><published>2018-05-18T03:00:00+01:00</published><updated>2018-05-18T03:00:00+01:00</updated><id>/blog/2018/05/18/version-7</id><content type="html" xml:base="/blog/2018/05/18/version-7.html">&lt;p&gt;It’s here! Version 0.7! Let’s see what’s new this time!&lt;/p&gt;
-
-&lt;center&gt;&lt;img src=&quot;/assets/images/version7/newmap.gif&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Totally Redesigned Dungeon Exploration&lt;/div&gt;
-
-&lt;p&gt;For this version, I’ve completely redesigned the exploration phase of the game.&lt;/p&gt;
-
-&lt;p&gt;The new maps are less than a 5th of the size of the old ones. It’s less complicated, it requires less clicking, and, I think, suits the game much better than the old system. It boils this phase down to pure decision making.&lt;/p&gt;
-
-&lt;p&gt;Along those lines, other game elements have been simplified too - all the gold values have been reworked (You get exactly one gold per battle now, and equipment tends to cost between 2-5 gold), and experience points match the enemies you’re fighting (a level 2 enemy gives you 2 experience points) - making the game much more boardgamey, and much easier to make strategic decisions about.&lt;/p&gt;
-
-&lt;p&gt;There’s also a bunch of other little structural things - for example, I’ve spread the dungeon out over 5 floors instead of 3 (although it’s actually shorter now thanks to the smaller levels), and it’s all been redesigned so that you don’t need to fight every monster to finish a Dungeon. As a result of all of this, I think the stuff &lt;em&gt;outside&lt;/em&gt; of combat is pretty substantially improved in this version!&lt;/p&gt;
-
-&lt;center&gt;&lt;img src=&quot;/assets/images/version7/guild.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Guilds&lt;/div&gt;
-
-&lt;p&gt;The best new thing in this update: Guilds! Guilds are my take on roguelike shrine mechanics - they don’t appear everytime you play, but when they do, they’ll offer you some strange wonderful new power… for a price. There a four in the game right now, and I’ll be adding more with each update!&lt;/p&gt;
-
-&lt;p&gt;I’ll probably end up reframing guilds in a later version (possibly as something curse themed), but what I’m aiming for is this mechanic where you can take on this extra, bonus challenge for fun. Guilds are always a big risk, but if you go for them, they change up the way you play the game, and open up new kinds of weirder playstyles you can try.&lt;/p&gt;
-
-&lt;center&gt;&lt;img src=&quot;/assets/images/version7/editor.png&quot; width=&quot;640&quot; /&gt;&lt;/center&gt;
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Editor Mode&lt;/div&gt;
-
-&lt;p&gt;I’ve implemented a first draft of an in game editor! The current version lets you arm a player with any equipment from the game you want, and fight any of the enemies in the game. Eventually, this mode will let you create full mods and challenges for the game. (It’s already seeing some very cool stuff happen on the &lt;a href=&quot;https://discord.gg/z7pCdCP&quot;&gt;Dicecord&lt;/a&gt; with people trying to make one turn infinite dice builds!)&lt;/p&gt;
-
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold; margin-top: -3%;&quot;&gt;Decisions&lt;/div&gt;
-
-&lt;p&gt;In the v0.6 post, I mentioned wanting to catch my breath, and figure out where this whole thing is going.&lt;/p&gt;
-
-&lt;p&gt;Well, I’ve done that. I’ve made some big decisions! Expect a blog post in a couple of days.&lt;/p&gt;
-
-&lt;div style=&quot;text-align:center; font-size: large; font-weight: bold;&quot;&gt;So what about v0.8?&lt;/div&gt;
-
-&lt;p&gt;For the next update, I’m going to introduce another new class, the &lt;em&gt;Mage&lt;/em&gt;. This class will require a little firming up of some basic combat mechanics, so I’ll probably end up doing quite a lot of work on that.&lt;/p&gt;
-
-&lt;p&gt;Thanks for playing! See you in another two weeks!&lt;/p&gt;</content><author><name></name></author><summary type="html">It’s here! Version 0.7! Let’s see what’s new this time!</summary></entry></feed>
+&lt;p&gt;Thanks for playing! See you in another two weeks!&lt;/p&gt;</content><author><name></name></author><summary type="html">At long last, version 0.8! Thanks for bearing with me with this delayed build - I’m very glad I took the extra week to do this new class properly! Let’s have a look at it!</summary></entry></feed>
