@@ -113,9 +113,9 @@ I've removed the `Levelpack` column from characters.csv, dungeonstyles.csv, epis
  - The important `remixrules.hx` script has been refactored in v1.9. If you have custom remix rules, you might want to take a look at the new file and get familar with how it works now. The big changes are that most logic has now been moved into functions to make it easier to work with and follow, and some lists are trimmed when there's a match for conditional remix rules (e.g. Banshee, Marshmallow) so that they are more likely to show up.
  
  - The functions `getequipment` and `getparticularequipment` have both been removed. There is a single new function, `getequipmentlist`, that is now used instead. It takes the arguments `getequipmentlist(target:Fighter, conditions:Array<String>, excludetags:Array<String>)`. 
-  - `target` can be either fighter, or null if you want to consider all equipment. 
-  - `conditions` is a list of tags to match list critera - you might for example just want to get a list of `appearsforparts` to get all the scrap equipment. (A useful thing to know here is that all equipment is automatically tagged as either `large` or `small` when loaded.)
-  - excludetags is a list of tags to exclude from the list - most in game functions that use this exclude `excludefromrandomlists` and `skillcard` tagged equipment, but you can exclude anything you like.
+    - `target` can be either fighter, or null if you want to consider all equipment. 
+    - `conditions` is a list of tags to match list critera - you might for example just want to get a list of `appearsforparts` to get all the scrap equipment. (A useful thing to know here is that all equipment is automatically tagged as either `large` or `small` when loaded.)
+    - excludetags is a list of tags to exclude from the list - most in game functions that use this exclude `excludefromrandomlists` and `skillcard` tagged equipment, but you can exclude anything you like.
 
 ## Equipment Tags
 
