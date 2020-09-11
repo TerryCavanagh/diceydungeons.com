@@ -231,7 +231,7 @@ In Jester episodes, the dungeons changes based on what level up pack the player 
 
 ## Flexible generators
 
-Thanks to a big contribution by Jackeea, you can now add things to the itempools for various generators without modifying the generators themselves! This is great news if your mod is mainly about adding new equipment to the game.
+Thanks to a big contribution by Jackeea and ncrecc, you can now add things to the itempools for various generators without modifying the generators themselves! This is great news if your mod is mainly about adding new equipment to the game.
 
 Here are Jackeea's notes on the new feature:
 
@@ -240,6 +240,6 @@ Huge thanks to ncrecc/Wisp for starting off the framework for this! Makes things
 Each generator has a few files:
 * The generator file itself - e.g. warrior_normal.hx. This is an ordinary generator, except all of the items have been stripped out. It includes a call to an external script, flexible_generator.hx, with some arguments - this script then returns all the items for the episode, loading from other mods.
 * An "itempools" folder - scripts/diceydungeons/itempools/[generator name]/vanilla.hx. This contains all the item pools for that episode, in the correct format. This data is loaded into the generator, along with any modded item pools.
-* Any other mods can add their own item pool list - you just create a file in the same place as vanilla.hx, except with the name of your mod (or some other internal identifier). Then, you append your mod's name to scripts/diceydungeons/itempools/[generator name]/scriptstorun.hx, which are loaded when the generator is.
+* Any other mods can add their own item pool list - you just create a file in the same place as vanilla.hx, except with the name of your mod (or some other internal identifier). Then, you append your mod's name to scripts/diceydungeons/itempools/[generator name]/scriptstorun.txt, which are loaded when the generator is.
 
 This flexible way of loading generators allows users to have greater control over which items generate when, by letting them add their own scripts which return lists of items to append to each list inside the generator. Larger generator changes will still necessitate a whole overwrite, but this setup should be flexible enough.
