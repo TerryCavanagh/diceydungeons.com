@@ -8,7 +8,7 @@ This document is a comprehensive guide on everything you need to know to upgrade
 API v0.13.0 to API v1.0. This guide covers the complete list of changes to know about, including all of
 the many new features - but don't worry! If all you're trying to do is make your old mod
 compatible with the latest version, there are only a few small changes you need to make.
-See the migration wizard (to do) for a simple step by step guide!
+See the [migration wizard](https://diceydungeons.com/moddingupdate/) for a simple step by step guide!
 
 ## What does this all mean?
 
