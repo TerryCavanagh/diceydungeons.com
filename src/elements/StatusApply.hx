@@ -49,13 +49,19 @@ class StatusApply{
 	//Apply all "end of turn" status scripts now
 	public static function endturn(f:Fighter){
 		if (f.hasstatus(Status.ALTERNATE_BLIND)){
-			f.decrementstatus(Status.ALTERNATE_BLIND);
+			var altblind:StatusEffect = f.getstatus(Status.ALTERNATE_BLIND);
+			altblind.value--;
+			if (altblind.value <= 0){
+				f.removestatus(Status.ALTERNATE_BLIND);
+			}else{
+				altblind.displayvalue = altblind.value;
+			}
 		}
 		
 		if (f.hasstatus(Status.ALTERNATE + Status.POISON)){
 			var altpoisondamage:Int = 0;
 			for (e in f.equipment){
-				if(e.shockedtype == DiceSlotType.COUNTDOWN){
+				if(e.shockedtype == "COUNTDOWN"){
 					if (e.shockedsetting > 0){
 						altpoisondamage = e.shocked_remainingcountdown;
 					}
@@ -95,6 +101,7 @@ class StatusApply{
 	/* Apply status effects that require being checked on an update  */
 	public static function update(f:Fighter, isplayer:Bool){			
 		if (f.hasstatus(Status.VANISH)){
+			if (f.hasstatus("fade")) f.removestatus("fade");
 			var hasvalue:Array<Bool> = [false, false, false, false, false, false, false];
 			var dicevanished:Bool = false;
 			for (i in 0 ... f.dicepool.length){
@@ -115,12 +122,56 @@ class StatusApply{
 			}
 		}
 		
+		//Fade is a nicer version of Vanish that decrements with each dice used - from ncrmod.
+		//ncrmod uses actuators to implement this, but it's easier for reunion if we just inline it
+		if (f.hasstatus("fade")){
+			var hasvalue:Array<Bool> = [false, false, false, false, false, false, false];
+			var fadecount:Int = f.getstatus("fade").value;
+			var dicevanished:Bool = false;
+			for (i in 0 ... f.dicepool.length){
+				if(fadecount > 0){
+					if (f.dicepool[i].available()){
+						if (!f.dicepool[i].intween()){
+							if (!hasvalue[f.dicepool[i].basevalue]){
+								hasvalue[f.dicepool[i].basevalue] = true;
+							}else{
+								f.dicepool[i].animate("disappear");
+								dicevanished = true;
+								fadecount--;
+							}
+						}
+					}
+				}
+			}
+			
+			
+			if (dicevanished){
+				trace("new fadecount: " + fadecount);
+				AudioControl.play("_diceburn");
+				
+				//Update fade value
+				if (fadecount > 0){
+					var overridedescription:String = f.getcoindescription("fade");
+					var fadestatus:StatusEffect = f.getstatus("fade");
+					fadestatus.value = fadecount;
+					fadestatus._displayvalue = fadecount;
+					fadestatus.updatedescription(overridedescription);
+				}else{
+					f.removestatus("fade");
+				}
+			}
+		}
+		
 		//Hothead rule! Be on the lookout for unignited dice that match the ignition range
 		if (Rules.ignitedice){
 			for (d in f.dicepool){
 				if(d.available() && d.ignitedthisturn == false){
 					if (Rules.igniterange.indexOf(d.basevalue) > -1){
-						d.animate(Status.FIRE, 0.25 / BuildConfig.speed);
+						if (Rules.hasalternate(Status.FIRE)){
+							d.animate(Status.ALTERNATE_FIRE, 0.25 / BuildConfig.speed);
+						}else{
+							d.animate(Status.FIRE, 0.25 / BuildConfig.speed);
+						}
 						d.ignitedthisturn = true;
 					}
 				}
@@ -146,7 +197,15 @@ class StatusApply{
 			
 			if (availdice.length > 0) {
 				availdice = Random.shuffle(availdice); 
-				availdice[0].animatereroll(Random.pick([1, 2, 3, 4, 5, 6]), f.screenposition(), 0);  
+				var newvalue:Int = Random.pick([1, 2, 3, 4, 5, 6]);
+				if (Rules.reunioncoinmode){
+					if (availdice[0].value >= 5){
+						newvalue = Random.pick([5, 6]);
+					}else{
+						newvalue = Random.pick([1, 2]);
+					}
+				}
+				availdice[0].animatereroll(newvalue, f.screenposition(), 0);  
 				
 				haunted.value--;
 				haunted.displayvalue = haunted.value;
@@ -158,9 +217,11 @@ class StatusApply{
 		
 		//Custom status effect scripts
 		for (i in 0 ... f.status.length){
-			if (f.status[i].value > 0) {
-				if (f.status[i].scriptonanyequipmentuse != ""){
-					f.status[i].runscript("onanyequipmentuse", 0, actualequipment);
+			if(f.status[i] != null){
+				if (f.status[i].value > 0) {
+					if (f.status[i].scriptonanyequipmentuse != ""){
+						f.status[i].runscript("onanyequipmentuse", 0, actualequipment);
+					}
 				}
 			}
 		}

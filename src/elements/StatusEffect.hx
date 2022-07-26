@@ -22,6 +22,17 @@ class StatusEffect{
 		scriptonanyequipmentuse = "";
 		scriptonanycountdownreduce = "";
 		scriptendturn = "";
+		cleanup = false;
+		
+		scriptoncursetrigger = "";
+		scriptonshockrelease = "";
+		scriptondodge = "";
+		scriptonenemydodge = "";
+		scriptmodifydamage = "";
+		scriptonpreviewenemymoves = "";
+		scriptonendpreviewenemymoves = "";
+		scriptonrolldice = "";
+		scriptoncastspell = "";
 		
 		var isjinx:Bool = (S.left(type, "jinx_".length) == "jinx_");
 		if (isjinx){
@@ -35,12 +46,13 @@ class StatusEffect{
 			name = jinxname;
 			symbol = "jinx";
 			stacks = true;
+			if (v > 9999) v = 9999;
 			_displayvalue = value = v;
 			remove_at_endturn = false;
 			remove_at_startturn = false;
 			invisible = false;
 			
-			updatedescription();
+			updatedescription("");
 		}else{
 			jinx = false; jinxname = ""; jinxcarddescription = ""; jinxtooltipdescription = ""; jinxscript = "";
 			template = Gamedata.getstatustemplate(_type);
@@ -50,10 +62,12 @@ class StatusEffect{
 				stacks = template.stacks;
 				if (stacks){
 					value = v;
+					if (value > 9999) value = 9999;
 				}else{
 					value = 1;
 				}
 				_displayvalue = value;
+				if (_displayvalue > 9999) _displayvalue = 9999;
 				remove_at_endturn = template.removeatendturn;
 				remove_at_startturn = template.removeatstartturn;
 				invisible = template.invisible;
@@ -65,8 +79,22 @@ class StatusEffect{
 				scriptonanyequipmentuse = template.scriptonanyequipmentuse;
 				scriptonanycountdownreduce = template.scriptonanycountdownreduce;
 				scriptendturn = template.scriptendturn;
+				scriptaftercombat = template.scriptaftercombat;
+				scriptondamageinflicted = template.scriptondamageinflicted;
+				scriptondamagetaken = template.scriptondamagetaken;
+				scriptonstatusremove = template.scriptonstatusremove;
 				
-				updatedescription();
+				scriptoncursetrigger = template.scriptoncursetrigger;
+				scriptonshockrelease = template.scriptonshockrelease;
+				scriptondodge = template.scriptondodge;
+				scriptonenemydodge = template.scriptonenemydodge;
+				scriptmodifydamage = template.scriptmodifydamage;
+				scriptonpreviewenemymoves = template.scriptonpreviewenemymoves;
+				scriptonendpreviewenemymoves = template.scriptonendpreviewenemymoves;
+				scriptonrolldice = template.scriptonrolldice;
+				scriptoncastspell = template.scriptoncastspell;
+				
+				updatedescription((fighter == null)?"":fighter.getcoindescription(type));
 			}
 		}
 		
@@ -83,7 +111,6 @@ class StatusEffect{
 		}
 	}
 	
-	
 	public function runwheninflictedscript(inflicted_type:String, inflicted_value:Int, f:Fighter){
 		//This passes the name of the inflicted status in the "when" script, needed for "wheninflicted" and "onanystatusinfliction"
 		fighter = f;
@@ -94,6 +121,22 @@ class StatusEffect{
 		//This passes the name of the inflicted status in the "when" script, needed for "wheninflicted" and "onanystatusinfliction"
 		fighter = f;
 		Script.rungamescript(scriptonanystatusinfliction, "status_" + inflicted_type, fighter, null, this, inflicted_value);
+	}
+	
+	public function runondamageinflictedscript(dmg:Int, dmgtype:String, f:Fighter){
+		if (scriptondamageinflicted == "") return;
+		
+		fighter = f;
+		Script.dmgtype = dmgtype;
+		Script.rungamescript(scriptondamageinflicted, "status_ondamageinflicted", fighter, null, this, dmg);
+	}
+	
+	public function runondamagetakenscript(dmg:Int, dmgtype:String, f:Fighter){
+		if (scriptondamagetaken == "") return;
+		
+		fighter = f;
+		Script.dmgtype = dmgtype;
+		Script.rungamescript(scriptondamagetaken, "status_scriptondamagetaken", fighter, null, this, dmg);
 	}
 	
 	public function runscript(when:String, d:Int, ?e:Equipment = null){
@@ -108,10 +151,30 @@ class StatusEffect{
 				if (scriptonanycountdownreduce != "") Script.rungamescript(scriptonanycountdownreduce, "status_scriptonanycountdownreduce", fighter, e, this, d);
 			case "endturn":
 				if (scriptendturn != "") Script.rungamescript(scriptendturn, "status_scriptendturn", fighter, null, this, d);
+			case "aftercombat":
+				if (scriptaftercombat != "") Script.rungamescript(scriptaftercombat, "status_aftercombat", fighter, null, this, d);
+			case "aftercombat_flee":
+				if (scriptaftercombat != "") Script.rungamescript(scriptaftercombat, "status_aftercombat_flee", fighter, null, this, d);
+		  case "onstatusremove":
+				if (scriptonstatusremove != "") Script.rungamescript(scriptonstatusremove, "status_onstatusremove", fighter, null, this, d);
+			case "oncursetrigger":
+				if (scriptoncursetrigger != "") Script.rungamescript(scriptoncursetrigger, "status_oncursetrigger", fighter, e, this, d);
+			case "onshockrelease":
+				if (scriptonshockrelease != "") Script.rungamescript(scriptonshockrelease, "status_onshockrelease", fighter, e, this, d);
+			case "ondodge":
+				if (scriptondodge != "") Script.rungamescript(scriptondodge, "status_ondodge", fighter, null, this, d);
+			case "onenemydodge":
+				if (scriptonenemydodge != "") Script.rungamescript(scriptonenemydodge, "status_onenemydodge", fighter, e, this, d);
+			case "onpreviewenemymoves":
+				if (scriptonpreviewenemymoves != "") Script.rungamescript(scriptonpreviewenemymoves, "status_onpreviewenemymoves", fighter, null, this, d);
+			case "onendpreviewenemymoves":
+				if (scriptonendpreviewenemymoves != "") Script.rungamescript(scriptonendpreviewenemymoves, "status_onendpreviewenemymoves", fighter, null, this, d);
+			case "oncastspell":
+				if (scriptoncastspell != "") Script.rungamescript(scriptoncastspell, "status_oncastspell", fighter, null, this, d);
 		}
 	}
 	
-	public function updatedescription(){
+	public function updatedescription(overridedescription:String){
 		if (jinx){
 			var jinxdescription:String = "";
 			if (value == 1){
@@ -132,8 +195,9 @@ class StatusEffect{
 			}
 			
 			description = Game.splittrimandtranslate(jinxdescription);
-		}else	if(template != null){
-			description = Game.splittrimandtranslate(template.description);
+		}else	if (template != null){
+			if (overridedescription == "") overridedescription = template.description;
+			description = Game.splittrimandtranslate(overridedescription);
 			
 			for (i in 0 ... description.length){
 				description[i] = Game.statusstring(description[i], displayvalue);
@@ -170,10 +234,12 @@ class StatusEffect{
 	public function add(v:Int){
 		if (stacks){
 			value += v;
+			if (value > 9999) value = 9999;
 		}else{
 			value = Std.int(Geom.max(v, value));
 		}
 		displayvalue = value;
+		if (displayvalue > 9999) displayvalue = 9999;
 	}
 	
 	public function clone():StatusEffect{
@@ -199,6 +265,16 @@ class StatusEffect{
 		st.scriptonanyequipmentuse = this.scriptonanyequipmentuse;
 		st.scriptonanycountdownreduce = this.scriptonanycountdownreduce;
 		st.scriptendturn = this.scriptendturn;
+		st.scriptaftercombat = this.scriptaftercombat;
+		st.scriptondamageinflicted = this.scriptondamageinflicted;
+		st.scriptondamagetaken = this.scriptondamagetaken;
+		st.scriptonstatusremove = this.scriptonstatusremove;
+		st.scriptonpreviewenemymoves = this.scriptonpreviewenemymoves;
+		st.scriptonendpreviewenemymoves = this.scriptonendpreviewenemymoves;
+		
+		st.scriptoncursetrigger = this.scriptoncursetrigger;
+		st.scriptonshockrelease = this.scriptonshockrelease;
+		st.scriptoncastspell = this.scriptoncastspell;
 		
 		return st;
 	}
@@ -216,7 +292,8 @@ class StatusEffect{
 	function set_displayvalue(newval:Int):Int{
 		if(newval != _displayvalue){
 			_displayvalue = newval;
-			updatedescription();
+			if (_displayvalue > 9999) _displayvalue = 9999;
+			updatedescription((fighter == null)?"":fighter.getcoindescription(type));
 		}
 		
 		return _displayvalue;
@@ -236,6 +313,7 @@ class StatusEffect{
 	public var selfinflicted:Bool;
 	public var invisible:Bool;
 	public var template:StatusTemplate;
+	public var cleanup:Bool;
 	
 	public var jinx:Bool;
 	public var jinxname:String;
@@ -252,6 +330,20 @@ class StatusEffect{
 	public var scriptonanyequipmentuse:String;
 	public var scriptonanycountdownreduce:String;
 	public var scriptendturn:String;
+	public var scriptaftercombat:String;
+	public var scriptondamageinflicted:String;
+	public var scriptondamagetaken:String;
+	public var scriptonstatusremove:String;
+	
+	public var scriptoncursetrigger:String;
+	public var scriptonshockrelease:String;
+	public var scriptondodge:String;
+	public var scriptonenemydodge:String;
+	public var scriptmodifydamage:String;
+	public var scriptonpreviewenemymoves:String;
+	public var scriptonendpreviewenemymoves:String;
+	public var scriptonrolldice:String;
+	public var scriptoncastspell:String;
 	
 	public var fighter:Fighter;
 }

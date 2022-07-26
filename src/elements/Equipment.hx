@@ -83,8 +83,6 @@ class Equipment{
 			displayname = rawname;
 		}
 		
-		category = ItemCategory.WEAPON;
-		
 		upgraded = _upgraded;
 		weakened = _weakened;
 		initvariables();
@@ -147,9 +145,9 @@ class Equipment{
 			scriptonanycountdownreduce = template.scriptonanycountdownreduce;
 			scriptiffury = template.scriptiffury;
 			scriptonsnap = template.scriptonsnap;
+			scriptondodge = template.scriptondodge;
 			
 			scriptrunner = null;
-			category = template.category;
 			castdirection = template.castdirection;
 			upgradetype = template.upgradetype;
 			weakentype = template.weakentype;
@@ -382,10 +380,13 @@ class Equipment{
 				locked = 6;
 			}else if (slots[0] == DiceSlotType.LOCKED7){
 				locked = 7;
+			}else if (slots[0] == DiceSlotType.COMBINATION){
+				combination = true;
 			}
 			unlocked = 0;
 			unlockedthisturn = false;
 			unlockflash = 0;
+			combinationflash = 0;
 		}
 		
 		if (size == 1){
@@ -418,10 +419,12 @@ class Equipment{
 			slotpositions[1].y = slotpositions[0].y + 62 * 6;*/
 		}
 		
-		if (category == ItemCategory.BACKUP){
+		ispowercard = false;
+		if (hastag("powercard")){
 			equipmentpanel = new BackupCard();
 			cast(equipmentpanel, BackupCard).setupbackup(this, false);
-		}else if (category == ItemCategory.MONSTERCARD){
+			ispowercard = true;
+		}else if (hastag("monstercard")){
 			equipmentpanel = new BackupCard();
 			cast(equipmentpanel, BackupCard).setupbackup(this, true);
 		}else{
@@ -476,6 +479,7 @@ class Equipment{
 		availablethisturn = true;
 		availablenextturn = true;
 		unavailabletext = "Unavailable";
+		unavailablemodifier = "";
 		unavailabledetails = [];
 		castdirection = 1;
 		skillcard = "";
@@ -487,7 +491,7 @@ class Equipment{
 		slots = [];
 		if (skills != null){
 			if (skills.length > 0){
-			  for (i in 0 ... skills.length) skills[i].remove();
+			  for (i in 0 ... skills.length) skills[i].dispose();
 			}
 		}
 		skills = [];
@@ -497,18 +501,22 @@ class Equipment{
 		upgradetype = "";
 		ignoredicevalue = false;
 		equipmentcol = -1;
-		shockedtype = DiceSlotType.NORMAL;
+		shockedtype = "NORMAL";
 		shockedsetting = 0;
 		shockedtext = "";
 		shocked_textoffset = 0;
 		shockedcol = Pal.BLACK;
 		shocked_showtitle = true;
+		shocked_returndice = false;
+		shocked_needstotal = 0;
 		unshockingtimer = 0;
 		needsdoubles = false;
+		combination = false;
 		locked = 0;
 		unlocked = 0;
 		unlockedthisturn = false;
 		unlockflash = 0;
+		combinationflash = 0;
 		priority = 2;
 		aihints = "";
 		timesused = 0;
@@ -523,6 +531,7 @@ class Equipment{
 		maintainfury = false;
 		alreadyfuryed = false;
 		descriptiontextoffset = 0;
+		ispowercard = false;
 		
 		reuseable = 0;
 		reuseableanimation = 0;
@@ -569,9 +578,9 @@ class Equipment{
 		shocked_slotpositions = [];
 		
 		if (shockedsetting > 0){
-			if (shockedtype == DiceSlotType.SKILL){
+			if (shockedtype == "SKILL"){
 				if (resetassignments) shocked_assigneddice = [null];
-				shocked_slots = [shockedtype];
+				shocked_slots = [DiceSlotType.SKILL];
 				if (size == 2){
 					shocked_slotpositions = [new Point(Std.int((width / 2) - 20 * 6), Std.int(((height - 40 * 6) / 2) - 6 * 6))];
 					shocked_textoffset = 0;
@@ -579,9 +588,9 @@ class Equipment{
 					shocked_slotpositions = [new Point(Std.int((width / 2) - 20 * 6), Std.int((height / 2) - 40 * 6))];
 					shocked_textoffset = 10 * 6;
 				}
-			}else	if (shockedtype == DiceSlotType.COUNTDOWN){
+			}else	if (shockedtype == "COUNTDOWN"){
 				if (resetassignments) shocked_assigneddice = [null];
-				shocked_slots = [shockedtype];
+				shocked_slots = [DiceSlotType.COUNTDOWN];
 				if (size == 2){
 					shocked_slotpositions = [new Point(Std.int((width / 2) - 20 * 6), Std.int(((height - 40 * 6) / 2) - 6 * 6))];
 					shocked_textoffset = 0;
@@ -589,24 +598,30 @@ class Equipment{
 					shocked_slotpositions = [new Point(Std.int((width / 2) - 20 * 6), Std.int((height / 2) - 40 * 6))];
 					shocked_textoffset = 10 * 6;
 				}
+				shocked_needstotal = 0;
 				shocked_countdown = shockedsetting;
 				shocked_remainingcountdown = shocked_countdown;
+			}else	if (shockedtype == "MUSTEQUAL"){
+				shocked_needstotal = shockedsetting;
+				shocked_slots = [DiceSlotType.NORMAL, DiceSlotType.NORMAL];
+				shocked_slotpositions = [new Point(Std.int((width / 2) - 20 * 6), Std.int(((height - 40 * 6) / 2) - 6 * 6))];
+				shocked_textoffset = 0;
 			}else{
 				if(shockedsetting == 1){
 					if (resetassignments) shocked_assigneddice = [null];
-					shocked_slots = [shockedtype];
+					shocked_slots = [Game.convert_string_to_diceslottype(shockedtype)];
 					shocked_slotpositions = [new Point(Std.int((width / 2) - 20 * 6), Std.int(((height - 40 * 6) / 2) - 6 * 6))];
 					shocked_textoffset = 0;
 				}else if (shockedsetting == 2){
 					if(resetassignments) shocked_assigneddice = [null, null];
-					shocked_slots = [shockedtype, shockedtype];
+					shocked_slots = [Game.convert_string_to_diceslottype(shockedtype), Game.convert_string_to_diceslottype(shockedtype)];
 					shocked_slotpositions = [
 						new Point(Std.int((width / 2) - 290), Std.int((((height - 40 * 6) / 2) - 6 * 6))),
 						new Point(Std.int((width / 2) + 270 - 40 * 6), Std.int((((height - 40 * 6) / 2) - 6 * 6))),
 					];
 					shocked_textoffset = 0;
 					
-					if (skillcard == "inventor"){
+					if (skillcard == "inventor" || skillcard == "skillskillcard"){
 						if(skills != null){
 							if (skills.length == 1){
 								shocked_slotpositions[0].y -= 12 * 6;
@@ -733,6 +748,13 @@ class Equipment{
 			}else{
 				throw("Error: A size 2 equipment card cannot have more than 4 slots. (\"" + name + "\" has " + slots.length + ".)");
 			}
+			
+			var tempdescription = Locale.translatearray(fulldescription);
+			if (tempdescription.length == 4){
+				for (i in 0 ... slotpositions.length){
+					slotpositions[i].y -= 90;
+				}
+			}
 		}
 		
 		for (i in 0 ... slotpositions.length){
@@ -758,7 +780,7 @@ class Equipment{
 		}
 		
 		//Force a redraw
-		equipmentpanel.remove();
+		equipmentpanel.dispose();
 	}
 	
 	/* Restore the original slots from the template */
@@ -777,11 +799,18 @@ class Equipment{
 		
 		arrangeslots();
 		//Force a redraw of the slots
-		equipmentpanel.remove();
+		equipmentpanel.dispose();
 	}
 	
 	/* Change the current slots in string format (for scripting) */
 	public function changeslots(newslots:Array<String>){
+		var setcombination:Bool = false;
+		if (newslots.length > 0){
+			if (newslots[0] == "COMBINATION"){
+				setcombination = true;
+			}
+		}
+		
 		//We remove the existing slots:
 		slots = [];
 		slotshake = [];
@@ -793,6 +822,19 @@ class Equipment{
 		maxcountdown = 0;
 		needstotal = 0;
 		needsdoubles = false;
+		if(!setcombination){
+			if (combination = true) Combination.dispose(this);
+			combination = false;
+		}else{
+			combination = true;
+			addslots(DiceSlotType.COMBINATION);
+			
+			//Force a redraw of the slots
+			equipmentpanel.dispose();
+			equipmentpanel = null;
+			equipmentpanel = new EquipmentPanel();
+			return;
+		}
 		
 		for (i in 0 ... newslots.length){
 			switch(newslots[i]){
@@ -913,7 +955,7 @@ class Equipment{
 			}
 		}
 		//Force a redraw of the slots
-		equipmentpanel.remove();
+		equipmentpanel.dispose();
 	}
 	
 	/* Get a list of current slots in a string format (for scripting) */
@@ -984,45 +1026,19 @@ class Equipment{
 				_type == DiceSlotType.REQUIRE6){
 			conditionalslots = true;
 		}
+		
+		if (Reunion.checkcoinmodeequipment(this)){
+			//This doesn't work, why doesn't this work
+			if (_type == DiceSlotType.MAX2 ||	_type == DiceSlotType.MIN5){
+				conditionalslots = true;
+			}
+		}
 	}
 	
 	public function slotcheck(d:Dice, s:Int):Bool{
 		//Is it ok to assign dice d to this slot, s?
 		//This is checking validity, not collision
 		return Game.slotcheckvalue(d.value, slots[s]);
-	}
-	
-	public function deleteme_oldassigndicetoshockedslot(d:Dice, assignedslot:Int, lerp:Float = 0){
-		d.highlight = 0;
-		if (assignedslot == -1){
-			if (shocked_assigneddice[0] == null){
-				assignedslot = 0;
-			}else{
-				if (shocked_assigneddice.length > 1){
-					if (shocked_assigneddice[1] == null){
-						assignedslot = 1;
-					}
-				}
-			}
-		}
-		
-		if(assignedslot != -1){
-			d.assignedposition = assignedslot;
-			shocked_assigneddice[assignedslot] = d;
-			
-			if(lerp == 0){
-				d.x = x + shocked_slotpositions[assignedslot].x + Game.dicexoffset;
-				d.y = y + shocked_slotpositions[assignedslot].y + Game.diceyoffset;
-				d.inlerp = false;
-			}else{
-				d.inlerp = true;
-				Actuate.tween(d, lerp, {
-					x: x + shocked_slotpositions[assignedslot].x + Game.dicexoffset, 
-					y: y + shocked_slotpositions[assignedslot].y + Game.diceyoffset})
-					.onComplete(function(d:Dice){d.inlerp = false; }, [d]);
-			}
-			d.assigned = this;
-		}
 	}
 	
 	public function assigndicetoshockedslot(d:Dice, slot:Int = -1, lerp:Float = 0){
@@ -1081,7 +1097,9 @@ class Equipment{
 		}
 	}
 	
-	public function assigndice(d:Dice, slot:Int = -1, lerp:Float = 0){
+	public function assigndice(d:Dice, slot:Int = -1, lerp:Float = 0){		
+		invalidatecache();
+		
 		for (i in 0 ... assigneddice.length){
 			if(slot == i || slot == -1){
 				var slotready:Bool = (assigneddice[i] == null);
@@ -1090,7 +1108,42 @@ class Equipment{
 				}
 				
 				if (slotready){
-					if (slots[i] == DiceSlotType.WITCH){
+					if (slots[i] == DiceSlotType.COMBINATION){
+						var combinationacceptsdice:Int = Combination.acceptsdice(d, this);
+						if (combinationacceptsdice != -1){
+							Combination.playsound(this);
+							Combination.assigndicevalue(d, this, combinationacceptsdice);
+							
+							d.assignedposition = i;
+							d.highlight = 0;
+							d.assigned = this;
+							
+							if (equippedby == null) equippedby = Game.fixequippedbyfield(this);
+							if (equippedby != null){
+								Script.callechoscripts_countdownreduce(equippedby, this);
+							}
+							
+							if(lerp == 0 || ControlMode.gamepad()){
+								d.inlerp = false;
+								d.fastconsumedice();
+							}else{
+								if (d.touch != null){
+									d.inlerp = true;
+									Actuate.tween(d, lerp, {
+										x: d.touch.x - (20 * 6) - Game.dicexoffset, 
+										y: d.touch.y - (20 * 6) - Game.diceyoffset})
+										.onComplete(function(d:Dice){d.inlerp = false; }, [d]);
+									d.consumedice();
+								}else{
+									//This shouldn't actually happen, but just in case
+									d.inlerp = false;     
+									d.fastconsumedice();
+								}
+							}
+						}
+						
+						return;
+					}else if (slots[i] == DiceSlotType.WITCH){
 						if(Spellbook.matchingspell(d.basevalue) && Spellbook.spells_availablethisturn[d.basevalue - 1]){
 							Spellbook.adddice(d);
 							
@@ -1168,7 +1221,8 @@ class Equipment{
 						if (tdice.alternateburn){
 							alternateburningcountdownslot = true;
 							availablenextturn = false;
-							unavailabletext = displayname + namemodifier;
+							unavailabletext = displayname;
+							unavailablemodifier = namemodifier;
 							unavailabledetails = ["Unavailable (Burn?)"];
 						}
 						
@@ -1231,6 +1285,8 @@ class Equipment{
 	}
 	
 	public function removedice(?d:Dice){
+		invalidatecache();
+		
 		if (d == null){
 			for (i in 0 ... assigneddice.length){
 				if(assigneddice[i] != null){
@@ -1282,7 +1338,7 @@ class Equipment{
 	
 	//Returns "true" if generation code stops after this step
 	public function downgrade():Bool{
-		equipmentpanel.remove();
+		equipmentpanel.dispose();
 		equipmentpanel = null;
 		
 		var create_weakened_version_of_upgraded_equipment:Bool = false;
@@ -1308,10 +1364,12 @@ class Equipment{
 		if (create_weakened_version_of_upgraded_equipment){
 			//Special case! Downgrade to the special equipment_weakened equipement.
 			var oldequip:Equipment = copy();
+			var oldcombination:String = Combination.getstring(this);
 			
 			create(rawname_beforesubstitution + "_weakened", false, false);
 			x = oldequip.x;
 			y = oldequip.y;
+			charge = oldequip.charge;
 			name = rawname;
 			namemodifier = "-";
 			weakentype = "";
@@ -1324,6 +1382,8 @@ class Equipment{
 			reducecountdownby = oldequip.reducecountdownby;
 			reducecountdowndelay = oldequip.reducecountdowndelay;
 			remainingcountdown = clampremainingcountdown(oldequip.remainingcountdown, oldequip.maxcountdown, maxcountdown);
+			
+			if (hastag("combination")){	setvar("combination", oldcombination); }
 			
 			if (equippedby != null){
 				if (equippedby.layout == EquipmentLayout.DECK || Rules.bigequipmentmode) if (size != 2) resize(2);
@@ -1339,6 +1399,7 @@ class Equipment{
 				create(rawname_beforesubstitution, false, false);
 				x = oldequip.x;
 				y = oldequip.y;
+				charge = oldequip.charge;
 				timesused = oldequip.timesused;
 				totalusesremaining = oldequip.totalusesremaining;
 				originallyupgraded = true;
@@ -1475,6 +1536,18 @@ class Equipment{
 					var oldequip:Equipment = copy();
 					overwritefinalline = "";
 					
+					var keepcountdown:Bool = false;
+					if (hastag("keepcountdown")) keepcountdown = true;
+					var oldcombination:String = Combination.getstring(this);
+					/*
+					 * This fix is too dangerous to apply before Reunion, commenting it out
+					var oldvariables:Map<String, Dynamic> = new Map<String, Dynamic>();
+					if(gamevar != null){
+						for (key in gamevar.keys()){
+							oldvariables.set(key, gamevar.get(key));
+						}
+					}*/
+					
 					var reallyoriginallyupgraded:Bool = originallyupgraded;
 					if (name_beforesubstitution != name){
 						create(rawname_beforesubstitution + "_downgraded", false, false);
@@ -1488,13 +1561,26 @@ class Equipment{
 					
 					x = oldequip.x;
 					y = oldequip.y;
+					charge = oldequip.charge;
 					timesused = oldequip.timesused;
 					totalusesremaining = oldequip.totalusesremaining;
 					originallyupgraded = reallyoriginallyupgraded;
+					if (keepcountdown) maxcountdown = oldequip.maxcountdown;
 					countdown = oldequip.countdown;
 					reducecountdownby = oldequip.reducecountdownby;
 					reducecountdowndelay = oldequip.reducecountdowndelay;
-					remainingcountdown = clampremainingcountdown(oldequip.remainingcountdown, oldequip.maxcountdown, maxcountdown);
+					if (keepcountdown) {
+						remainingcountdown = oldequip.remainingcountdown;
+					}else{
+						remainingcountdown = clampremainingcountdown(oldequip.remainingcountdown, oldequip.maxcountdown, maxcountdown);
+					}
+					
+					if (hastag("combination")){
+						setvar("combination", oldcombination); 
+					}
+					
+					//Copy equipment variables to weakened version
+					//gamevar = oldvariables;
 					
 					if (equippedby != null){
 						if (equippedby.layout == EquipmentLayout.DECK || Rules.bigequipmentmode) if (size != 2) resize(2);
@@ -1522,7 +1608,19 @@ class Equipment{
 	
 	public function unweaken(fromdeck:Bool = false){
 		if (weakened){
-			equipmentpanel.remove();
+			equipmentpanel.dispose();
+			
+			var oldcombination:String = getvar("combination");
+			/*
+			var oldvariables:Map<String, Dynamic> = new Map<String, Dynamic>();
+			if(gamevar != null){
+				for (key in gamevar.keys()){
+					oldvariables.set(key, gamevar.get(key));
+				}
+			}*/
+			
+			var keepcountdown:Bool = false;
+			if (hastag("keepcountdown")) keepcountdown = true;
 			
 			var c:Equipment = copy();
 			
@@ -1535,21 +1633,35 @@ class Equipment{
 			
 			x = c.x;
 			y = c.y;
+			charge = c.charge;
 			
 			timesused = c.timesused;
 			totalusesremaining = c.totalusesremaining;
-			if (c.countdown < countdown){
-				countdown = c.countdown;
-			}
+			
 			reducecountdownby = c.reducecountdownby;
 			reducecountdowndelay = c.reducecountdowndelay;
 			
-			//Unweakening countdowns needs to be done carefully: the value should only change if the unweakening causes the value to
-			//be higher than what it should be
-			remainingcountdown = c.remainingcountdown;
-			if (remainingcountdown > maxcountdown){
-				remainingcountdown = maxcountdown;
+			if (keepcountdown){
+				countdown = c.countdown;
+				remainingcountdown = c.remainingcountdown;
+				maxcountdown = c.maxcountdown;
+			}else{
+				if (c.countdown < countdown){
+					countdown = c.countdown;
+				}
+				
+				//Unweakening countdowns needs to be done carefully: the value should only change if the unweakening causes the value to
+				//be higher than what it should be
+				remainingcountdown = c.remainingcountdown;
+				if (remainingcountdown > maxcountdown){
+					remainingcountdown = maxcountdown;
+				}
 			}
+			
+			//Copy equipment variables to weakened version
+			//gamevar = oldvariables;
+			
+			if (hastag("combination")){	setvar("combination", oldcombination); }
 			
 			if (equippedby != null){
 				if (equippedby.layout == EquipmentLayout.DECK || Rules.bigequipmentmode) if (size != 2) resize(2);
@@ -1574,6 +1686,9 @@ class Equipment{
 		c.remainingcountdown = remainingcountdown;
 		c.reducecountdowndelay = reducecountdowndelay;
 		c.equippedby = equippedby;
+		c.charge = charge;
+		c.castdirection = castdirection;
+		c.temporary_thisturnonly = temporary_thisturnonly;
 		if (initialpos == null) initialpos = new Point(x, y);
 		c.initialpos = initialpos.clone();
 		if (finalpos == null) finalpos = new Point(x, y);
@@ -1599,15 +1714,40 @@ class Equipment{
 		
 		return c;
 	}
+	
+	public function do_shock_returndice(){
+		if(shocked_returndice){
+			if (equippedby == null) equippedby = Game.fixequippedbyfield(this);
+			if (equippedby != null){
+				var newdice:Array<Dice> = equippedby.rolldice(shocked_assigneddice.length, equippedby.isplayer?Gfx.BOTTOM:Gfx.TOP, 0, 0, "diceroll", true);
+				for (i in 0 ... shocked_assigneddice.length){
+					if (shocked_assigneddice[i] != null){
+						newdice[i].basevalue = shocked_assigneddice[i].basevalue;
+						newdice[i].blind = shocked_assigneddice[i].blind;
+					}else{
+						trace("shocked_assigneddice[" + i + "] is null?");
+					}
+				}
+				
+				//Check for counterspell
+				equippedby.checkfordicecounter(newdice);
+				//run onrolldice script hooks
+				equippedby.runonrolldicescripts(newdice);
+			}
+		}
+		shocked_returndice = false;
+	}
 
 	public function clearshock(){
 		if (shockedsetting > 0) {
 			unshockingtimer = 0;
-			shockedtype = DiceSlotType.NORMAL;
+			shockedtype = "NORMAL";
 			shockedsetting = 0;
 			shockedcol = Pal.BLACK;
 			shockedtext = "";
 			shocked_showtitle = true;
+			shocked_needstotal = 0;
+			do_shock_returndice();
 			for (i in 0 ... shocked_assigneddice.length){
 				if(shocked_assigneddice[i] != null){
 					shocked_assigneddice[i].assigned = null;
@@ -1615,6 +1755,7 @@ class Equipment{
 			}
 			var removesilence:Bool = false;
 			
+			if (equippedby == null) equippedby = Game.fixequippedbyfield(this);
 			if (equippedby != null){
 				if (equippedby.hasstolencard){
 					if (equippedby.stolencard == this){
@@ -1630,6 +1771,8 @@ class Equipment{
 			}else{
 				flashtime = 0.2 / BuildConfig.speed;
 			}
+			
+			for (s in equippedby.status) s.runscript("onshockrelease", 0, this);
 		}
 	}
 	
@@ -1720,8 +1863,11 @@ class Equipment{
 							reducecountdownby = 0;
 						}
 						
+						invalidatecache();
+						
 						Combat.resetstolencardcountdown(this);
 						Combat.resetjesterdeckcountdown(this);
+						Combat.resetinventorcountdown(this);
 					}
 				}
 			}
@@ -1729,13 +1875,15 @@ class Equipment{
 		
 		if (animation.length > 0){
 			//Run the first animation
-			for(i in 0 ... animation.length){
-				if (!animation[i].active && !animation[i].finished){
-					animation[i].start();
-				}
-				
-				if (animation[i].active){
-					animation[i].update();
+			for (i in 0 ... animation.length){
+				if(animation[i] != null){
+					if (!animation[i].active && !animation[i].finished){
+						animation[i].start();
+					}
+					
+					if (animation[i].active){
+						animation[i].update();
+					}
 				}
 			}
 			
@@ -1806,19 +1954,6 @@ class Equipment{
 		} else {
 			gamepadalpha = 1.0;
 		}
-		
-		if (stolencard){
-			if(equippedby.stolencard != null){
-				
-				if (equippedby.hasstatus("silence")){
-				}else{
-					if(equippedby.stolencard != null){
-						equippedby.stolencard.update();
-					}
-				}
-			}
-			return;
-		}
 	}
 	
 	public function drawwithoutskills(){
@@ -1855,23 +1990,25 @@ class Equipment{
 	public function draw(){
 		if (!Screen.enabledisplay_cards) return;
 		
-		if (show){
-			if (blackedout){
-				equipmentpanel.blackout(this, x, y, equipalpha * gamepadalpha);
-			}else{
-				Locale.gamefontsmall.change();
-				
-				render( -1000, -1000, true, equipalpha * gamepadalpha);
-				
-				Locale.gamefont.change();
+		if ((show || cursedimage > 0) && onscreen()){
+			if (show) {
+				if (blackedout){
+					equipmentpanel.blackout(this, x, y, equipalpha * gamepadalpha);
+				}else{
+					Locale.gamefontsmall.change();
+					
+					render( -1000, -1000, true, equipalpha * gamepadalpha);
+					
+					Locale.gamefont.change();
+				}
 			}
-		}
-
-		if (cursedimage > 0){
-			equipmentpanel.cursedimage(this, tx, ty, useglitch, function() {
-				cursedimage = 0;
-				useglitch = false;
-			});
+			
+			if (cursedimage > 0){
+				equipmentpanel.cursedimage(this, tx, ty, useglitch, function() {
+					cursedimage = 0;
+					useglitch = false;
+				});
+			}
 		}
 		
 		if (tempreuseableequipment.length > 0){
@@ -1879,6 +2016,14 @@ class Equipment{
 				t.draw();
 			}
 		}
+	}
+	
+	public function invalidatecache(){
+		equipmentpanel.cacheisdirty = true;
+	}
+
+	public function remove(){
+		equipmentpanel.dispose();
 	}
 
 	public function canuseslot(slot:Int) : Bool {
@@ -1897,7 +2042,6 @@ class Equipment{
 				case DiceSlotType.FREE5: return false;
 				case DiceSlotType.FREE6: return false;
 				case DiceSlotType.SKILL: return false;
-				
 				default: return true;
 			}
 		}
@@ -1918,12 +2062,23 @@ class Equipment{
 		} else if (shockedsetting == 0 && slotsfree > 0) {
 			for (j in 0 ... slots.length) {
 				if (canuseslot(j)) {
-					if (_dice != null && Game.slotcheckvalue(_dice.value, slots[j])) {
-						hoverslot = slotpositions[j];
-						break;
-					} else {
-						if (hoverslot == null) {
+					if (slots[j] == DiceSlotType.COMBINATION){
+						if (_dice != null && (Combination.acceptsdice(_dice, this) > -1)){
 							hoverslot = slotpositions[j];
+							break;
+						} else {
+							if (hoverslot == null) {
+								hoverslot = slotpositions[j];
+							}
+						}
+					}else{
+						if (_dice != null && Game.slotcheckvalue(_dice.value, slots[j])) {
+							hoverslot = slotpositions[j];
+							break;
+						} else {
+							if (hoverslot == null) {
+								hoverslot = slotpositions[j];
+							}
 						}
 					}
 				}
@@ -1975,7 +2130,15 @@ class Equipment{
 			return false;
 		}
 		
-		return Combat.gamepad_selectedequipment == this;
+		if (Combat.gamepad_selectedequipment == null) {
+			return false;
+		}
+
+		if (Combat.gamepad_selectedequipment != null && Combat.gamepad_selectedequipment.stolencard) {
+			return Combat.gamepad_selectedequipment.equippedby != null && Combat.gamepad_selectedequipment.equippedby.stolencard == this;
+		} else {
+			return Combat.gamepad_selectedequipment == this;
+		}
 	}
 	
 	public function hasmultiplebuttons() : Bool {
@@ -1983,21 +2146,31 @@ class Equipment{
 			return true;
 		}
 		
+		if (skillcard == "stockpile") {
+			return true;
+		}
+		
 		if (skillcard == "robot_calculate") {
 			return (Game.player.roll_jackpot == 2);
 		}
+		
+		if (shockedsetting >= 1) return false; //If silenced or shocked, then don't consider multiple buttons
 		
 		return skills.length > 1;
 	}
 	
 	public function render(altxpos:Float, altypos:Float, interactive:Bool, alpha:Float){
-		//If this is an already used onceperbattle equipment, make
-		//sure it doesn't display in combat
-		if (onceperbattle && usedthisbattle){
-			if (equipmentpanel != null){
-				equipmentpanel.remove();
+		//This is a very hacky fix that you should probably try to improve before release
+		if (Reunion.checkcoinmodeequipment(this)){
+			for(i in 0 ... slots.length){
+				if (slots[i] == DiceSlotType.MAX2 || slots[i] == DiceSlotType.MIN5){
+					if (!conditionalslots){
+						trace("render override activated");
+						conditionalslots = true;
+						arrangeslots();
+					}
+				}
 			}
-			return;
 		}
 		
 		if(lastlocale != Locale.currentlanguage) {
@@ -2050,6 +2223,9 @@ class Equipment{
 			if (skillcard == "witch") {
 				gamepadcursor.width = this.width + 25 + 43;
 				gamepadcursor.height = this.height + 42 + 19 - 50 * 6;
+				if(!SpellbookPublic.canthrowdice) {
+					gamepadcursor.y += 170;
+				}
 			} else if ((skillcard == "robot_calculate" || skillcard == "robot_request") && Game.player.roll_jackpot != 2) {
 				gamepadcursor.x += 6;
 				gamepadcursor.y += 5;
@@ -2170,14 +2346,31 @@ class Equipment{
 							//Game.drawbubble(x, y, width, height, Col.BLACK);
 						}
 						
+						if (skillcard == "warriorreunion"){
+							//Hardcoding the position of a size 2 card in this position //2940
+							//Reunion.warriorcard_drawemptyslot(tx, 462, alpha * 0.5);
+						}
+						
 						equippedby.stolencard.x = tx;
 						equippedby.stolencard.draw();
+						
+						if (skillcard == "thiefreunion"){
+							if (equippedby.stolencard.y >= 0){
+								Reunion.thiefcard_showbutton(equippedby.stolencard, tx, ty - y, alpha);
+							}
+						}else if (skillcard == "warriorreunion"){
+							Reunion.warriorcard_showbutton(equippedby.stolencard, tx, Reunion.warriorcard_yposition, alpha);
+						}else if (skillcard == "witchreunion"){
+							Reunion.witchcard_showstunlock(equippedby.stolencard, tx, Reunion.witchcard_yposition, alpha);
+						}
 					}
 				}
 				completerender = false;
 			}else{
 				if (skillcard == "inventor"){
-					Game.inventorskillcard(this, flashtime > 0);
+					Game.inventorskillcard(this, (flashtime > 0), silenced);
+				}else if (skillcard == "skillskillcard"){
+					Game.skillskillcard(this, (flashtime > 0), silenced);
 				}else if (skillcard == "witch"){
 					if(SpellbookPublic.canthrowdice){
 						Game.witchskillcard(this, tx, ty, flashtime > 0);
@@ -2186,139 +2379,23 @@ class Equipment{
 					}
 				}else if (skillcard == "switchfighter"){
 					Monstermode.drawskillcard(this, tx, ty, flashtime > 0);
-				}else{
+				}else {
 					equipmentpanel.draw(this, tx, ty, alpha);
 				}
 			}
 		}
 		
 		if (completerender) {
-			/* Some skillcards can be marked as "special" and are not drawn here */
-			if (!skillcard_special){
-				var showtext:Bool = true;
-				if (locked > 0 && !unlockedthisturn){
-					showtext = false;
-				}
-				if (category == ItemCategory.BACKUP){
-					showtext = false;
-				}
-				if (skills.length > 0){
-					showtext = false;
-				}
-				if (Combat.isconfused){
-					showtext = false;
-				}
-				
-				if(showtext){
-					var dicesum:Int = getpower();
-					
-					var doublecheck:Bool = false;
-					if (needsdoubles){
-						if (slotpositions.length == 2){
-							if (assigneddice[0] != null && assigneddice[1] != null){
-								if (assigneddice[0].basevalue == assigneddice[1].basevalue){
-									doublecheck = true;
-								}
-							}
-						}
-					}
-					
-					if (castdirection >= 2){
-						Game.conditionalequipmentdicesum = dicesum;
-					}
-					
-					var yoffset:Int = 0;
-					var yspacing:Int = 12 * 6;
-					
-					var tempdescription:Array<String> = Locale.translatearray(fulldescription);
-					if (overwritefinalline != ""){
-						tempdescription[tempdescription.length - 1] = Locale.translate(overwritefinalline);
-					}
-					
-					if (slotpositions.length == 0){
-						//If we have no slots, center the text
-						yoffset = 22 * 6;
-					}else	if (needstotal > 0 || conditionalslots || needsdoubles){
-						yoffset = 0;
-						if (size == 2){
-							if (tempdescription.length == 1){
-								if (slots.length > 2){
-									yoffset = 6 * 6;
-								}else{
-									yoffset = 8 * 6;
-								}
-							}else if (tempdescription.length == 2){
-								if (slots.length > 2){
-									yoffset = -1 * 6;
-								}else{
-									yoffset = 0;
-								}
-							}else if (tempdescription.length == 3){
-								if (slots.length > 2){
-									yoffset = -1 * 6;
-								}else{
-									yoffset = 0;
-								}
-								yspacing = 12 * 6;
-							}
-						}else	if (size == 1){
-							if (tempdescription.length == 1){
-								yoffset = 3 * 6;
-							}else if (tempdescription.length == 2){
-								//This is a worst case scenario
-								yoffset = -18;
-								yspacing = 10 * 6;
-							}
-						}
-					}else{
-						if (size == 2){
-							if (tempdescription.length == 1){
-								if (slots.length > 2){
-									yoffset = 4 * 6;
-								}else{
-									yoffset = 8 * 6;
-								}
-							}else if (tempdescription.length == 2){
-								yoffset = 0;
-							}else if (tempdescription.length == 3){
-								yspacing = 12 * 6;
-							}
-						}else if(size == 1){
-							if (tempdescription.length == 1){
-								yoffset = 3 * 6;
-							}else if (tempdescription.length == 2){
-								yoffset = -6;
-							}else if (tempdescription.length == 3){
-								yoffset = -28;
-								yspacing = 10 * 6;
-							}
-						}
-					}
-					
-					if (tempdescription.length <= 2){
-						for (i in 0 ... tempdescription.length){
-							if (equipmentpanel.description.length <= i) equipmentpanel.description.push(new Print());
-							equipmentpanel.description[i].drawno_translate(
-								tx + 20 + Std.int((width - 24) / 2),
-								ty + descriptiontextoffset + height - yoffset + (i * yspacing) - ((tempdescription.length - 1) * yspacing) - (28 * 6), 
-								Game.equipmentstring(this, equippedby, tempdescription[i]),
-								Col.WHITE, alpha, Locale.gamefontsmall, Text.CENTER);
-						}
-					}else{
-						for (i in 0 ... tempdescription.length){
-							if (equipmentpanel.description.length <= i) equipmentpanel.description.push(new Print());
-							equipmentpanel.description[i].drawno_translate(
-								tx + 20 + Std.int((width - 24) / 2),
-								ty + descriptiontextoffset + height - yoffset + (i * yspacing) - ((tempdescription.length - 1) * yspacing) - (28 * 6), 
-								Game.equipmentstring(this, equippedby, tempdescription[i]),
-								Col.WHITE, alpha, Locale.gamefontsmall, Text.CENTER);
-						}
-					}
+			//Rust counter!
+			var drawtinydice:Bool = (totalusesremaining > 0);
+			
+			if (skillcard != "inventor" && skillcard != "skillskillcard"){  //Even though the Inventor Skillcard is a passive card, show durability on it
+				if (slots != null){
+					if (slots.length == 0) drawtinydice = false;
 				}
 			}
 			
-			//Rust counter!
-			if (totalusesremaining > 0){
+			if (drawtinydice){
 				if (rustcounter.length == 0){
 					rustcounter.push(new TinyDiceGraphic());
 				}
@@ -2387,6 +2464,9 @@ class Equipment{
 			if (skillcard == "witch") {
 				gamepadcursor2.width = this.width + 25 + 43;
 				gamepadcursor2.height = this.height + 42 + 19 - 50 * 6;
+				if(!SpellbookPublic.canthrowdice) {
+					gamepadcursor2.y += 170;
+				}
 			} else if ((skillcard == "robot_calculate" || skillcard == "robot_request") && Game.player.roll_jackpot != 2) {
 				gamepadcursor2.x += 6;
 				gamepadcursor2.y += 5;
@@ -2403,7 +2483,7 @@ class Equipment{
 		// Gamepad selection
 		if (showgamepadhighlight() && interactive && Combat.gamepad_dicemode && Combat.gamepad_hidedicetrailtime <= 0) {
 			// If we have a diceslot, show gamepad_selecteddice over it...
-			if (Combat.gamepad_selecteddice != null && !Combat.gamepad_pendingrearrange && !Combat.gamepad_dicerequesting) {
+			if (Combat.gamepad_hoverdice != null && Combat.gamepad_selecteddice != null && !Combat.gamepad_pendingrearrange && !Combat.gamepad_dicerequesting && !combination) {
 				var hoverslot:Point = getgamepadslot(Combat.gamepad_selecteddice);
 
 				if (hoverslot != null) {
@@ -2441,19 +2521,50 @@ class Equipment{
 			// If we have a button, highlight a button...
 		}
 
-		if(gadgettooltip_enabled) {
+		if (gadgettooltip_enabled && !Combat.combatmode) {
 			if(gadgettooltip_id == null) {
 				preparegadgettooltip();
 			}
 			if(gadgettooltip_id != null && TooltipManager.hastooltip(gadgettooltip_id)) {
 				var tooltip = TooltipManager.gettooltip(gadgettooltip_id);
 				var tooltipx = tx + (width/2 - tooltip.width()/2);
-				var tooltipy = ty + (height/2 - tooltip.height()/2);
+				//var tooltipy = ty + (height/2 - tooltip.height()/2);
+				var tooltipy = ty - tooltip.height() - (1 * 6);
+				//var tooltipy = ty + height + (1 * 6);
 				TooltipManager.setpositiontype(gadgettooltip_id, 1, tooltipx, tooltipy, 0, 0);
 				TooltipManager.forcetooltipdraw(gadgettooltip_id, true);
 			}
 		} else {
 			TooltipManager.forcetooltipdraw(gadgettooltip_id, false);
+		}
+		
+		if (Rules.manualequipmentfiring){
+			if(Combat.turn == "player"){
+				if (hasmanualbutton()){
+					Gui.moveto(tx + width - ExtendedGui.halfbuttonwidth + (4 * 6), ty - (2 * 6));
+					if (Combat.canmanualfire(this)){
+						Reunion.getmanualbutton(this, false).remove();
+						var b:Button = Reunion.getmanualbutton(this, true);
+						b.usespamdelay = true;
+						b.spamdelay = 9999;
+						for (d in assigneddice){
+							if(d != null){
+								if (Game.intween(d)){
+									b.spamdelay = 0; //Prevent assigning the dice from also firing the equipment
+								}
+							}
+						}
+						
+						var canfirewithgamepad:Bool = (Combat.gamepad_selectedequipment == this) && !LimitBreakPrompt.showing;
+						if (b.showmediumanddraw("Play[][]", 0, "", false, canfirewithgamepad?lime.ui.GamepadButton.A:-1)){
+							Combat.manualfire(this);
+						}
+					}else{
+						Reunion.getmanualbutton(this, true).remove();
+						Reunion.getmanualbutton(this, false).unavailableshowmediumanddraw("Play[][]");
+					}
+				}
+			}
 		}
 		
 		//Show debug info: assigned die to equipment
@@ -2469,6 +2580,43 @@ class Equipment{
 		t += "]";
 		FutureDraw.print(x + width, y, t);
 		*/
+	}
+	
+	public function hasmanualbutton():Bool{
+		//If the card has no owner, then it's in a context where we shouldn't show the manual button
+		if (equippedby == null) return false;
+		
+		//If this is the skill card, then no manual button
+		if (skillcard != "") return false;
+		if (equippedby.stolencard == this) return false;
+		
+		//Combinations and countdowns never have manual buttons
+		if(slots.length > 0){
+			if (slots[0] == DiceSlotType.COMBINATION) return false;
+			if (slots[0] == DiceSlotType.COUNTDOWN) return false;
+		}
+		
+		//If the card is shocked, no manual button
+		if (shockedsetting > 0){
+			return false;
+		}
+		
+		if (!availablethisturn){
+			return false;
+		}
+		
+		//Passive cards never have manual buttons
+		if (slots.length == 0){
+			return false;
+		}
+		
+		//If we're previewing enemy equipment, no manual button
+		if (Combat.previewingequipment) return false;
+		
+		//If we're not in combat, no manual button
+		if (!Combat.combatmode) return false;
+		
+		return true;
 	}
 	
 	public function shakeslot(s:Int, xoff:Float, yoff:Float){
@@ -2540,7 +2688,30 @@ class Equipment{
 		var dicesum:Int = getpower();
 		
 		if (scriptbeforeexecute != ""){
-			Script.rungamescript(scriptbeforeexecute, "equipment_beforeexecute", equippedby, this, null, dicesum);
+			if(equippedby == null) equippedby = Game.fixequippedbyfield(this);
+			Script.rungamescript(scriptbeforeexecute, "equipment_beforeexecute", equippedby, this, null, dicesum, actualdice);
+			
+			if (preventdefault){
+				preventdefault = false;
+				
+				for (i in 0 ... assigneddice.length){
+					if (assigneddice[i] != null){
+						assigneddice[i].consumedice();
+					}
+				}
+				
+				if (countdown > 0) remainingcountdown = countdown;
+				Combat.resetstolencardcountdown(this);
+				Combat.resetjesterdeckcountdown(this);
+				Combat.resetinventorcountdown(this);
+				ready = false;
+				
+				if (actor.layout == EquipmentLayout.DECK) {
+					DeckPublic.advance(0.8);
+				}
+				
+				return;
+			}
 		}
 		
 		if (actor != null){
@@ -2579,6 +2750,7 @@ class Equipment{
 		
 		var cursedequipment:Bool = false;
 		var cursedchangetarget:Bool = false;
+		var cursereuse:Bool = false;
 		if (actor.hasstatus(Status.CURSE) && !ignorecurse && skillcard == ""){
 			var cursetriggered:Bool = Random.chance(Rules.curseodds);
 			if (hastag("curseavoid")) cursetriggered = false;
@@ -2591,6 +2763,12 @@ class Equipment{
 				cursestat.displayvalue = cursestat.value;
 				if (cursestat.value <= 0){
 					actor.removestatus(Status.CURSE);
+				}
+				
+				for (s in actor.status)	s.runscript("oncursetrigger", dicesum, this);
+			}else{
+				if (hastag("reuseableifcursed")){
+					cursereuse = true;
 				}
 			}
 		}else if (actor.hasstatus(Status.ALTERNATE_CURSE) && !ignorecurse && skillcard == ""){
@@ -2613,21 +2791,31 @@ class Equipment{
 				
 				AudioControl.play("_curse");
 				animate("cursereverse");
+				
+				for (s in actor.status)	s.runscript("oncursetrigger", dicesum, this);
+			}else{
+				if (hastag("reuseableifcursed")){
+					cursereuse = true;
+				}
 			}
 		}
 		
 		if (actor.hasstatus("reversenexttarget")){
-			cursedequipment = true;
-			cursedchangetarget = true;
-			
-			var reversetargetstat:StatusEffect = actor.getstatus("reversenexttarget");
-			reversetargetstat.value--;
-			reversetargetstat.displayvalue = reversetargetstat.value;
-			if (reversetargetstat.value <= 0){
-				actor.removestatus("reversenexttarget");
+			var canreversenexttarget:Bool = true;
+			if (hastag("curseavoid")) canreversenexttarget = false;
+			if(canreversenexttarget){
+				cursedequipment = true;
+				cursedchangetarget = true;
+				
+				var reversetargetstat:StatusEffect = actor.getstatus("reversenexttarget");
+				reversetargetstat.value--;
+				reversetargetstat.displayvalue = reversetargetstat.value;
+				if (reversetargetstat.value <= 0){
+					actor.removestatus("reversenexttarget");
+				}
+				
+				dir = -dir;
 			}
-			
-			dir = -dir;
 		}
 		
 		var desty:Float = 0;
@@ -2645,10 +2833,16 @@ class Equipment{
 					assigneddice[i].consumedice();
 				}
 			}
+
+			// reset combinations
+			if(combination) {
+				Combination.reset(this);
+			}
 			
 			if (countdown > 0) remainingcountdown = countdown;
 			Combat.resetstolencardcountdown(this);
 			Combat.resetjesterdeckcountdown(this);
+			Combat.resetinventorcountdown(this);
 			ready = false;
 			
 			if (actor.layout == EquipmentLayout.DECK) {
@@ -2662,7 +2856,9 @@ class Equipment{
 				actor.equipmentused++;
 				
 				_e.show = false;
-				_e.equipmentpanel.remove();
+				if (_e.combination) Combination.reset(_e);
+				_e.equipmentpanel.dispose();
+				_e.sourceequipment = sourceequipment;
 				
 				var hasfury:Bool = false;
 				if (allowfury){
@@ -2687,7 +2883,7 @@ class Equipment{
 							if (skillcard != ""){
 							}else{
 								if (_e.scriptiffury != "" && !_e.alreadyfuryed){
-									Script.rungamescript(_e.scriptiffury, "fury", _e.equippedby, _e);
+									Script.rungamescript(_e.scriptiffury, "fury", _e.equippedby, _e, null, _d, _actualdice);
 								}
 								_e.show = true;
 								destorydiceafteruse = false;
@@ -2696,7 +2892,8 @@ class Equipment{
 									if (actor.hasstatus(Status.ALTERNATE_FURY)){
 										actor.decrementstatus(Status.ALTERNATE + Status.FURY, true);
 										sourceequipment.availablenextturn = false;
-										sourceequipment.unavailabletext = _e.displayname + _e.namemodifier;
+										sourceequipment.unavailabletext = _e.displayname;
+										sourceequipment.unavailablemodifier = _e.namemodifier;
 										sourceequipment.unavailabledetails = ["Unavailable (Fury?)"];
 									}else if (actor.hasstatus("spookyfury")){
 										//Kludge to make sure that when Spooky Fury triggers, it activates twice
@@ -2718,7 +2915,8 @@ class Equipment{
 								}else{
 									if (actor.hasstatus(Status.ALTERNATE_FURY)){
 										sourceequipment.availablenextturn = false;
-										sourceequipment.unavailabletext = _e.displayname + _e.namemodifier;
+										sourceequipment.unavailabletext = _e.displayname;
+										sourceequipment.unavailablemodifier = _e.namemodifier;
 										sourceequipment.unavailabledetails = ["Unavailable (Fury?)"];
 									}
 								}
@@ -2764,11 +2962,33 @@ class Equipment{
 				}
 				
 				if (applydodge){
-					target.decrementstatus(Status.DODGE, true);
+					var dodgestat:StatusEffect = target.getstatus(Status.DODGE);
+					dodgestat.value--;
+					dodgestat.displayvalue = dodgestat.value;
+					if (dodgestat.value <= 0){
+						target.removestatus(Status.DODGE);
+					}
 					AudioControl.play("use_dodge_status_to_avoid");
+					if (_e.scriptondodge != ""){
+						Script.rungamescript(_e.scriptondodge, "dodge", _e.equippedby, _e, null, _d, _actualdice);
+					}
+					
+					for (s in target.status) s.runscript("ondodge", _d, _e);
+					for (s in actor.status) s.runscript("onenemydodge", _d, _e);
 				}else if (applyalternatedodge){
-					target.decrementstatus(Status.ALTERNATE_DODGE, true);
+					var altdodgestat:StatusEffect = target.getstatus(Status.ALTERNATE_DODGE);
+					altdodgestat.value--;
+					altdodgestat.displayvalue = altdodgestat.value;
+					if (altdodgestat.value <= 0){
+						target.removestatus(Status.ALTERNATE_DODGE);
+					}
 					AudioControl.play("use_dodge_status_to_avoid");
+					if (_e.scriptondodge != ""){
+						Script.rungamescript(_e.scriptondodge, "dodge", _e.equippedby, _e, null, _d, _actualdice);
+					}
+					
+					for (s in target.status) s.runscript("ondodge", _d, _e);
+					for (s in actor.status) s.runscript("onenemydodge", _d, _e);
 				}else{
 					if (scriptrunner == null) scriptrunner = Script.load(script);
 					scriptrunner.hasfury = hasfury;
@@ -2794,22 +3014,24 @@ class Equipment{
 					if (usingalternateburningdice){
 						availablenextturn = false;
 						availablethisturn = false;						
-						unavailabletext = sourceequipment.displayname + sourceequipment.namemodifier;
+						unavailabletext = sourceequipment.displayname;
+						unavailablemodifier = sourceequipment.namemodifier;
 						unavailabledetails = ["Unavailable (Burn?)"];
 						if (sourceequipment != _e){
 							sourceequipment.animate("flash");
 							sourceequipment.availablethisturn = false;
-							sourceequipment.unavailabletext = sourceequipment.displayname + sourceequipment.namemodifier;
+							sourceequipment.unavailabletext = sourceequipment.displayname;
+							sourceequipment.unavailablemodifier = sourceequipment.namemodifier;
 							sourceequipment.unavailabledetails = ["Unavailable (Burn?)"];
 						}
 					}
 					
 					if (cursedchangetarget && cursedequipment){
 						Script.actionexecute(scriptrunner, target, actor, _d, _actualdice, _e, this);
-						Script.callechoscripts_equipment(actor, this);
+						Script.callechoscripts_equipment(actor, _e);
 					}else{
 						Script.actionexecute(scriptrunner, actor, target, _d, _actualdice, _e, this);
-						Script.callechoscripts_equipment(actor, this);
+						Script.callechoscripts_equipment(actor, _e);
 					}
 					
 					cleardicehistory();
@@ -2825,13 +3047,13 @@ class Equipment{
 						if (equippedby == Game.monster){
 							if (Rules.extrascript_enemyequipmentuse.length > 0){
 								for(i in 0 ... Rules.extrascript_enemyequipmentuse.length){
-									Script.rungamescript(Rules.extrascript_enemyequipmentuse[i], scripttarget, equippedby, this);	
+									Script.rungamescript(Rules.extrascript_enemyequipmentuse[i], scripttarget, equippedby, this, null, _d, _actualdice);	
 								}
 							}
 						}else{
 							if (Rules.extrascript_playerequipmentuse.length > 0){
 								for(i in 0 ... Rules.extrascript_playerequipmentuse.length){
-									Script.rungamescript(Rules.extrascript_playerequipmentuse[i], scripttarget, Game.player, this);
+									Script.rungamescript(Rules.extrascript_playerequipmentuse[i], scripttarget, Game.player, this, null, _d, _actualdice);
 								}
 							}
 						}
@@ -2893,7 +3115,15 @@ class Equipment{
 					if (target.isplayer){
 						if (_e.castdirection == 1){
 							Game.delaycall(function(){
-								AudioControl.play("chat_" + target.name.toLowerCase() + "_voice", "action");
+								if (Rules.monstermode){
+									if (Monstermode.usingstandardplayer){
+										AudioControl.play("chat_" + target.name.toLowerCase() + "_voice", "action");
+									}else{
+										AudioControl.playvoice(target.voice, "action");
+									}
+								}else{
+									AudioControl.play("chat_" + target.name.toLowerCase() + "_voice", "action");
+								}
 							}, 0.1);
 						}
 					}else{
@@ -2913,6 +3143,27 @@ class Equipment{
 				
 				actor.equipmentslotsleft += size;
 				_e.usedthisbattle = true;
+				
+				//If we're in Thief Reunion mode, and this is the stolen card, and it's
+				//once per battle, then we mark it as used so we can't use it again.
+				if (_e.onceperbattle){
+					if (actor.hasstolencard){
+						if (actor.stolencard == _e){
+							if(Reunion.thiefcard_selected != ""){
+								Reunion.thiefcard_onceperbattle = 2;
+							}
+						}
+					}
+				}
+				
+				//If we're in Warrior Reunion mode, and this is the stolen card, just mark it as used
+				if (actor.hasstolencard){
+					if (actor.stolencard == _e){
+						Reunion.warriorcard_positionbutton_center();
+						Reunion.warriorcard_used = true;
+					}
+				}
+				
 				//For timesused: if it's reuseable equipment, then this variable has already been changed
 				if (sourceequipment == _e){
 					_e.timesused++;
@@ -2926,6 +3177,7 @@ class Equipment{
 				if (_e.countdown > 0) _e.remainingcountdown = _e.countdown;
 				Combat.resetstolencardcountdown(_e);
 				Combat.resetjesterdeckcountdown(_e);
+				Combat.resetinventorcountdown(_e);
 				
 				//If we're playing as Jester, advance the Deck now
 				if (actor.layout == EquipmentLayout.DECK){
@@ -2938,10 +3190,25 @@ class Equipment{
 			}
 			
 			//Check that you have this BEFORE using any equipment that might give you this
-			var learntrecycle:Bool = actor.hasstatus(Status.RECYCLE);
-				
-			if (actor.hasstatus(Status.REEQUIPNEXT)){
-				actor.removestatus(Status.REEQUIPNEXT);
+			var learntrecycle:Bool = false;
+			
+			if(!hastag("cannotreuse")){
+				learntrecycle = actor.hasstatus(Status.RECYCLE);
+					
+				if (actor.hasstatus(Status.REEQUIPNEXT)){
+					if (equippedby == null) equippedby = actor;
+					var reequipnext:StatusEffect = actor.getstatus(Status.REEQUIPNEXT);
+					reequipnext.value--;
+					reequipnext.displayvalue = reequipnext.value;
+					if (reequipnext.value <= 0){
+						actor.removestatus(Status.REEQUIPNEXT);
+					}
+					
+					learntrecycle = true;
+				}
+			}
+			
+			if (cursereuse){
 				learntrecycle = true;
 			}
 			
@@ -2963,6 +3230,19 @@ class Equipment{
 				reuseablecopy.ready = false;
 				reuseablecopy.weakened = weakened;
 				reuseablecopy.totalusesremaining = 0;
+				reuseablecopy.equipmentcol = equipmentcol;
+				//Copy vars to reuseable equipment
+				reuseablecopy.gamevar = new Map<String, Dynamic>();
+				for (key in gamevar.keys()) reuseablecopy.gamevar.set(key, gamevar.get(key));
+				//Copy dicehistory too
+				if (dicehistory != null){
+					if(dicehistory.length > 0){
+						reuseablecopy.cleardicehistory();
+						for (d in dicehistory){
+							reuseablecopy.dicehistory.push(d);
+						}
+					}
+				}
 				
 				//If locked equipment is reused, we need to "unlock" the temporary copy
 				if(reuseablecopy.locked > 0){
@@ -2970,6 +3250,11 @@ class Equipment{
 					reuseablecopy.unlockedthisturn = true;
 					
 					LockedRobotEquipment.changelockedslotstorealslots(reuseablecopy);
+				}
+				
+				//Combinations: We reset the variables on the original equipment now
+				if(combination){
+					Combination.reset(this);
 				}
 				
 				if(!learntrecycle){
@@ -2983,6 +3268,7 @@ class Equipment{
 				if (countdown > 0) remainingcountdown = countdown;
 				Combat.resetstolencardcountdown(this);
 				Combat.resetjesterdeckcountdown(this);
+				Combat.resetinventorcountdown(this);
 				
 				ready = false;
 				
@@ -3010,12 +3296,6 @@ class Equipment{
 					}
 					
 					tempreuseableequipment.push(reuseablecopy);
-					
-					playcharactervoice(actor, this);
-					Actuate.tween(reuseablecopy, 0.5 / (BuildConfig.speed * Settings.animationspeed), { y: desty })
-						.ease(Back.easeIn)
-						.delay(equipdelay / BuildConfig.speed)
-						.onComplete(equipmenttween, [reuseablecopy, this, dicesum, actualdice, true]);
 						
 					var activaterust:Bool = false;
 					if (Rules.inventor_equipmentrust > 0 && totalusesremaining == 1){
@@ -3040,7 +3320,7 @@ class Equipment{
 						//Change the gadget!
 						Game.updategadget(this);
 					}else{
-						if (Rules.inventor_equipmentrust > 0){
+						if (Rules.inventor_equipmentrust > 0 && totalusesremaining != 0){
 							if (reuseable > 0){
 								usesleft--;
 								if (usesleft != 0){
@@ -3056,7 +3336,32 @@ class Equipment{
 						}
 						//Make the card available again
 						ready = true;
+						
+						//For spare dice slots, we recreate the dice now if we need to
+						actor.createsparedice(this);
 					}
+
+					// update the reuseablecopy data
+					reuseablecopy.usedthisbattle = usedthisbattle;
+					reuseablecopy.onceperbattle = onceperbattle;
+					// we already incremented the times this equipment was used before which seems to break some equipment
+					// that depends on this variable, let's decrement it here to avoid those issues
+					reuseablecopy.timesused = timesused - 1;
+					reuseablecopy.usesleft = usesleft;
+					reuseablecopy.totalusesremaining = totalusesremaining;
+
+					playcharactervoice(actor, this);
+					Actuate.tween(reuseablecopy, 0.5 / (BuildConfig.speed * Settings.animationspeed), { y: desty })
+						.ease(Back.easeIn)
+						.delay(equipdelay / BuildConfig.speed)
+						.onComplete(function(){
+							
+							equipmenttween(reuseablecopy, this, dicesum, actualdice, true);
+							
+							//If equipment changes any evars, we need to update that on the base equipment
+							gamevar = new Map<String, Dynamic>();
+							for (key in reuseablecopy.gamevar.keys()) gamevar.set(key, reuseablecopy.gamevar.get(key));
+						});
 				}
 			}else{
 				playcharactervoice(actor, this);
@@ -3070,11 +3375,23 @@ class Equipment{
 	
 	public function playcharactervoice(actor:Fighter, _e:Equipment){
 		//Play the character's voice
-		if (actor.isplayer){
+		if (actor.isplayer && !actor.is_a_transformed_character){
 			if (_e.castdirection == 1){
-				Game.delaycall(function(){
-					AudioControl.play("chat_" + actor.name.toLowerCase() + "_voice", "action");
-				}, 0.3);
+				if (Rules.monstermode){
+					if (Monstermode.usingstandardplayer){
+						Game.delaycall(function(){
+							AudioControl.play("chat_" + actor.name.toLowerCase() + "_voice", "action");
+						}, 0.3);
+					}else{
+						Game.delaycall(function(){
+							AudioControl.playvoice(actor.voice, "action");
+						}, 0.3);
+					}
+				}else{
+					Game.delaycall(function(){
+						AudioControl.play("chat_" + actor.name.toLowerCase() + "_voice", "action");
+					}, 0.3);
+				}
 			}
 		}else{
 			if (actor.voice != ""){
@@ -3117,7 +3434,7 @@ class Equipment{
 			dicesum = countdown;
 		}else{
 			for (i in 0 ... assigneddice.length){
-				if(assigneddice[i] != null){
+				if (assigneddice[i] != null){
 					dicesum += assigneddice[i].value;
 					if (assigneddice[i].blind) blinded = 1;
 				}else{
@@ -3130,21 +3447,23 @@ class Equipment{
 		if(emptyslots > 0){
 			if (f != null){
 				for (d in f.dicepool){
-					if(emptyslots > 0){
-						if (d.istargetting(this)){ //This dice is targetting this equipment
-							if (d.blind){
-								dicesum += d.value;
-								blinded = 1;
-								emptyslots--;
-							}else{
-								for (i in 0 ... slots.length){
-									if(assigneddice[i] == null){ //This exact slot is free
-										if(Combat.dicematchesslot(d.value, slots[i])){ //And this dice fits in it
-											if (assigneddice.indexOf(d) == -1){
-												dicesum += d.value;
-												if (d.blind) blinded = 1;
-												emptyslots--;
-												break;
+					if (emptyslots > 0){
+						if (!d.consumed && d.dicealpha > 0.2){ //Don't count dice that are used already
+							if (d.istargetting(this)){ //This dice is targetting this equipment
+								if (d.blind){
+									dicesum += d.value;
+									blinded = 1;
+									emptyslots--;
+								}else{
+									for (i in 0 ... slots.length){
+										if(assigneddice[i] == null){ //This exact slot is free
+											if(Combat.dicematchesslot(d.value, slots[i])){ //And this dice fits in it
+												if (assigneddice.indexOf(d) == -1){
+													dicesum += d.value;
+													if (d.blind) blinded = 1;
+													emptyslots--;
+													break;
+												}
 											}
 										}
 									}
@@ -3197,6 +3516,33 @@ class Equipment{
 		
 		return dicesum;
 	}
+	
+	public function getshockedpower():Int{
+		var dicesum:Int = 0;
+		var emptyslots:Int = 0;
+		
+		if (shocked_countdown > 0){
+			dicesum = shocked_countdown;
+		}else{
+			for (i in 0 ... shocked_assigneddice.length){
+				if (shocked_assigneddice[i] != null){
+					if (Rules.reunioncoinmode){
+						if(shocked_assigneddice[i].value % 2 == 0){
+							dicesum += 2;
+						}else{
+							dicesum += 1;
+						}
+					}else{
+						dicesum += shocked_assigneddice[i].value;
+					}
+				}else{
+					emptyslots++;
+				}
+			}
+		}
+		
+		return dicesum;
+	}
 
 	function reloadtranslations() {
 		if(skills != null) {
@@ -3217,7 +3563,6 @@ class Equipment{
 	public var name_beforesubstitution:String;
 	public var rawname_beforesubstitution:String;
 	public var namemodifier:String;
-	public var category:ItemCategory;
 	public var fulldescription:String;
 	public var overwritefinalline:String;
 	public var castdirection:Int;
@@ -3226,6 +3571,7 @@ class Equipment{
 	public var stolencard:Bool;
 	public var equippedby:Fighter;
 	public var gadget:String;
+	public var ispowercard:Bool;
 	
 	public var needstotal:Int;
 	public var conditionalslots:Bool;
@@ -3259,6 +3605,8 @@ class Equipment{
 	public var removefromthisbattle:Bool;
 	public var usedthisbattle:Bool;
 	public var needsdoubles:Bool;
+	public var combination:Bool;
+	public var combinationflash:Float;
 	public var locked:Int;
 	public var unlocked:Int;
 	public var unlockflash:Float;
@@ -3287,6 +3635,7 @@ class Equipment{
 	public var scriptbeforeexecute:String;
 	public var scriptonsnap:String;
 	public var scriptiffury:String;
+	public var scriptondodge:String;
 	public var onetimecheck:Bool;
 	
 	public var scriptrunner:DiceyScript;
@@ -3306,14 +3655,16 @@ class Equipment{
 	public var shocked_slots:Array<DiceSlotType>;
 	public var shocked_slotpositions:Array<Point>;
 	public var shocked_textoffset:Float;
-	public var shockedtype:DiceSlotType;
+	public var shockedtype:String;
 	public var shockedsetting:Int;
 	public var shockedtext:String;
 	public var shockedcol:Int;
 	public var shocked_showtitle:Bool;
+	public var shocked_returndice:Bool;
 	
 	public var shocked_remainingcountdown:Int;
 	public var shocked_countdown:Int;
+	public var shocked_needstotal:Int;
 	
 	public var unshockingtimer:Float;
 	
@@ -3343,6 +3694,11 @@ class Equipment{
 		}
 		
 		switch(type){
+			case "slotschanged":
+				newanimation.addcommand("flash", 0.1);
+				newanimation.addcommand("shake", 0.1, 4, 4);
+				newanimation.adddelay(0.1);
+				newanimation.addcommand("textparticle", "[dice] " + Locale.translate("Slots changed!") + " [dice]", 0xFFFFFF);
 			case "nofit":
 				newanimation.addcommand("shake", 0.1, 4, 4);
 				newanimation.adddelay(0.1);
@@ -3356,7 +3712,11 @@ class Equipment{
 				if (firstslot == DiceSlotType.MAX1){
 					newanimation.addcommand("textparticle", "[dice] " + Locale.translate("Needs a 1!") + " [dice]", 0xFFFFFF);
 				}else if (firstslot == DiceSlotType.MAX2){
-					newanimation.addcommand("textparticle", "[dice] " + Locale.translate("Needs a 2 or less!") + " [dice]", 0xFFFFFF);
+					if (Rules.reunioncoinmode){
+						newanimation.addcommand("textparticle", "[lilheads] " + Locale.translate("Silver coins only!") + " [lilheads]", 0xFFFFFF);
+					}else{
+						newanimation.addcommand("textparticle", "[dice] " + Locale.translate("Needs a 2 or less!") + " [dice]", 0xFFFFFF);
+					}
 				}else if (firstslot == DiceSlotType.MAX3){
 					newanimation.addcommand("textparticle", "[dice] " + Locale.translate("Needs a 3 or less!") + " [dice]", 0xFFFFFF);
 				}else if (firstslot == DiceSlotType.MAX4){
@@ -3370,7 +3730,11 @@ class Equipment{
 				}else if (firstslot == DiceSlotType.MIN4){
 					newanimation.addcommand("textparticle", "[dice] " + Locale.translate("Needs a 4 or more!") + " [dice]", 0xFFFFFF);
 				}else if (firstslot == DiceSlotType.MIN5){
-					newanimation.addcommand("textparticle", "[dice] " + Locale.translate("Needs a 5 or more!") + " [dice]", 0xFFFFFF);
+					if (Rules.reunioncoinmode){
+						newanimation.addcommand("textparticle", "[lilheads] " + Locale.translate("Gold coins only!") + " [lilheads]", 0xFFFFFF);
+					}else{
+						newanimation.addcommand("textparticle", "[dice] " + Locale.translate("Needs a 5 or more!") + " [dice]", 0xFFFFFF);
+					}
 				}else if (firstslot == DiceSlotType.RANGE23){
 					newanimation.addcommand("textparticle", "[dice] " + Locale.translate("Needs 2 or 3!") + " [dice]", 0xFFFFFF);
 				}else if (firstslot == DiceSlotType.RANGE24){
@@ -3384,23 +3748,51 @@ class Equipment{
 				}else if (firstslot == DiceSlotType.RANGE45){
 					newanimation.addcommand("textparticle", "[dice] " + Locale.translate("Needs 4 or 5!") + " [dice]", 0xFFFFFF);
 				}else if (firstslot == DiceSlotType.ODD){
-					newanimation.addcommand("textparticle", "[dice] " + Locale.translate("1[;] 3 or 5 only!") + " [dice]", 0xFFFFFF);
+					if (Rules.reunioncoinmode){
+						newanimation.addcommand("textparticle", "[liltails] " + Locale.translate("Tails only!") + " [liltails]", 0xFFFFFF);
+					}else{
+						newanimation.addcommand("textparticle", "[dice] " + Locale.translate("1[;] 3 or 5 only!") + " [dice]", 0xFFFFFF);
+					}
 				}else if (firstslot == DiceSlotType.EVEN){
-					newanimation.addcommand("textparticle", "[dice] " + Locale.translate("2[;] 4 or 6 only!") + " [dice]", 0xFFFFFF);
+					if (Rules.reunioncoinmode){
+						newanimation.addcommand("textparticle", "[lilheads] " + Locale.translate("Heads only!") + " [lilheads]", 0xFFFFFF);
+					}else{
+						newanimation.addcommand("textparticle", "[dice] " + Locale.translate("2[;] 4 or 6 only!") + " [dice]", 0xFFFFFF);
+					}
 				}else if (firstslot == DiceSlotType.REQUIRE1){
+					if (Rules.reunioncoinmode){
+						newanimation.addcommand("textparticle", "[liltails] " + Locale.translate("Silver coins only!") + " [liltails]", 0xFFFFFF);
+					}else{
 					newanimation.addcommand("textparticle", "[dice] " + Locale.translate("Needs a 1!") + " [dice]", 0xFFFFFF);
+					}
 				}else if (firstslot == DiceSlotType.REQUIRE2){
+					if (Rules.reunioncoinmode){
+						newanimation.addcommand("textparticle", "[lilheads] " + Locale.translate("Silver coins only!") + " [lilheads]", 0xFFFFFF);
+					}else{
 					newanimation.addcommand("textparticle", "[dice] " + Locale.translate("Needs a 2!") + " [dice]", 0xFFFFFF);
+					}
 				}else if (firstslot == DiceSlotType.REQUIRE3){
 					newanimation.addcommand("textparticle", "[dice] " + Locale.translate("Needs a 3!") + " [dice]", 0xFFFFFF);
 				}else if (firstslot == DiceSlotType.REQUIRE4){
 					newanimation.addcommand("textparticle", "[dice] " + Locale.translate("Needs a 4!") + " [dice]", 0xFFFFFF);
 				}else if (firstslot == DiceSlotType.REQUIRE5){
-					newanimation.addcommand("textparticle", "[dice] " + Locale.translate("Needs a 5!") + " [dice]", 0xFFFFFF);
+					if (Rules.reunioncoinmode){
+						newanimation.addcommand("textparticle", "[liltails] " + Locale.translate("Gold coins only!") + " [liltails]", 0xFFFFFF);
+					}else{
+						newanimation.addcommand("textparticle", "[dice] " + Locale.translate("Needs a 5!") + " [dice]", 0xFFFFFF);
+					}
 				}else if (firstslot == DiceSlotType.REQUIRE6){
-					newanimation.addcommand("textparticle", "[dice] " + Locale.translate("Needs a 6!") + " [dice]", 0xFFFFFF);
+					if (Rules.reunioncoinmode){
+						newanimation.addcommand("textparticle", "[lilheads] " + Locale.translate("Gold coins only!") + " [lilheads]", 0xFFFFFF);
+					}else{
+						newanimation.addcommand("textparticle", "[dice] " + Locale.translate("Needs a 6!") + " [dice]", 0xFFFFFF);
+					}
 				}else{
-					newanimation.addcommand("textparticle", "[dice] " + Locale.translate("Dice doesn't fit!") + " [dice]", 0xFFFFFF);
+					if (Rules.reunioncoinmode){
+						newanimation.addcommand("textparticle", "[lilheads] " + Locale.translate("Coin doesn't fit!") + " [lilheads]", 0xFFFFFF);
+					}else{
+						newanimation.addcommand("textparticle", "[dice] " + Locale.translate("Dice doesn't fit!") + " [dice]", 0xFFFFFF);
+					}
 				}
 			case "removesilence":
 				newanimation.addcommand("flash", 0.2 / BuildConfig.speed);
@@ -3523,7 +3915,7 @@ class Equipment{
 			case "newgadget":
 				newanimation.addcommand("flash", 0.1);
 				newanimation.adddelay(0.1);
-				newanimation.addcommand("textparticle", Locale.translate("New Gadget!"), 0xFFFFFF);
+				newanimation.addcommand("textparticle", Locale.translate("New Gadget") + Locale.punctuationtranslate("!"), 0xFFFFFF);
 			case "unlock":
 				newanimation.addcommand("flash", 0.1);
 				newanimation.addcommand("applyvariable", "unlock");
@@ -3532,6 +3924,16 @@ class Equipment{
 			case "flashandshake":
 				newanimation.addcommand("flash", 0.1);
 				newanimation.addcommand("shake", 0.1, 4, 4);
+			case "witchreunion":
+				newanimation.addcommand("flash", 0.1);
+				newanimation.addcommand("shake", 0.1, 4, 4);
+				newanimation.adddelay(0.35 / (BuildConfig.speed * Settings.animationspeed));
+				newanimation.addcommand("textparticle", Locale.translate("Perfect") + Locale.punctuationtranslate("!"), 0xFFFFFF);
+			case "thiefreunion":
+				newanimation.addcommand("flash", 0.1);
+				newanimation.addcommand("shake", 0.1, 4, 4);
+				newanimation.adddelay(0.35 / (BuildConfig.speed * Settings.animationspeed));
+				newanimation.addcommand("textparticle", Locale.translate("Stolen") + Locale.punctuationtranslate("!"), 0xFFFFFF);
 			case "snap":
 				newanimation.addcommand("flash", 0.1);
 				newanimation.addcommand("textparticle", Locale.translate("Snap!"), Col.WHITE);
@@ -3553,16 +3955,21 @@ class Equipment{
 		var item:SkillTemplate = Gamedata.getskilltemplate(gadget);
 		var tooltipfunc = function() {
 			var result = [];
-			result.push(Locale.variabletranslate("[yellow]Gadget: {gadget}", { gadget: Locale.translate(item.name)}));
+			result.push("");
 			result.push(Locale.translate(item.description));
 			return result;
 		}
-		gadgettooltip_id = TooltipManager.addtooltipwithfunc('equipment_${name}${namemodifier}_gadget_${gadget}', tooltipfunc, "episodedetails", "gamefontsmall", Col.WHITE, Text.CENTER);
-
+		
+		var tooltipid:String = 'equipment_${name}${namemodifier}_gadget_${gadget}';
+		
+		gadgettooltip_id = TooltipManager.addtooltipwithfunc(tooltipid, tooltipfunc, "gadgetpreview", "gamefontsmall", Col.WHITE, Text.CENTER);
+		TooltipManager.updatetooltipline(tooltipid, 0, {func: function() return Locale.translate(item.name)}, Col.WHITE, "headerfont", Text.CENTER);
 	}
 	
 	public function dispose(){
-		equipmentpanel.remove();
+		cleardicehistory();
+
+		equipmentpanel.dispose();
 		
 		if (rustcounter.length > 0){
 			for (i in 0 ... rustcounter.length) rustcounter[i].dispose();
@@ -3571,7 +3978,7 @@ class Equipment{
 		
 		if (skills != null){
 			if (skills.length > 0){
-				for (i in 0 ... skills.length) skills[i].remove();
+				for (i in 0 ... skills.length) skills[i].dispose();
 			}
 		}
 		
@@ -3613,7 +4020,9 @@ class Equipment{
 	public var availablethisturn:Bool;
 	public var availablenextturn:Bool;
 	public var unavailabletext:String;
+	public var unavailablemodifier:String;
 	public var unavailabledetails:Array<String>;
+	public var sourceequipment:Equipment;
 	
 	public var equipmentpanel:EquipmentPanel;
 	public var rustcounter:Array<TinyDiceGraphic>;
@@ -3685,14 +4094,19 @@ class Equipment{
 			if (slots[i] == DiceSlotType.LOCKED5) countslots++;
 			if (slots[i] == DiceSlotType.LOCKED6) countslots++;
 			if (slots[i] == DiceSlotType.LOCKED7) countslots++;
+			if (slots[i] == DiceSlotType.COMBINATION) countslots++;
 		}
 		
 		return countslots;
 	}
 	
 	public function isready(?_allowunavailable:Bool=false):Bool{
-		if (stolencard && !equippedby.stolencard.isready()) {
-			return false;
+		if (stolencard) {
+			if (equippedby != null) {
+				return equippedby.stolencard.isready();
+			} else {
+				return false;
+			}
 		}
 
 		if (!active || (!_allowunavailable && !availablethisturn)) {
@@ -3727,22 +4141,17 @@ class Equipment{
 		  //This variable is supposed to be set before it's equipped, but in some
 			//cases it isn't, and that will cause a crash here. This check prevents
 			//the crash by figuring out who it's currently equipped by
-			if (Game.player != null){
-				if (Game.player.equipment.indexOf(this) > -1) equippedby = Game.player;
-			}
-			
-			if (equippedby == null){
-				if (Game.monster != null){
-					if (Game.monster.equipment.indexOf(this) > -1) equippedby = Game.monster;
-				}	
-			}
-			
+			equippedby = Game.fixequippedbyfield(this);
 			//If it's still null, uff, just return false to prevent a crash
 			if (equippedby == null) return false;
 		}
 		
-		if (stolencard && !equippedby.stolencard.willbecomeready()) {
-			return false;
+		if (stolencard) {
+			if (equippedby != null) {
+				return equippedby.stolencard.willbecomeready();
+			} else {
+				return false;
+			}
 		}
 
 		if (!active || (!_allowunavailable && !availablethisturn)) {
@@ -3833,12 +4242,16 @@ class Equipment{
 		preventdefault = false;
 		maintainfury = false;
 		alreadyfuryed = false;
-		shockedtype = DiceSlotType.NORMAL;
+		
+		shockedtype = "NORMAL";
 		shockedsetting = 0;
 		shockedtext = "";
 		shocked_textoffset = 0;
 		shockedcol = Pal.BLACK;
 		shocked_showtitle = true;
+		shocked_returndice = false;
+		shocked_needstotal = 0;
+		
 		cursedimage = 0;
 		useglitch = false;
 		if (reuseable != 0){
@@ -3870,26 +4283,39 @@ class Equipment{
 	
 	public function resetvar(v:String = ""){
 		if(v == ""){
-			gamevar = new Map<String, Int>();
+			gamevar = new Map<String, Dynamic>();
 		}else{
 			if (gamevar == null){
-				gamevar = new Map<String, Int>();
+				gamevar = new Map<String, Dynamic>();
 				return;
 			}
 			
 			if (gamevar.exists(v)){
-				gamevar.set(v, 0);
+				gamevar.remove(v);
 			}
 		}
 	}
-	public function getvar(v:String):Int{ if (gamevar != null){	if (gamevar.exists(v)){	return gamevar.get(v); } } return 0; }
+	public function getvar(v:String):Dynamic{
+		if (gamevar != null){
+			if (gamevar.exists(v)){
+				return gamevar.get(v); 
+			} 
+		} 
+		
+		return 0; 
+	}
 	
-	public function setvar(v:String, newvalue:Int){
-		if (gamevar == null) gamevar = new Map<String, Int>();
+	public function setvar(v:String, newvalue:Dynamic){
+		if (gamevar == null) gamevar = new Map<String, Dynamic>();
 		gamevar.set(v, newvalue);
 	}
 	
-	public var gamevar:Map<String, Int>;
+	public function varexists(v:String):Bool {
+		if (gamevar == null) return false;
+		return gamevar.exists(v);
+	}
+	
+	public var gamevar:Map<String, Dynamic>;
 	
 	public function setmonstercard(m:Monstermodecard){
 		showhealthbar = true;
@@ -3917,7 +4343,17 @@ class Equipment{
 		availablethisturn = true;
 		availablenextturn = true;
 		unavailabletext = "Unavailable";
+		unavailablemodifier = "";
 		unavailabledetails = [];
+		/*
+		if (hastag("deckofwonder")){
+			trace(name + " is reverting to Deck of Wonder now");
+			equipmentpanel.dispose();
+			equipmentpanel = null;
+			initvariables();
+			resetvar();
+			create("Deck of Wonder", upgraded, false);
+		}*/
 	}
 	
 	public var slotsfree(get, never):Int;

@@ -37,6 +37,7 @@ class Dice{
 		
 		x = _x;
 		y = _y;
+		rerolly = _y;
 
 		startdraggingposition = new Point();
 		startdraggingposition_local = new Point();
@@ -65,7 +66,13 @@ class Dice{
 
 		canbedragged = true;
 		
+		graphicset = Rules.checkgfxreplace("ui/dice/dice1");
 		graphic = new DiceGraphic(basevalue);
+	}
+	
+	public function sethome(_x:Float, _y:Float){
+		homex = _x;
+		homey = _y;
 	}
 	
 	public function remove(){
@@ -81,6 +88,10 @@ class Dice{
 		basevalue = otherdice.basevalue;
 		modifier = otherdice.modifier;
 		blind = otherdice.blind;
+	}
+
+	public function isusingcurrentgraphics():Bool{
+		return graphicset == Rules.checkgfxreplace("ui/dice/dice1");
 	}
 	
 	public function animateremovedice(fromdir:Int){
@@ -133,16 +144,27 @@ class Dice{
 		if (newvalue < 0) newvalue = 1;
 		if (newvalue > 6) newvalue = 6;
 		
+		if (!inlerp){
+			rerolly = y;
+		}else{
+			rerolly = homey;
+		}
 		inlerp = true;
 		Actuate.tween(this, 0.5 / BuildConfig.speed, { y: fromdir })
 			.delay(_delay / BuildConfig.speed)
 			.onComplete(function(oldy:Int){
+				//Change the value of the dice
 				this.basevalue = newvalue;
+				//Check if we're countering this value, if so, lock it
+				if (owner == null) owner = Game.fixdiceownerfield(this);
+				owner.checkfordicecounter([this], true);
+				owner.runonrolldicescripts([this]);
+				
 				Actuate.tween(this, 0.5 / BuildConfig.speed, { y: oldy })
 					.onComplete(function() {
 						inlerp = false;
 					});
-			}, [y]);
+			}, [rerolly]);
 	}
 	
 	public function intween():Bool{
@@ -229,15 +251,17 @@ class Dice{
 			if (assigned == null) return true;
 		}
 		
-		if(Combat.turn == "player"){		
-			//Is this dice physically held over the equipment?
-			if (Geom.inbox(x + 121, y + 121, e.x, e.y, e.width, e.height)){
-				return true;
-			}
-			
-			//Are we targetting the equipment with this dice using the gamepad?
-			if (Combat.gamepadshowdicehighlight(this)){
-				if (Combat.gamepad_selectedequipment == e)	return true;
+		if (Combat.turn == "player"){
+			if(!consumed){ //Don't count any dice that were already used to unshock
+				//Is this dice physically held over the equipment?
+				if (Geom.inbox(x + 121, y + 121, e.x, e.y, e.width, e.height)){
+					return true;
+				}
+				
+				//Are we targetting the equipment with this dice using the gamepad?
+				if (Combat.gamepadshowdicehighlight(this)){
+					if (Combat.gamepad_selectedequipment == e)	return true;
+				}
 			}
 		}
 		
@@ -478,7 +502,7 @@ class Dice{
 		if (!Screen.enabledisplay_dice) return;
 
 		if (Combat.gamepadshowdicehighlight(this)) {
-			Art.getdrawimage().show(x + shakex - 40, y + shakey - 40, "ui/gamepad/dice_highlight");
+			Art.getdrawimage().show(x + shakex - 40, y + shakey - 40, Rules.checkgfxreplace("ui/gamepad/dice_highlight"));
 		}
 		
 		if (flash > 0){
@@ -500,13 +524,19 @@ class Dice{
 		drawoverlay();
 		
 		if (burn){
+			var burntxt = "Cost [heart]" + Rules.burningdicecost;
+			if (Rules.burningdicecost != 2 && Rules.burningdicecost != 5){
+				burntxt = Locale.variabletranslate("Cost [heart]{amount}", {amount: Rules.burningdicecost} );
+			}else{
+				burntxt = Locale.translate(burntxt);
+			}
 			if (this == Combat.gamepad_hoverdice) {
 				graphic.burntextbg.x = x + shakex - 60;
 				graphic.burntextbg.y = y + shakey + 12*6;
 				graphic.burntextbg.draw();
-				graphic.burntext.drawtranslate(x + shakex + 120, y + shakey + 10.5 * 6, "Cost [heart]" + Rules.burningdicecost, Col.WHITE, 1.0, Locale.gamefontsmall, Text.CENTER);
+				graphic.burntext.drawno_translate(x + shakex + 120, y + shakey + 10.5 * 6, burntxt, Col.WHITE, 1.0, Locale.gamefontsmall, Text.CENTER);
 			} else {
-				graphic.burntext.drawtranslate(x + shakex + 120, y + shakey + 38 * 6, "Cost [heart]" + Rules.burningdicecost, Col.WHITE, 1.0, Locale.gamefontsmall, Text.CENTER);
+				graphic.burntext.drawno_translate(x + shakex + 120, y + shakey + 38 * 6, burntxt, Col.WHITE, 1.0, Locale.gamefontsmall, Text.CENTER);
 			}
 		}
 		
@@ -602,6 +632,14 @@ class Dice{
 				newanimation.addcommand("reducestat", Status.ICE);
 				newanimation.addcommand("applyvariable", Status.FIRE);
 				newanimation.addcommand("unlock");
+			case "lockrobotlock": //to the tune of daft punk
+				newanimation.addcommand("soundevent", "_lock");
+				newanimation.addcommand("flash", 0.1);
+				newanimation.addcommand("shake", 0, -4);
+				newanimation.addcommand("textparticle", Locale.translate("Locked") + Locale.punctuationtranslate("!"), Col.WHITE);
+				//In the robot version, the stat change happens when you actually click calculate
+				//newanimation.addcommand("reducestat", Status.LOCK);
+				newanimation.addcommand("applyvariable", Status.LOCK);
 			case Status.LOCK:
 				newanimation.addcommand("soundevent", "_lock");
 				newanimation.addcommand("flash", 0.1);
@@ -659,6 +697,57 @@ class Dice{
 				newanimation.addcommand("soundevent", "_diceburn");
 				newanimation.addcommand("overlaytile", Status.FIRE, -(4 * 6) - 6, -(23 * 6) - 3, 0.02, 0.01);
 				newanimation.addcommand("applyvariable", Status.ALTERNATE_FIRE);
+			case "robotaltfreeze_forshow":
+				newanimation.addcommand("soundevent", "_dicefreeze");
+				newanimation.addcommand("overlaytileonce", Status.ICE, -(24 * 6) - 6, -(21 * 6), 0.01, 0.01);
+				newanimation.addcommand("shake", 0, -4);
+				newanimation.adddelay(0.08);
+			case "robotaltfreeze_1":
+				newanimation.addcommand("soundevent", "_dicefreeze");
+				newanimation.addcommand("overlaytileonce", Status.ICE, -(24 * 6) - 6, -(21 * 6), 0.01, 0.01);
+				newanimation.addcommand("shake", 0, -4);
+				newanimation.adddelay(0.08);
+				newanimation.addcommand("nudge");
+			case "robotaltfreeze_2":
+				for(i in 0 ... 2){
+					newanimation.addcommand("soundevent", "_dicefreeze");
+					newanimation.addcommand("overlaytileonce", Status.ICE, -(24 * 6) - 6, -(21 * 6), 0.01, 0.01);
+					newanimation.addcommand("shake", 0, -4);
+					newanimation.adddelay(0.08);
+					newanimation.addcommand("nudge");
+				}
+			case "robotaltfreeze_3":
+				for(i in 0 ... 3){
+					newanimation.addcommand("soundevent", "_dicefreeze");
+					newanimation.addcommand("overlaytileonce", Status.ICE, -(24 * 6) - 6, -(21 * 6), 0.01, 0.01);
+					newanimation.addcommand("shake", 0, -4);
+					newanimation.adddelay(0.08);
+					newanimation.addcommand("nudge");
+				}
+			case "robotaltfreeze_4":
+				for(i in 0 ... 4){
+					newanimation.addcommand("soundevent", "_dicefreeze");
+					newanimation.addcommand("overlaytileonce", Status.ICE, -(24 * 6) - 6, -(21 * 6), 0.01, 0.01);
+					newanimation.addcommand("shake", 0, -4);
+					newanimation.adddelay(0.08);
+					newanimation.addcommand("nudge");
+				}
+			case "robotaltfreeze_5":
+				for(i in 0 ... 5){
+					newanimation.addcommand("soundevent", "_dicefreeze");
+					newanimation.addcommand("overlaytileonce", Status.ICE, -(24 * 6) - 6, -(21 * 6), 0.01, 0.01);
+					newanimation.addcommand("shake", 0, -4);
+					newanimation.adddelay(0.08);
+					newanimation.addcommand("nudge");
+				}
+			case "robotaltfreeze_6":
+				for(i in 0 ... 6){
+					newanimation.addcommand("soundevent", "_dicefreeze");
+					newanimation.addcommand("overlaytileonce", Status.ICE, -(24 * 6) - 6, -(21 * 6), 0.01, 0.01);
+					newanimation.addcommand("shake", 0, -4);
+					newanimation.adddelay(0.08);
+					newanimation.addcommand("nudge");
+				}
 			case "robotalternateice":
 				newanimation.addcommand("soundevent", "_dicefreeze");
 				newanimation.addcommand("overlaytileonce", Status.ICE, -(24 * 6) - 6, -(21 * 6), 0.01, 0.01);
@@ -748,6 +837,9 @@ class Dice{
 	public var vy:Float;
 	public var ax:Float;
 	public var ay:Float;
+	public var rerolly:Float; //Y position that a dice is targetting during a reroll
+	public var homex:Float;
+	public var homey:Float;
 	public var hasmotion:Bool;
 	public var id:Int;
 	public var assigned:Equipment;
@@ -791,6 +883,7 @@ class Dice{
 	public var blind:Bool;
 	public var ignitedthisturn:Bool;
 	
+	public var graphicset:String;
 	public var graphic:DiceGraphic;
 
 	// if the dice can be moved by the player or not

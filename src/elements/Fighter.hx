@@ -55,10 +55,11 @@ class Fighter{
 		type = _type.toLowerCase();
 		name = _type;
 		namelength = -1;
-		x = 0;
+		x = -10000; // Initialise off-screen
 		y = 0;
 		particlex = 0;
 		particley = 0;
+		requestflee = false;
 		
 		textboxes = [];
 		textboxesaudio = [];
@@ -77,15 +78,19 @@ class Fighter{
 		voice = template.voice;
 		chatvoice = template.chatvoice;
 		
+		if (makesuper){
+			hassuper = true;
+		}
+		
 		var healthoverwrite:Bool = false;
 		if (Rules.enemyhpchanges != null){
-			if (Rules.enemyhpchanges.exists(name)){
+			if (Rules.enemyhpchanges.exists((hassuper?("Super "+ name):name))){
 				healthoverwrite = true;
 			}
 		}
 		
 		if (healthoverwrite){
-	    maxhp = Rules.enemyhpchanges.get(name);
+	    maxhp = Rules.enemyhpchanges.get((hassuper?("Super "+ name):name));
 		}else{
 		  maxhp = template.health;
 		}
@@ -99,13 +104,13 @@ class Fighter{
 		
 		var diceoverwrite:Bool = false;
 		if (Rules.enemydicechanges != null){
-			if (Rules.enemydicechanges.exists(name)){
+			if (Rules.enemydicechanges.exists((hassuper?("Super "+ name):name))){
 				diceoverwrite = true;
 			}
 		}
 		
 		if(diceoverwrite){
-			dice = Rules.enemydicechanges.get(name);
+			dice = Rules.enemydicechanges.get((hassuper?("Super "+ name):name));
 		}else{
 			dice = template.dice;
 		}
@@ -116,13 +121,15 @@ class Fighter{
 		
 		var leveloverwrite:Bool = false;
 		if (Rules.enemylevelchanges != null){
-			if (Rules.enemylevelchanges.exists(name)){
+			if (Rules.enemylevelchanges.exists((hassuper?("Super "+ name):name))){
 				leveloverwrite = true;
 			}
 		}
 		
 		if (leveloverwrite){
-			level = Rules.enemylevelchanges.get(name);
+			//Super enemies are displayed one level higher, so they need to be manually corrected
+			//here if you're overriding their level display for the frog rule!
+			level = Rules.enemylevelchanges.get((hassuper?("Super "+ name):name)) - (hassuper?1:0);
 		}else{
 			level = template.level;
 		}
@@ -182,9 +189,8 @@ class Fighter{
 		vfxoffset = new Point(template.vfxoffset.x, template.vfxoffset.y);
 		
 		if (makesuper){
-			hassuper = true;
 			dice += template.superdice;
-			maxhp += template.superhealth;
+			if(!healthoverwrite) maxhp += template.superhealth;
 		}
 		
 		finderskeepers = 0;
@@ -211,13 +217,13 @@ class Fighter{
 		
 		var innateoverwrite:Bool = false;
 		if (Rules.enemyinnatechanges != null){
-			if (Rules.enemyinnatechanges.exists(name)){
+			if (Rules.enemyinnatechanges.exists((hassuper?("Super "+ name):name))){
 				innateoverwrite = true;
 			}
 		}
 		
 		if (innateoverwrite){
-			var overrideinnate:Array<String> = Rules.enemyinnatechanges.get(name);
+			var overrideinnate:Array<String> = Rules.enemyinnatechanges.get((hassuper?("Super "+ name):name));
 			for (i in 0 ... overrideinnate.length){
 				innate.push(overrideinnate[i]);
 			}
@@ -317,6 +323,14 @@ class Fighter{
 		}else{
 			isplayer = false;
 		}
+		
+		if(Game.relaxedmode && !isplayer && !Rules.disablerelaxedmode) {
+			var currentmaxhp = maxhp;
+			hp = maxhp = Math.floor(maxhp * Game.relaxedmode_multiplier);
+			trace('Enabling relaxed mode (x${Game.relaxedmode_multiplier}) for fighter ${name} : ${currentmaxhp} => ${maxhp}');
+		}
+		
+		is_a_transformed_character = false;
 	}
 	
 	public function createplayer(fightertemplate:FighterTemplate){
@@ -364,11 +378,29 @@ class Fighter{
 		
 		//Catch some special hardcoded cases
 		skillcard = new Equipment(firstskill);
-		skillcard.category = ItemCategory.SKILLCARD;
 		skillcard.equippedby = this;
 		if (firstskill == "Thief Stolen Card"){
 			skillcard.skillcard = "stolencard";
 			
+			hasstolencard = true;
+			skillcard.stolencard = true;
+			skillcard.skillcard_special = true;
+		}else if (firstskill == "Thief Reunion"){
+			skillcard.skillcard = "thiefreunion";
+			
+			hasstolencard = true;
+			skillcard.stolencard = true;
+			skillcard.skillcard_special = true;
+			Reunion.thiefcard_created = false;
+		}else if (firstskill == "Warrior Reunion"){
+			skillcard.skillcard = "warriorreunion";
+			
+			hasstolencard = true;
+			skillcard.stolencard = true;
+			skillcard.skillcard_special = true;
+			Reunion.warriorcard_created = false;
+		}else if (firstskill == "Witch Reunion"){
+			skillcard.skillcard = "witchreunion";
 			hasstolencard = true;
 			skillcard.stolencard = true;
 			skillcard.skillcard_special = true;
@@ -377,16 +409,39 @@ class Fighter{
 			skillcard.skillcard = "robot_calculate";
 			skillcard.skillcard_special = true;
 			skillcard.height = 180 * 6;
-			if(skillcard.equipmentpanel != null) skillcard.equipmentpanel.remove();
+			if(skillcard.equipmentpanel != null) skillcard.equipmentpanel.dispose();
 			skillcard.equipmentpanel = new RobotCalculatePanel();
+		}else if (firstskill == "Robot Flip"){
+			roll_target = 4; //Why doesn't Rules.robot_startingcpu get picked up here???
+			skillcard.skillcard = "robot_flip";
+			skillcard.skillcard_special = true;
+			skillcard.height = 170 * 6;
+			if(skillcard.equipmentpanel != null) skillcard.equipmentpanel.dispose();
+			skillcard.equipmentpanel = new RobotFlipPanel();
 		}else if (firstskill == "Robot Request"){
 			skillcard.skillcard = "robot_request";
 			skillcard.skillcard_special = true;
 			skillcard.height = 180 * 6;
-			if(skillcard.equipmentpanel != null) skillcard.equipmentpanel.remove();
+			if(skillcard.equipmentpanel != null) skillcard.equipmentpanel.dispose();
 			skillcard.equipmentpanel = new RobotRequestPanel();
+		}else if (firstskill == "Stockpile"){
+			skillcard.skillcard = "stockpile";
+			skillcard.skillcard_special = true;
+			skillcard.height = 180 * 6;
+			if(skillcard.equipmentpanel != null) skillcard.equipmentpanel.dispose();
+			skillcard.equipmentpanel = new StockpilePanel();
 		}else if (firstskill == "Inventor Gadgets"){
 			skillcard.skillcard = "inventor";
+			skillcard.skillcard_special = true;
+			skillcard.height = 135 * 6 - 57 * 6;
+			if (BuildConfig.debug_testgadgets.length > 0){
+				skills = []; for (gadget in BuildConfig.debug_testgadgets) skills.push(gadget);
+			}
+			for (i in 0 ... skills.length){
+				skillcard.skills.push(new Skill(skills[i], 22 + (i * 40)));
+			}
+		}else if (firstskill == "SkillSkillcard"){ //A more generalised skill based skillcard for Warrior Reunion
+			skillcard.skillcard = "skillskillcard";
 			skillcard.skillcard_special = true;
 			skillcard.height = 135 * 6 - 57 * 6;
 			if (BuildConfig.debug_testgadgets.length > 0){
@@ -400,7 +455,7 @@ class Fighter{
 			skillcard.skillcard_special = true;
 			skillcard.width = (132 + 20) * 6;
 			skillcard.height = 980 + 49 * 6;
-			if(skillcard.equipmentpanel != null) skillcard.equipmentpanel.remove();
+			if(skillcard.equipmentpanel != null) skillcard.equipmentpanel.dispose();
 			skillcard.equipmentpanel = new WitchSpellbookPanel();
 			
 			skillcard.addslots(DiceSlotType.WITCH, 1);
@@ -412,7 +467,7 @@ class Fighter{
 			skillcard.width = 132 * 6;
 			skillcard.height = 150 * 6;
 			
-			if(skillcard.equipmentpanel != null) skillcard.equipmentpanel.remove();
+			if(skillcard.equipmentpanel != null) skillcard.equipmentpanel.dispose();
 			skillcard.equipmentpanel = new DeckPanel();
 		}else if (firstskill == "Witch Deck"){
 			skillcard.skillcard = "jester";
@@ -420,7 +475,7 @@ class Fighter{
 			skillcard.width = 132 * 6;
 			skillcard.height = 150 * 6;
 			
-			if(skillcard.equipmentpanel != null) skillcard.equipmentpanel.remove();
+			if(skillcard.equipmentpanel != null) skillcard.equipmentpanel.dispose();
 			skillcard.equipmentpanel = new DeckPanel();
 			DeckPublic.snapstyle = "witch";
 		}else if (firstskill != ""){
@@ -428,7 +483,12 @@ class Fighter{
 		}
 		
 		//Jester doesn't actually "equip" thier skill card
-		if(layout == EquipmentLayout.DECK){
+		if (layout == EquipmentLayout.DECK){
+			if(Deck.skillcard != null){
+				Deck.skillcard.dispose();
+				Deck.skillcard = null;
+			}
+			
 			Deck.skillcard = skillcard;
 			skillcard.x = Screen.width + 10 * 6; skillcard.y = 0;
 		}
@@ -459,7 +519,6 @@ class Fighter{
 					equipment[i] = new Equipment(newcard);
 				}
 				
-				equipment[i].category = ItemCategory.SKILLCARD;
 				equipment[i].equippedby = this;
 				equipment[i].makeskillcard();
 				//Make sure it's offscreen
@@ -502,6 +561,8 @@ class Fighter{
 			if(!isplayer)	LadyLuckEnemy.endturn(this);
 		}
 		
+		ProgressTracking.endturnbeforecleanupchecks();
+		
 		//Discard unused dice
 		for (i in 0 ... dicepool.length){
 			dicepool[i].dispose();
@@ -516,6 +577,7 @@ class Fighter{
 		if (layout == EquipmentLayout.DECK){
 			Deck.endturn(this);
 		}else{
+			scrapdestroyequipment();
 			scraptemporaryequipment();
 		}
 		
@@ -543,7 +605,7 @@ class Fighter{
 					status[i].selfinflicted = false;
 				}else{
 					TooltipManager.removetooltip((isplayer?"player":"enemy") + "_" + status[i].type);
-					onstatusremove(status[i].type);
+					onstatusremove(status[i]);
 					status.splice(i, 1);
 					i--;
 				}
@@ -574,8 +636,48 @@ class Fighter{
 		}
 		
 		//Status effects endturn scripts
-		for (i in 0 ... status.length){
-			if (status[i].value > 0) status[i].runscript("endturn", 0);
+		if(status != null){
+			for (i in 0 ... status.length){
+				if(status[i] != null){
+					if (status[i].value > 0) status[i].runscript("endturn", 0);
+				}
+			}
+			
+			statuscleanup();
+		}
+	}
+	
+	/* Remove all status effects marked for cleanup now */
+	private function statuscleanup(){
+		function _docleanup():Bool{
+			if (status != null){
+				for (st in status){
+					if (st.cleanup){
+						status.remove(st);
+						return true;
+					}
+				}
+			}
+			return false;
+		}
+		
+		while(_docleanup()){}
+	}
+	
+	public function scrapdestroyequipment(){
+		//Do we have any equipment tagged "destroy" *which has been used*? Scrap it now.
+		var i:Int = 0;
+		while (i < equipment.length){
+			if(equipment[i].usedthisbattle){
+				if (equipment[i].hastag("destroy")){
+					equipment[i].dispose();
+					equipment.splice(i, 1);
+				}else{
+					i++;
+				}
+			}else{
+				i++;
+			}
 		}
 	}
 	
@@ -618,7 +720,11 @@ class Fighter{
 			Deck.unweakenall(this);
 		}else{
 			for (i in 0 ... equipment.length){
-				equipment[i].unweaken();
+				if (equipment[i].onceperbattle && equipment[i].usedthisbattle){
+					//Fixed bug where weakened once per battle equipment was not destroyed
+				}else{
+					equipment[i].unweaken();
+				}
 				equipment[i].damagethisturn = 0;
 				equipment[i].damagethisscript = 0;
 			}			
@@ -644,7 +750,7 @@ class Fighter{
 				var resetinventory = false;
 				while (i < equipment.length){
 					if (equipment[i].totalusesremaining == -1){
-						if (equipment[i].skillcard == "inventor"){
+						if (equipment[i].skillcard == "inventor" || equipment[i].skillcard == "skillskillcard"){
 							equipment[i].totalusesremaining = 0;
 						}else{
 							equipment[i].dispose();
@@ -677,7 +783,7 @@ class Fighter{
 		}
 	}
 	
-	public function startturn(){
+	public function startturn(_dorunbeforestartturnscripts:Bool = true){
 		saveturnhistory("startturn");
 		equipmenthistory = [];
 		
@@ -719,6 +825,37 @@ class Fighter{
 		roll_range = 0;
 		roll_error = false;
 		roll_jackpotbonus = 1;
+		coins_heads = 0;
+		coins_tails = 0;
+		
+		//The stolen card system is "hijacked" for Jackpot substitute cards. If we're doing this,
+		//then this resets the skillcard back to normal.
+		if (Rules.jackpotsubstitutecard != ""){
+			if(hasstolencard){
+				hasstolencard = false;
+				var skillcard:Equipment = getskillcard();
+				if (skillcard != null){
+					skillcard.stolencard = false;
+					if (stolencard != null) stolencard.dispose();
+					
+					if (skillcard.skillcard == "robot_calculate" || skillcard.skillcard == "robot_flip"){
+						skillcard.height = 180 * 6;
+						if(skillcard.equipmentpanel != null) skillcard.equipmentpanel.dispose();
+					}
+				}
+			}
+		}
+		
+		if (Rules.reunionwarrior_rerollcount > 0){
+			//In warrior reunion, we also hijack the stolen card system
+			var skillcard:Equipment = getskillcard();
+			if (skillcard != null){
+				if (skillcard.skillcard == "warriorreunion") {
+					Reunion.warriorcard_newturn();
+				}
+			}
+		}
+		
 		if (usecpuinsteadofdice){
 			Game.robotrelockequipment(this);
 		}
@@ -765,7 +902,7 @@ class Fighter{
 					//Self inflicted status effects stick around an extra turn
 					status[i].selfinflicted = false;
 				}else{
-					onstatusremove(status[i].type);
+					onstatusremove(status[i]);
 					TooltipManager.removetooltip((isplayer?"player":"enemy") + "_" + status[i].type);
 					status.splice(i, 1);
 					i--;
@@ -794,66 +931,9 @@ class Fighter{
 		
 		//Do we have a stolencard? Then we need to prep it!
 		if (hasstolencard){
-			var enemyequipment:Array<String> = [];
-			var target:Fighter;
-			if (Game.monster == this){
-				target = Game.player;
-			}else{
-				target = Game.monster;
-			}
-			for (i in 0 ... target.equipment.length){
-				if(!target.equipment[i].hastag("cannotsteal")){
-					enemyequipment.push(target.equipment[i].name_beforesubstitution + target.equipment[i].namemodifier);
-				}
-			}
-			
-			if (enemyequipment.length > 0){
-				Random.shuffle(enemyequipment);
-				var tempequipname:String = Random.pick(enemyequipment);
-				if (S.isinstring(tempequipname, "-")){
-					tempequipname = S.trimspaces(S.getroot(tempequipname, "-"));
-				}
-				stolencard = new Equipment(tempequipname);
-				
-				if (stolencard.countdown > 0){
-					//Hey, we grabbed a countdown! Let's check if we've used this before
-					if (Combat.countdownmemory.exists(stolencard.name)){
-						stolencard.remainingcountdown = Combat.countdownmemory.get(stolencard.name);
-					}
-				}
-				
-				stolencard.ready = true;
-				stolencard.equippedby = this;
-				stolencard.shockedtype = DiceSlotType.NORMAL;
-				stolencard.shockedsetting = 0;
-				stolencard.removedice();
-				stolencard.initialpos = new Point(0, 0);
-				stolencard.finalpos = new Point(0, 0);
-				if (Combat.turn == "player"){
-					for (i in 0 ... equipment.length){
-						if (equipment[i].stolencard){
-							stolencard.initialpos.x = stolencard.finalpos.x = stolencard.x = equipment[i].x;
-							stolencard.y = -(equipment[i].height * 1.5);
-						}
-					}
-				}else{
-					for (i in 0 ... equipment.length){
-						if (equipment[i].stolencard){
-							stolencard.initialpos.x = stolencard.finalpos.x = stolencard.x = equipment[i].x;
-							stolencard.y =  Screen.height + (equipment[i].height * 0.5);
-						}
-					}
-				}
-				
-				if (stolencard.size == 2 || stolencard.size == 4){
-					stolencard.finalpos.y = stolencard.initialpos.y = Screen.heightmid - (stolencard.height / 2);
-				}else{
-					stolencard.finalpos.y = stolencard.initialpos.y = Screen.heightmid - (stolencard.height / 2);
-				}
-				
-				Actuate.tween(stolencard, 0.5 / (BuildConfig.speed * Settings.animationspeed), { y: stolencard.finalpos.y })
-				  .delay(1.6 / BuildConfig.speed);
-			}
+			createstolencard();
+			Actuate.tween(stolencard, 0.5 / (BuildConfig.speed * Settings.animationspeed), { y: stolencard.finalpos.y })
+				.delay(1.6 / BuildConfig.speed);
 		}
 		
 		if (layout == EquipmentLayout.SPELLBOOK){
@@ -893,9 +973,168 @@ class Fighter{
 			Combat.gamepad_lastequipment = null;
 		}
 		
-		runbeforestartturnscripts();
+		if(_dorunbeforestartturnscripts){
+			runbeforestartturnscripts();
+		}
 		
 		Innate.check(this, "startturn");
+	}
+	
+	/* This is the same as startturn, except that it checks for first words to work
+	 * around a bug with when beforestartturn scripts should be called. */
+	public function startfirstturn(){
+		//If monster has first words, delay execution of beforestartturn scripts until later
+		var showfirstwords:Bool = false;
+			
+		if (Game.monster != null){
+			if (Game.monster.canspeakfirstwords){
+				showfirstwords = true;
+			}
+		}
+		
+		Game.player.startturn(!showfirstwords);
+	}
+	
+	public function removestolencard(){
+		if (stolencard != null) stolencard.dispose();
+	}
+	
+	public function createstolencard(){
+		var enemyequipment:Array<String> = [];
+		var target:Fighter;
+		if (Game.monster == this){
+			target = Game.player;
+		}else{
+			target = Game.monster;
+		}
+		for (i in 0 ... target.equipment.length){
+			if (!target.equipment[i].hastag("cannotsteal")){
+				if (target.equipment[i].onceperbattle && target.equipment[i].usedthisbattle){
+					//Can't steal once per battle equipment
+				}else{
+					enemyequipment.push(target.equipment[i].name_beforesubstitution + target.equipment[i].namemodifier);
+				}
+			}
+		}
+		
+		var stolencardmode:String = "normal";
+		var warriorreunionmode:String = "";
+		var thiefreunionmode:String = "";
+		var skillcard:Equipment = getskillcard();
+		
+		if (skillcard != null){
+			if (skillcard.skillcard == "witchreunion"){
+				//In Witch Reunion, we just want this to always be Mastermind.
+				Reunion.witchcard_createmastermind(this);
+				return;
+			}
+			
+			if (skillcard.skillcard == "thiefreunion"){
+				thiefreunionmode = Reunion.thiefcard_selected;
+				stolencardmode = "thiefreunion";
+			}else if (skillcard.skillcard == "warriorreunion"){
+				warriorreunionmode = Reunion.warriorcard_currentcard;
+				stolencardmode = "warriorreunion";
+			}
+		}
+		
+		var hidestolen:Bool = false;
+		var tempequipname:String = "";
+		if (stolencardmode == "warriorreunion" && Reunion.warriorcard_currentcard == ""){
+			hidestolen = true;
+		}else	if (stolencardmode == "warriorreunion" && warriorreunionmode != ""){
+			tempequipname = warriorreunionmode;
+			if (Reunion.warriorcard_used){
+				hidestolen = true;
+			}
+		}else	if (stolencardmode == "thiefreunion" && thiefreunionmode != ""){
+			tempequipname = thiefreunionmode;
+			if (Reunion.thiefcard_onceperbattle == 2){
+				hidestolen = true;
+			}
+		}else{
+			if (enemyequipment.length == 0){
+				tempequipname = "Sword";
+				Reunion.thiefcard_onceperbattle = 2; //Mark this so the "steal" UI isn't shown
+				hidestolen = true;
+			}else{
+				Random.shuffle(enemyequipment);
+				tempequipname = Random.pick(enemyequipment);
+				if (S.isinstring(tempequipname, "-")){
+					tempequipname = S.trimspaces(S.getroot(tempequipname, "-"));
+				}
+			}
+		}
+		
+		if (stolencard != null) stolencard.dispose();
+		stolencard = new Equipment(tempequipname);
+		
+		if (stolencard.countdown > 0){
+			//Hey, we grabbed a countdown! Let's check if we've used this before
+			if (Combat.countdownmemory.exists(stolencard.name)){
+				stolencard.remainingcountdown = Combat.countdownmemory.get(stolencard.name);
+			}
+		}
+		
+		if (stolencard.combination){
+			//Hey, we grabbed a combination! Let's check if we've used this before
+			if (Combat.combinationmemory.exists(stolencard.name)){
+				Combination.updatetostring(stolencard, Combat.combinationmemory.get(stolencard.name));
+			}
+		}
+		
+		stolencard.ready = true;
+		stolencard.show = true;
+		stolencard.equippedby = this;
+		stolencard.shockedtype = "NORMAL";
+		stolencard.shockedsetting = 0;
+		stolencard.removedice();
+		stolencard.initialpos = new Point(0, 0);
+		stolencard.finalpos = new Point(0, 0);
+		var skillcardname:String = "";
+		if (Combat.turn == "player"){
+			for (i in 0 ... equipment.length){
+				if (equipment[i].stolencard){
+					skillcardname = equipment[i].skillcard;
+					if (Reunion.warriorcard_numrerolls > 0){
+						//When in Reunion Warrior mode, stolen card comes from the left
+						stolencard.initialpos.x = stolencard.finalpos.x = stolencard.x = -1000;
+						stolencard.initialpos.y = stolencard.finalpos.y = stolencard.y = Screen.heightmid - (equipment[i].height / 2) - (25 * 6);
+					}else{
+						stolencard.initialpos.x = stolencard.finalpos.x = stolencard.x = equipment[i].x;
+						stolencard.y = -(equipment[i].height * 1.5);
+					}
+				}
+			}
+		}else{
+			for (i in 0 ... equipment.length){
+				if (equipment[i].stolencard){
+					skillcardname = equipment[i].skillcard;
+					stolencard.initialpos.x = stolencard.finalpos.x = stolencard.x = equipment[i].x;
+					stolencard.y =  Screen.height + (equipment[i].height * 0.5);
+				}
+			}
+		}
+		
+		if (stolencard.size == 2 || stolencard.size == 4){
+			stolencard.finalpos.y = stolencard.initialpos.y = Screen.heightmid - (stolencard.height / 2);
+		}else{
+			stolencard.finalpos.y = stolencard.initialpos.y = Screen.heightmid - (stolencard.height / 2);
+		}
+		
+		//Make room for the button
+		if (skillcardname == "thiefreunion"){
+			if (Reunion.thiefcard_selected == ""){
+				stolencard.finalpos.y -= (25 * 6);
+			}
+		}else if (skillcardname == "warriorreunion"){
+			stolencard.finalpos.y -= (25 * 6);
+		}
+		
+		if (hidestolen){
+			stolencard.show = false;
+			stolencard.ready = false;
+		}
 	}
 	
 	public function runbeforestartturnscripts(){
@@ -910,11 +1149,18 @@ class Fighter{
 		}
 		
 		if (layout == EquipmentLayout.DECK){
+			//trace("running beforestartturn scripts on deck:");
+			//trace("discard pile: " + Deck.discardpile);
+			//trace("drawpile pile: " + Deck.drawpile);
+			//trace("inplay pile: " + Deck.inplaypile);
 			for (c in Deck.discardpile) c.equipment.onetimecheck = false;
 			for (c in Deck.discardpile){
 				if (!c.equipment.onetimecheck){
 					c.equipment.onetimecheck = true;
+					//trace("  (discard) running beforestartturn on " + c.equipment.name);
 					Script.rungamescript(c.equipment.scriptbeforestartturn, "equipment_scriptbeforestartturn", this, c.equipment);
+				}else{
+					//trace("  (discard) SKIPPING " + c.equipment.name + " because the onetimecheck flag is set");
 				}
 			}
 			
@@ -922,15 +1168,27 @@ class Fighter{
 			for (c in Deck.inplaypile){
 				if (!c.equipment.onetimecheck){
 					c.equipment.onetimecheck = true;
+					//trace("  (inplay) running beforestartturn on " + c.equipment.name);
 					Script.rungamescript(c.equipment.scriptbeforestartturn, "equipment_scriptbeforestartturn", this, c.equipment);
+				}else{
+					//trace("  (inplay) SKIPPING " + c.equipment.name + " because the onetimecheck flag is set");
 				}
 			}
 			
-			for (c in Deck.drawpile) c.equipment.onetimecheck = false;
+			//This "drawpiledeck" kludge allows scripts to reorder the deck
+			var drawpiledeck:Array<Card> = [];
 			for (c in Deck.drawpile){
+				c.equipment.onetimecheck = false;
+				drawpiledeck.push(c);
+			}
+			
+			for (c in drawpiledeck){
 				if (!c.equipment.onetimecheck){
 					c.equipment.onetimecheck = true;
+					//trace("  (drawpile) running beforestartturn on " + c.equipment.name);
 					Script.rungamescript(c.equipment.scriptbeforestartturn, "equipment_scriptbeforestartturn", this, c.equipment);
+				}else{
+					//trace("  (drawpile) SKIPPING " + c.equipment.name + " because the onetimecheck flag is set");
 				}
 			}
 		}else{
@@ -941,12 +1199,27 @@ class Fighter{
 					Script.rungamescript(e.scriptbeforestartturn, "equipment_scriptbeforestartturn", this, e);
 				}
 			}
+			
+			if (hasstolencard){
+				if (stolencard != null){
+					if (!stolencard.onetimecheck){
+						stolencard.onetimecheck = true;
+						Script.rungamescript(stolencard.scriptbeforestartturn, "equipment_scriptbeforestartturn", this, stolencard);
+					}
+				}
+			}
 		}
 		
 		//Status effects beforestartturn scripts
-		for (i in 0 ... status.length){
-			if (status[i].value > 0) status[i].runscript("beforestartturn", 0);
+		if(status != null){
+			for (st in status){
+				if(st != null){
+					if (st.value > 0) st.runscript("beforestartturn", 0);
+				}
+			}
 		}
+		
+		statuscleanup();
 	}
 	
 	public function runonstartturnscripts(){
@@ -990,12 +1263,27 @@ class Fighter{
 					Script.rungamescript(e.scriptonstartturn, "equipment_scriptonstartturn", this, e);
 				}
 			}
+			
+			if (hasstolencard){
+				if (stolencard != null){
+					//if (!stolencard.onetimecheck){
+					//Ok: I think this one time check thing doesn't work for stolen cards. So, I'm going to turn it off and see if
+					//it breaks anything.
+						stolencard.onetimecheck = true;
+						Script.rungamescript(stolencard.scriptonstartturn, "equipment_scriptonstartturn", this, stolencard);
+					//}
+				}
+			}
 		}
 		
 		//Status effects onstartturn scripts
 		for (i in 0 ... status.length){
-			if (status[i].value > 0) status[i].runscript("onstartturn", 0);
+			if(status[i] != null){
+				if (status[i].value > 0) status[i].runscript("onstartturn", 0);
+			}
 		}
+		
+		statuscleanup();
 	}
 	
 	public function hasusabledice() : Bool{
@@ -1032,7 +1320,7 @@ class Fighter{
 			if (e.slots.length > 0){
 				for (i in 0 ... e.slots.length){
 					if (Game.diceslotissparedice(e.slots[i])){
-						if(e.assigneddice[i] == null){
+						if (e.assigneddice[i] == null){
 							var newdice:Dice = new Dice();
 							newdice.basevalue = Game.diceslotissparedice_getnum(e.slots[i]);
 							newdice.assignedposition = i;
@@ -1113,15 +1401,30 @@ class Fighter{
 			
 			Random.shuffle(shocklist);
 			
-			var shock:StatusEffect = getstatus(Status.SHOCK);
-			while (shock.value > 0 && shocklist.length > 0){
-				var randequipment:Equipment = shocklist.pop();
-				if (randequipment.hastag("shockimmune")){
-					randequipment.applyequipmentstatus = "shockimmune";
-				}else{
-					randequipment.applyequipmentstatus = Status.SHOCK;
+			var shockattract:Array<Equipment> = [];
+			for (e in shocklist){
+				if (e.hastag("shockattract")){
+					shockattract.push(e);
+					shocklist.remove(e);
 				}
-				shock.value--;
+			}
+			
+			var shock:StatusEffect = getstatus(Status.SHOCK);
+			if(shock != null){
+				while (shock.value > 0 && shocklist.length > 0){
+					var randequipment:Equipment;
+					if (shockattract.length > 0){
+						randequipment = shockattract.pop();
+					}else{
+						randequipment = shocklist.pop();
+					}
+					if (randequipment.hastag("shockimmune")){
+						randequipment.applyequipmentstatus = "shockimmune";
+					}else{
+						randequipment.applyequipmentstatus = Status.SHOCK;
+					}
+					shock.value--;
+				}
 			}
 			
 			returnval = true;
@@ -1145,9 +1448,22 @@ class Fighter{
 			
 			Random.shuffle(shocklist);
 			
+			var shockattract:Array<Equipment> = [];
+			for (e in shocklist){
+				if (e.hastag("shockattract")){
+					shockattract.push(e);
+					shocklist.remove(e);
+				}
+			}
+			
 			var alternateshock:StatusEffect = getstatus(Status.ALTERNATE + Status.SHOCK);
 			while (alternateshock.value > 0 && shocklist.length > 0){
-				var randequipment:Equipment = shocklist.pop();
+				var randequipment:Equipment;
+				if (shockattract.length > 0){
+					randequipment = shockattract.pop();
+				}else{
+					randequipment = shocklist.pop();
+				}
 				if (randequipment.hastag("shockimmune")){
 					randequipment.applyequipmentstatus = "shockimmune";
 				}else{
@@ -1181,9 +1497,22 @@ class Fighter{
 				
 				Random.shuffle(weakenlist);
 				
+				var weakenattract:Array<Equipment> = [];
+				for (e in weakenlist){
+					if (e.hastag("weakenattract")){
+						weakenattract.push(e);
+						weakenlist.remove(e);
+					}
+				}
+				
 				var weaken:StatusEffect = getstatus(Status.WEAKEN);
 				while (weaken.value > 0 && weakenlist.length > 0){
-					var randequipment:Equipment = weakenlist.pop();
+					var randequipment:Equipment;
+					if (weakenattract.length > 0){
+						randequipment = weakenattract.pop();
+					}else{
+						randequipment = weakenlist.pop();
+					}
 					if (randequipment.applyequipmentstatus == Status.SHOCK){
 						randequipment.applyequipmentstatus = "shock_and_weaken";
 					}else if (randequipment.applyequipmentstatus == Status.ALTERNATE_SHOCK){
@@ -1265,9 +1594,14 @@ class Fighter{
 								}
 							}
 							if (realequipment == null) {
-								if(collectible.equipment != null){
-									trace("Equipment \"" + collectible.equipment.name + collectible.equipment.namemodifier + "\" exists in player's inventory, but not in thier equipment array?");
-									trace("Inventory: " + Inventory.equipmentslots);
+								if (collectible.equipment != null){
+									if (collectible.equipment.onceperbattle && collectible.equipment.usedthisbattle){
+										//Don't trace this warning in the case of used once per battle equipment,
+										//it's working as intended
+									}else{
+										//trace("Equipment \"" + collectible.equipment.name + collectible.equipment.namemodifier + "\" exists in player's inventory, but not in thier equipment array?");
+										//trace("Inventory: " + Inventory.equipmentslots);
+									}
 								}
 							} else {
 								if (realequipment.ready) {
@@ -1423,6 +1757,7 @@ class Fighter{
 						e.initialpos.y -= Std.int(ExtendedGui.buttonheight * 0.6);
 					}
 				}else{
+					if (e.column < 0) e.column = 0; //Possibly prevent an obscure crash? Can't hurt, at least
 					if (e.row == 0){
 						if (e.size == 1 && equipmentslots[e.column][1] == -1){
 							e.y = e.initialpos.y = Screen.heightmid - (e.height / 2);
@@ -1848,6 +2183,23 @@ class Fighter{
 		return placementpoint;
 	}
 	
+	//An extra check to call whenever a dice changes value, if we are countering than number
+	public function checkfordicecounter(dicearray:Array<Dice>, withanimation:Bool = false){
+		for (j in 1 ... 7){
+			if (hasstatus("counter_" + j)){
+				for (i in 0 ... dicearray.length){
+					if (dicearray[i].basevalue == j){
+						if (withanimation){
+							dicearray[i].animate(Status.LOCK);
+						}else{
+							dicearray[i].locked = true;
+						}
+					}
+				}
+			}
+		}
+	}
+	
 	public function rolldice(numdice:Int, position:Int, ?customx:Float = 0, ?customy:Float = 0, ?dicerollsound:String = "diceroll", ?stackdice:Bool = false):Array<Dice>{
 		if (Tutorial.prevent_dicerolls) return [];
 		
@@ -1898,6 +2250,8 @@ class Fighter{
 			if (robotbehavior){
 				if (!hasstatus("robotblinded")){
 					addstatus("robotblinded", 1);
+					if (Game.shuffleddiceorder == null)	Game.shuffleddiceorder = [1, 2, 3, 4, 5, 6];
+					Game.shuffleddiceorder = Random.shuffle(Game.shuffleddiceorder);
 				}
 			}
 		}
@@ -1940,34 +2294,37 @@ class Fighter{
 				newdice.blind = true;
 			}
 			
+			//For each dice, either lock, burn or burn?, but never more than one
 			if (locktarget > 0){
-				newdice.animate(Status.LOCK, dicestatdelay);
+				if (robotbehavior){
+					newdice.animate("lockrobotlock", dicestatdelay);
+					var lockstat:StatusEffect = getstatus(Status.LOCK);
+					if(lockstat != null) lockstat.value--;
+				}else{
+					newdice.animate(Status.LOCK, dicestatdelay);
+				}
 				locktarget--;
+				dicestatdelay += 0.25;
+			}else if (alternateburntarget > 0){
+				newdice.animate(Status.ALTERNATE + Status.FIRE, dicestatdelay);
+				alternateburntarget--;
+				dicestatdelay += 0.25;
+			}else if (burntarget > 0){
+				newdice.animate(Status.FIRE, dicestatdelay);
+				burntarget--;
 				dicestatdelay += 0.25;
 			}
 			
 			if (alternatelocktarget > 0){
-				//newdice.animate(Status.ALTERNATE_LOCK, dicestatdelay);
 				newdice.priority = true;
 				alternatelocktarget--;
-				dicestatdelay += 0.25;
-			}
-			
-			if (alternateburntarget > 0){
-				newdice.animate(Status.ALTERNATE + Status.FIRE, dicestatdelay);
-				alternateburntarget--;
-				dicestatdelay += 0.25;
-			}
-			
-			if (burntarget > 0){
-				newdice.animate(Status.FIRE, dicestatdelay);
-				burntarget--;
 				dicestatdelay += 0.25;
 			}
 			
 			var placementpoint:Point = findnewdiceposition(position, i);
 			var newxpos:Float = placementpoint.x;
 			var newypos:Float = placementpoint.y;
+			newdice.sethome(newxpos, newypos);
 			
 			newdice.x = newxpos;
 			if (position == Gfx.BOTTOM) {
@@ -1998,7 +2355,7 @@ class Fighter{
 					);
 			}
 			
-			newdice.roll(this);
+			newdice.roll(this);		
 			
 			returnpool.push(newdice);
 			dicepool.push(newdice);
@@ -2013,6 +2370,8 @@ class Fighter{
 			newdice.targetx = newxpos;
 			newdice.targety = newypos;
 		}
+		
+		if(stackdice) updatevaluesforstackeddice(returnpool);
 		
 		AudioControl.play(dicerollsound);
 		
@@ -2051,10 +2410,12 @@ class Fighter{
 			
 			for (j in 0 ... alternatefrozentarget){
 				Game.delaycall(function(){
-					AudioControl.play("_dicefreeze");
-					for (i in 0 ... dicepool.length){
-						if (dicepool[i].frozen){
-							dicepool[i].animate(Status.ALTERNATE + Status.ICE);
+					if (dicepool != null) {
+						AudioControl.play("_dicefreeze");
+						for (i in 0 ... dicepool.length){
+							if (dicepool[i].frozen){
+								dicepool[i].animate(Status.ALTERNATE + Status.ICE);
+							}
 						}
 					}
 				}, dicestatdelay);
@@ -2062,22 +2423,17 @@ class Fighter{
 			}
 			
 			Game.delaycall(function(){
-				for (i in 0 ... dicepool.length){
-					dicepool[i].frozen = false;
+				if (dicepool != null) {
+					for (i in 0 ... dicepool.length){
+						dicepool[i].frozen = false;
+					}
 				}
 			}, dicestatdelay);
 			alternatefrozentarget = 0;
 		}
 		
+		//Alternate Counter: I know this behavior is wrong but I can't fix it before switch
 		for (j in 1 ... 7){
-			if (hasstatus("counter_" + j)){
-				for (i in 0 ... dicepool.length){
-					if(dicepool[i].basevalue == j){
-						dicepool[i].locked = true;
-					}
-				}
-			}
-			
 			if (hasstatus("alternate_counter_" + j)){
 				var numpriority:Int = 0;
 				for (i in 0 ... dicepool.length){
@@ -2145,95 +2501,6 @@ class Fighter{
 					blindstat.value -= numdice;
 				}
 			}
-			
-			//We don't reduce the lock stat in the animation any more
-			if (lockeddice > 0){
-				if (hasstatus(Status.LOCK)){
-					var lockstat:StatusEffect = getstatus(Status.LOCK);
-					lockstat.value -= numdice;
-				}
-			}
-			
-			if (!robotbehavior){
-				if (alternatelockeddice > 0){
-					if (hasstatus(Status.ALTERNATE_LOCK)){
-						var alternatelockstat:StatusEffect = getstatus(Status.ALTERNATE_LOCK);
-						alternatelockstat.value -= numdice;
-					}
-				}
-			}
-		}
-		
-		if (stackdice){
-			if(BuildConfig.debug_testdiceroll){
-				for (i in 0 ... returnpool.length){
-					returnpool[i].basevalue = BuildConfig.debug_testdicerolldice[i % BuildConfig.debug_testdicerolldice.length];
-				}
-			}
-			
-			if (Game.rules_stackenemydice){
-				//Stacking rules:
-				//_resetsequence and _looponce refers to single sequences of dice, e.g. [[1, 2, 3]]
-				//   _looponce means that once we've stacked those dice, we stop stacking dice rolls.
-				//   _resetsequence means that at the start of the turn, we start over. Sometimes we don't want this (e.g. Countdown)
-				//_loopsequence refers to multiple sequences of dice, and means loop through the 
-				//   sequence of stacked rolls, e.g. [[1, 2, 3], [4, 5, 6]]
-				if (Combat.turn == "monster"){
-					var checkforloopsequenceisok:Bool = true;
-					
-					if(!Game.rules_stackenemydice_loopsequence){
-						if ((Combat.turncount - 1) >= Rules._stackenemydice.length){
-							checkforloopsequenceisok = false;
-						}
-					}
-					
-					if(checkforloopsequenceisok){
-						var stackedpool:Array<Int> = Rules._stackenemydice[(Combat.turncount - 1) % Rules._stackenemydice.length];
-						if (Game.rules_stackenemydice_looponce){
-							for (i in 0 ... returnpool.length){
-								if (Game.rules_stackenemydice_index < stackedpool.length){
-									returnpool[i].basevalue = stackedpool[Game.rules_stackenemydice_index];
-									Game.rules_stackenemydice_index++;
-								}
-							}
-						}else{
-							for (i in 0 ... returnpool.length){
-								returnpool[i].basevalue = stackedpool[Game.rules_stackenemydice_index % stackedpool.length];
-								Game.rules_stackenemydice_index++;
-							}
-						}
-					}
-				}
-			}
-			
-			if (Game.rules_stackplayerdice){
-				if (Combat.turn == "player"){
-					var checkforloopsequenceisok:Bool = true;
-					
-					if(!Game.rules_stackplayerdice_loopsequence){
-						if ((Combat.turncount - 1) >= Rules._stackplayerdice.length){
-							checkforloopsequenceisok = false;
-						}
-					}
-					
-					if(checkforloopsequenceisok){
-						var stackedpool:Array<Int> = Rules._stackplayerdice[(Combat.turncount - 1) % Rules._stackplayerdice.length];
-						if (Game.rules_stackplayerdice_looponce){
-							for (i in 0 ... returnpool.length){
-								if (Game.rules_stackplayerdice_index < stackedpool.length){
-									returnpool[i].basevalue = stackedpool[Game.rules_stackplayerdice_index];
-									Game.rules_stackplayerdice_index++;
-								}
-							}
-						}else{
-							for (i in 0 ... returnpool.length){
-								returnpool[i].basevalue = stackedpool[Game.rules_stackplayerdice_index % stackedpool.length];
-								Game.rules_stackplayerdice_index++;
-							}
-						}
-					}
-				}
-			}
 		}
 		
 		if (!robotbehavior){
@@ -2248,6 +2515,129 @@ class Fighter{
 		}
 		
 		return returnpool;
+	}
+	
+	public function runonrolldicescripts(dicepool:Array<Dice>){
+		if(status != null){
+			for (i in 0 ... status.length){
+				if(status[i] != null){
+					if (status[i].value > 0){
+						if (status[i].scriptonrolldice != ""){
+							Core.delaycall(function(){
+								if(status != null){
+									if (status[i] != null){
+										if (status[i].value > 0){
+											Script.rungamescript(status[i].scriptonrolldice, "status_scriptonrolldice", this, null, status[i], 0, dicepool);
+										}
+									}
+								}
+							}, 0.25 / BuildConfig.speed);
+						}
+					}
+				}
+			}
+			
+			statuscleanup();
+		}
+	}
+	
+	public function updatevaluesforstackeddice(returnpool:Array<Dice>){
+		if(BuildConfig.debug_testdiceroll){
+			for (i in 0 ... returnpool.length){
+				returnpool[i].basevalue = BuildConfig.debug_testdicerolldice[i % BuildConfig.debug_testdicerolldice.length];
+			}
+		}
+		
+		if (Game.rules_stackenemydice){
+			//Stacking rules:
+			//_resetsequence and _looponce refers to single sequences of dice, e.g. [[1, 2, 3]]
+			//   _looponce means that once we've stacked those dice, we stop stacking dice rolls.
+			//   _resetsequence means that at the start of the turn, we start over. Sometimes we don't want this (e.g. Countdown)
+			//_loopsequence refers to multiple sequences of dice, and means loop through the 
+			//   sequence of stacked rolls, e.g. [[1, 2, 3], [4, 5, 6]]
+			if (Combat.turn == "monster"){
+				var checkforloopsequenceisok:Bool = true;
+				
+				if(!Game.rules_stackenemydice_loopsequence){
+					if ((Combat.turncount - 1) >= Rules._stackenemydice.length){
+						checkforloopsequenceisok = false;
+					}
+				}
+				
+				if(checkforloopsequenceisok){
+					var stackedpool:Array<Int> = Rules._stackenemydice[(Combat.turncount - 1) % Rules._stackenemydice.length];
+					if (Game.rules_stackenemydice_looponce){
+						for (i in 0 ... returnpool.length){
+							if (Game.rules_stackenemydice_index < stackedpool.length){
+								returnpool[i].basevalue = stackedpool[Game.rules_stackenemydice_index];
+								Game.rules_stackenemydice_index++;
+							}
+						}
+					}else{
+						for (i in 0 ... returnpool.length){
+							returnpool[i].basevalue = stackedpool[Game.rules_stackenemydice_index % stackedpool.length];
+							Game.rules_stackenemydice_index++;
+						}
+					}
+				}
+			}
+		}
+		
+		if (Game.rules_stackplayerdice){
+			if (Combat.turn == "player"){
+				var checkforloopsequenceisok:Bool = true;
+				
+				if(!Game.rules_stackplayerdice_loopsequence){
+					if ((Combat.turncount - 1) >= Rules._stackplayerdice.length){
+						checkforloopsequenceisok = false;
+					}
+				}
+				
+				if(checkforloopsequenceisok){
+					var stackedpool:Array<Int> = Rules._stackplayerdice[(Combat.turncount - 1) % Rules._stackplayerdice.length];
+					if (Game.rules_stackplayerdice_looponce){
+						for (i in 0 ... returnpool.length){
+							if (Game.rules_stackplayerdice_index < stackedpool.length){
+								returnpool[i].basevalue = stackedpool[Game.rules_stackplayerdice_index];
+								Game.rules_stackplayerdice_index++;
+							}
+						}
+					}else{
+						for (i in 0 ... returnpool.length){
+							returnpool[i].basevalue = stackedpool[Game.rules_stackplayerdice_index % stackedpool.length];
+							Game.rules_stackplayerdice_index++;
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	/* Reload the internal animation for the fighter based on the name.
+	 * Designed to be used for the Thief episode in Reunion. */
+	public function reloadanimation(){
+		if (isplayer){
+			var enemylist:Array<String> = Game.getenemy();
+			if (enemylist.indexOf(name) > -1){
+				Art.monstermode_changeplayerto(this, name);
+			}else{
+				Art.changeplayer(this);
+			}
+		}else{
+			if (is_a_transformed_character){
+				Art.monstermode_changeplayermonster(this);
+			}else{
+				Art.changemonster(this);
+			}
+		}
+	}
+	
+	public function squeak(chattype:String = "personality"){
+		if (isplayer){
+			AudioControl.play("chat_" + name.toLowerCase() + "_voice", "personality");
+		}else{
+			AudioControl.playvoice(voice, chattype);	
+		}
 	}
 	
 	//After the initial dice roll phase, we no longer want certain dice statuses to effect future rolls.
@@ -2288,7 +2678,7 @@ class Fighter{
 		jinx.jinxcarddescription = jinxcarddescription;
 		jinx.jinxcastby = castby;
 		jinx.jinxvar = jinxvalue;
-		jinx.updatedescription();
+		jinx.updatedescription("");
 		status.push(jinx);
 		
 		if(!jinx.invisible) {
@@ -2357,15 +2747,16 @@ class Fighter{
 						value = 0;
 					}
 					
-					if(S.isinstring(stat, Status.ALTERNATE)){
-						textparticle(Locale.variabletranslate("Blocked {statuseffect}!", {
-							statuseffect: S.removefromleft(stat, Status.ALTERNATE.length) + "?"
-						} ));
-					}else{
-						textparticle(Locale.variabletranslate("Blocked {statuseffect}!", {
-							statuseffect: Locale.translate(stat) 
-						} ));
-					}
+					var _displayname:String = stattemplate.displayname;
+					Core.delaycall(function(){
+						if (Locale.currentlanguage == DiceyLanguage.ENGLISH){
+							textparticle(Locale.variabletranslate("Blocked {statuseffect}!", {
+								statuseffect: Locale.translate(_displayname) 
+							} ));
+						}else{
+							textparticle(Locale.translate("Blocked!"));
+						}
+					}, 0.1); //Call this a fraction later to prevent particles overlapping
 				}
 			}
 			
@@ -2395,10 +2786,12 @@ class Fighter{
 						if (status[j].scriptonanystatusinfliction != "") status[j].runonanystatusinflictionscript(stat, value, this);
 					}
 					
+					var overridedescription:String = getcoindescription(stat);
+					
 					status.push(effect);
 					if(!effect.invisible) {
 						var tooltipfunc = function() {
-							effect.updatedescription();
+							effect.updatedescription(overridedescription);
 							var desc:Array<String> = ["[" + effect.symbol + "]_" + Locale.translate(effect.name) + "[]"];
 							for (v in effect.description) desc.push(Locale.translate(v));
 							return desc;
@@ -2406,13 +2799,15 @@ class Fighter{
 						TooltipManager.addtooltipwithfunc((isplayer?"player":"enemy") + "_" + effect.type, tooltipfunc, "status", "gamefontsmall", Col.WHITE, Text.LEFT);
 					}
 				}else{
+					var overridedescription:String = getcoindescription(stat);
+					
 					//Update the tooltip!
 					for (i in 0 ... status.length){
 						if (status[i].type.toLowerCase() == stat.toLowerCase()){
 							var effect:StatusEffect = status[i];
 							if (!effect.invisible) {
 								var tooltipfunc = function() {
-									effect.updatedescription();
+									effect.updatedescription(overridedescription);
 									var desc:Array<String> = ["[" + effect.symbol + "]_" + Locale.translate(effect.name) + "[]"];
 									for (v in effect.description) desc.push(Locale.translate(v));
 									return desc;
@@ -2422,17 +2817,20 @@ class Fighter{
 						}
 					}
 				}
-				
-				//Instant effects: Alternate Silence kicks in as soon as it's inflicted
-				if (stat == Status.ALTERNATE + Status.SILENCE){
-					if (name != "Bear"){ // Bear is immune
-						if (limitbreak != null){
-							changelimitbreak(template.alternatelimit);
-						}
-					}
+			}
+		}
+	}
+	
+	public function getcoindescription(stat:String):String{
+		if (Rules.reunioncoinmode){
+			if(Game.player == this){
+				var cointemplate:StatusTemplate = Gamedata.getstatustemplate(stat + "_coin");
+				if (cointemplate != null){
+					return cointemplate.description;
 				}
 			}
 		}
+		return "";
 	}
 	
 	public function hasequipment(eq:String):Bool{
@@ -2473,29 +2871,36 @@ class Fighter{
 		return null;
 	}
 	
-	public function onstatusremove(stat:String){
-		//Repair Alternate Silence when it's removed
-		if (stat == Status.ALTERNATE + Status.SILENCE){
-			if (name != "Bear"){ // Bear is immune
-				if (limitbreak != null){
-					//TO DO: Support permanent limit break changes via a bool in changelimitbreak?
-					changelimitbreak(template.limit);
-				}
-			}
-		}
+	public function onstatusremove(stat:StatusEffect){
+		stat.runscript("onstatusremove", 0, null);
 	}
 	
 	public function removestatus(stat:String){
-		for (i in 0 ... status.length){
-			if (status[i].type == stat.toLowerCase() || stat == Status.ALL){
+		if (status == null) status = [];
+		
+		if (stat == Status.ALL){
+			for (i in 0 ... status.length){
+				if (!status[i].invisible) {
+					TooltipManager.removetooltip((isplayer?"player":"enemy") + "_" + status[i].type);
+				}
+				onstatusremove(status[i]);
+			}
+			status = [];
+			return;
+		}
+		
+		var i:Int = 0;
+		while (i < status.length){
+			if (status[i].type == stat.toLowerCase()){
 				if(!status[i].invisible) {
 					TooltipManager.removetooltip((isplayer?"player":"enemy") + "_" + status[i].type);
 				}
-				onstatusremove(status[i].type);
+				onstatusremove(status[i]);
 				
 				status.splice(i, 1);
 				return;
 			}
+			i++;
 		}
 	}
 	
@@ -2564,6 +2969,7 @@ class Fighter{
 		usedupgrade = 0;
 		gold = 0;
 		usecpuinsteadofdice = false;
+		reducenextthornsdamage = 0;
 		
 		shaketime = 0;
 		tinttime = 0;
@@ -2572,6 +2978,8 @@ class Fighter{
 		alternatelimitbreak = null;
 		limitmax = 0;
 		limitvalue = 0;
+		cachedlimitmax = 0;
+		cachedlimitvalue = 0;
 		graphicxoff = 0;
 		graphicyoff = 0;
 		
@@ -2812,17 +3220,14 @@ class Fighter{
 	
 	public function showcombatstats(position:Float, xp:Int, yp:Int, context:Int = 0, showlimitbreak:Bool = false){
 		if (!Screen.enabledisplay_combatstats) return;
-		var alignment:Int = Gfx.LEFT;
-		
+
 		if (position == Gfx.LEFT){
 			xp += Std.int(x + 130 * 6);
 			yp += Std.int(y + 42 * 4);
 		}else if (position == Gfx.RIGHT){
-			alignment = Gfx.RIGHT;
 			xp += Std.int(x - 20 * 6);
 			yp += Std.int(y + 14 * 6);
 		}else if (position == Gfx.CENTER){
-			alignment = Gfx.RIGHT;
 			xp = Screen.width - 220 * 6;
 			yp = Screen.height - 45 * 6;
 		}else{
@@ -2845,17 +3250,17 @@ class Fighter{
 			}else{
 				textfield[0].drawtranslate(xp, yp - 14 * 6, name);
 			}
-			textfield[1].drawno_translate(xp, yp, "[gold]" + Locale.inttostring(gold));
+			textfield[1].drawno_translate(xp, yp, "[force_shaping][gold]" + Locale.inttostring(gold));
 			
 			if(showdice){
 				//Show both
 				Text.align = Text.RIGHT;
 				if (extradice + bonusdice > 0){
-					textfield[2].drawno_translate(xp + 100 * 6, yp, "[dice]x" + Locale.inttostring(dice) + " [yellow](+" + Locale.inttostring(extradice + bonusdice) + ")");
+					textfield[2].drawno_translate(xp + 100 * 6, yp, "[force_shaping][dice]x" + Locale.inttostring(dice) + " [yellow](+" + Locale.inttostring(extradice + bonusdice) + ")");
 				}else if (extradice + bonusdice < 0){
-					textfield[2].drawno_translate(xp + 100 * 6, yp, "[dice]x" + Locale.inttostring(dice) + " [gray](-" + Locale.inttostring(Std.int(-(extradice + bonusdice))) + ")");
+					textfield[2].drawno_translate(xp + 100 * 6, yp, "[force_shaping][dice]x" + Locale.inttostring(dice) + " [gray](-" + Locale.inttostring(Std.int(-(extradice + bonusdice))) + ")");
 				}else{
-					textfield[2].drawno_translate(xp + 100 * 6, yp, "[dice]x" + Locale.inttostring(dice), Col.WHITE);
+					textfield[2].drawno_translate(xp + 100 * 6, yp, "[force_shaping][dice]x" + Locale.inttostring(dice), Col.WHITE);
 				}
 				Text.align = Text.LEFT;
 			}
@@ -2869,13 +3274,24 @@ class Fighter{
 				if (namelength == -1){
 					namelength = Symbol.width(displayname);
 				}
-				//trace(name + "'s name length is " + namelength);
-				if (namelength >= 400){
-					Text.align = Text.RIGHT;
-					textfield[0].drawno_translate(xp + 66 * 6, yp, displayname);
+				
+				if (extradice + bonusdice != 0){
+					if (namelength >= 265){
+						Text.align = Text.RIGHT;
+						textfield[0].drawno_translate(xp + 46 * 6, yp, displayname);
+					}else{
+						Text.align = Text.LEFT;
+						textfield[0].drawno_translate(xp, yp, displayname);
+					}
 				}else{
-					Text.align = Text.LEFT;
-					textfield[0].drawno_translate(xp, yp, displayname);
+					//trace(name + "'s name length is " + namelength);
+					if (namelength >= 400){
+						Text.align = Text.RIGHT;
+						textfield[0].drawno_translate(xp + 66 * 6, yp, displayname);
+					}else{
+						Text.align = Text.LEFT;
+						textfield[0].drawno_translate(xp, yp, displayname);
+					}
 				}
 			}else{
 				Text.align = Text.LEFT;
@@ -2888,11 +3304,11 @@ class Fighter{
 				//Just show dice
 				Text.align = Text.RIGHT;
 				if (extradice + bonusdice > 0){
-					textfield[2].drawno_translate(xp + 100 * 6, yp, "[dice]x" + Locale.inttostring(dice) + " [yellow](+" +Locale.inttostring(extradice + bonusdice) + ")", Col.WHITE);
+					textfield[2].drawno_translate(xp + 100 * 6, yp, "[force_shaping][dice]x" + Locale.inttostring(dice) + " [yellow](+" +Locale.inttostring(extradice + bonusdice) + ")", Col.WHITE);
 				}else if (extradice + bonusdice < 0){
-					textfield[2].drawno_translate(xp + 100 * 6, yp, "[dice]x" + Locale.inttostring(dice) + " [gray](-" +Locale.inttostring(Std.int(-(extradice + bonusdice))) + ")", Col.WHITE);
+					textfield[2].drawno_translate(xp + 100 * 6, yp, "[force_shaping][dice]x" + Locale.inttostring(dice) + " [gray](-" +Locale.inttostring(Std.int(-(extradice + bonusdice))) + ")", Col.WHITE);
 				}else{
-					textfield[2].drawno_translate(xp + 100 * 6, yp, "[dice]x" + Locale.inttostring(dice), Col.WHITE);
+					textfield[2].drawno_translate(xp + 100 * 6, yp, "[force_shaping][dice]x" + Locale.inttostring(dice), Col.WHITE);
 				}
 				Text.align = Text.LEFT;
 			}
@@ -2906,7 +3322,7 @@ class Fighter{
 			
 			//Just show gold
 			Text.align = Text.RIGHT;
-			textfield[1].drawno_translate(xp + 100 * 6, yp, "[gold]" + Locale.inttostring(gold), Col.WHITE);
+			textfield[1].drawno_translate(xp + 100 * 6, yp, "[force_shaping][gold]" + Locale.inttostring(gold), Col.WHITE);
 			
 			textfield[2].remove();
 		}
@@ -2953,6 +3369,13 @@ class Fighter{
 				var tooltipy:Float = yp + (5 * 6) + statusbaroffset.y;
 				var tooltipw:Float = 0.0;
 				var tooltiph:Float = 0.0;
+
+				var rtl = Locale.languagedirection == "rtl";
+				
+				if(rtl) {
+					tooltipx += statusbarback.width;
+				}
+
 				for (i in 0 ... status.length){
 					if (!status[i].invisible) actuallength++;
 				}
@@ -2974,17 +3397,31 @@ class Fighter{
 							}
 							
 							statstring += str;
+
+							if(rtl) {
+								tooltipx -= tooltipw;
+							}
 							TooltipManager.updatehotspot((isplayer?"player":"enemy") + "_" + status[i].type, tooltipx, tooltipy, tooltipw, tooltiph);
-							tooltipx += tooltipw;
+							if(!rtl) {
+								tooltipx += tooltipw;
+							}	
 							if (i != status.length - 1) {
 								statstring += "  ";
 								// Symbol.width("  ") doesn't work because for the text engine the space is no character and doesn't have a size
 								// A space is em/4 (size / 4)
-								tooltipx += (Text.size / 4) * 2;
+								if(rtl) {
+									tooltipx -= (Text.size / 4) * 2;
+								} else {
+									tooltipx += (Text.size / 4) * 2;
+								}
 							}
 						}
 					}
 				}else{
+					var iterator:Iterator<Int> = 0...status.length;
+					if(rtl) {
+						iterator = new utils.ReverseIterator(status.length - 1, -1);
+					}
 					for (i in 0 ... status.length){
 						if(!status[i].invisible){
 							var str = status[i].totinyString();
@@ -2992,13 +3429,22 @@ class Fighter{
 							var bounds = Symbol.bounds(str);
 							tooltipw = bounds.width;
 							tooltiph = bounds.height;
+							if(rtl) {
+								tooltipx -= tooltipw;
+							}
 							TooltipManager.updatehotspot((isplayer?"player":"enemy") + "_" + status[i].type, tooltipx, tooltipy, tooltipw, tooltiph);
-							tooltipx += tooltipw;
+							if(!rtl) {
+								tooltipx += tooltipw;
+							}	
 							if (i != status.length - 1) {
 								statstring += "  ";
 								// Symbol.width("  ") doesn't work because for the text engine the space is no character and doesn't have a size
 								// A space is em/4 (size / 4)
-								tooltipx += (Text.size / 4) * 2;
+								if(rtl) {
+									tooltipx -= (Text.size / 4) * 2;
+								} else {
+									tooltipx += (Text.size / 4) * 2;
+								}
 							}
 						}
 					}
@@ -3007,14 +3453,28 @@ class Fighter{
 				if (statstring > ""){
 					statusbarback.draw();
 					
+					var textalign = Text.LEFT;
+
+					if(rtl) {
+						textalign = Text.RIGHT;
+						statstring = '[force_shaping]${statstring}';
+					}
+
 					if (ControlMode.showgamepadui()) {
-						if (this == Game.player) {
-							GamepadButtonImage.draw(GamepadButton.LEFT_SHOULDER, xp + 60, yp + 14 + statusbaroffset.y + 0.5 * statusbarback.height + 12, false);
-						} else {
-							GamepadButtonImage.draw(GamepadButtonImage.LEFT_SHOULDER_EXTRA, xp + 60, yp + 14 + statusbaroffset.y + 0.5 * statusbarback.height + 12, false);
+						var buttonx:Float = xp + 60;
+						if(rtl) {
+							buttonx += statusbarback.width - 116;
 						}
-						
-						textfield[4].drawno_translate(xp + 116, yp + (2 * 6) + statusbaroffset.y, statstring, Col.WHITE, 1.0, Locale.gamefontsmall);
+						if (this == Game.player) {
+							GamepadButtonImage.draw(GamepadButton.LEFT_SHOULDER, buttonx, yp + 14 + statusbaroffset.y + 0.5 * statusbarback.height + 12, false);
+						} else {
+							GamepadButtonImage.draw(GamepadButtonImage.LEFT_SHOULDER_EXTRA, buttonx, yp + 14 + statusbaroffset.y + 0.5 * statusbarback.height + 12, false);
+						}
+						var textx:Float = xp + 116;
+						if(rtl) {
+							textx = xp - 116 + statusbarback.width;
+						}
+						textfield[4].drawno_translate(textx, yp + (2 * 6) + statusbaroffset.y, statstring, Col.WHITE, 1.0, Locale.gamefontsmall, textalign);
 						
 						/*
 						if (this == Game.player) {
@@ -3024,7 +3484,11 @@ class Fighter{
 						}
 						*/
 					} else {
-						textfield[4].drawno_translate(xp, yp + (2 * 6) + statusbaroffset.y, statstring, Col.WHITE, 1.0, Locale.gamefontsmall);
+						var textx:Float = xp;
+						if(rtl) {
+							textx = xp + statusbarback.width;
+						}
+						textfield[4].drawno_translate(textx, yp + (2 * 6) + statusbaroffset.y, statstring, Col.WHITE, 1.0, Locale.gamefontsmall, textalign);
 					}
 				}else{
 					statusbarback.remove();
@@ -3036,7 +3500,7 @@ class Fighter{
 			if (showhploss > 0){
 				//FutureDraw.fillbox(xp + (showhploss * 3), yp, Std.int(100 * 6 * (hp / maxhp)), 16 * 6, 0xFF2633);
 				Text.align = Text.CENTER;
-				textfield[4].drawno_translate(xp + 50 * 6 + (showhploss * 3), yp + 3 * 6, Locale.inttostring(hp) + "/" + Locale.inttostring(maxhp)); 
+				textfield[4].drawno_translate(xp + 50 * 6 + (showhploss * 3), yp + 3 * 6,"[force_shaping]" + Locale.inttostring(hp) + "/" + Locale.inttostring(maxhp)); 
 				Text.align = Text.LEFT;
 				
 				//FutureDraw.drawbox(xp, yp, 100 * 6, 16 * 6, Col.WHITE);
@@ -3098,35 +3562,37 @@ class Fighter{
 				textfield[0].drawtranslate(xp + 505, yp + 75 - Locale.headerfont.pixelsize / 2, Locale.translate("Level") + " " + Locale.inttostring(level), Col.WHITE, 1.0, Locale.headerfont, Text.CENTER);
 				
 				// next level
-				textfield[5].drawno_translate(xp + 505, yp + 110, Locale.translate("Level up in [star][]") + Locale.inttostring(LevelUpScreen.nextlevelexp), Col.WHITE, 1.0, Locale.gamefont, Text.CENTER);
+				var text;
+				if(Locale.currentlanguage == DiceyLanguage.ARABIC) {
+					text = Locale.variabletranslate("Level up in [star][] {value}", {value: LevelUpScreen.nextlevelexp});
+				} else {
+					text = Locale.translate("Level up in [star][]") + Locale.inttostring(LevelUpScreen.nextlevelexp);
+				}
+				textfield[5].drawno_translate(xp + 505, yp + 110, text, Col.WHITE, 1.0, Locale.gamefont, Text.CENTER);
 			}else{
 				if (hassuper){
-					textfield[0].drawtranslate(xp + 315, yp + 130 - Locale.headerfont.pixelsize / 2, Locale.variabletranslate("Super {enemyname}", { enemyname: Locale.translate(charactertemplate.name)}), Col.WHITE, 1.0, Locale.headerfont, Text.CENTER);
+					textfield[0].drawtranslate(xp + 180, yp + 130 - Locale.headerfont.pixelsize / 2, Locale.variabletranslate("Super {enemyname}", { enemyname: Locale.translate(charactertemplate.name)}), Col.WHITE, 1.0, Locale.headerfont, Text.LEFT);
 				}else{
-					textfield[0].drawtranslate(xp + 315, yp + 130 - Locale.headerfont.pixelsize / 2, charactertemplate.name, Col.WHITE, 1.0, Locale.headerfont, Text.CENTER);
+					textfield[0].drawtranslate(xp + 180, yp + 130 - Locale.headerfont.pixelsize / 2, charactertemplate.name, Col.WHITE, 1.0, Locale.headerfont, Text.LEFT);
 				}
 			}
 		}else{
 			if (hassuper){
-				textfield[0].drawtranslate(xp + 315, yp + 130 - Locale.headerfont.pixelsize / 2, Locale.variabletranslate("Super {enemyname}", { enemyname: Locale.translate(charactertemplate.name)}), Col.WHITE, 1.0, Locale.headerfont, Text.CENTER);
+				textfield[0].drawtranslate(xp + 180, yp + 130 - Locale.headerfont.pixelsize / 2, Locale.variabletranslate("Super {enemyname}", { enemyname: Locale.translate(charactertemplate.name)}), Col.WHITE, 1.0, Locale.headerfont, Text.LEFT);
 			}else{
-				textfield[0].drawtranslate(xp + 315, yp + 130 - Locale.headerfont.pixelsize / 2, charactertemplate.name, Col.WHITE, 1.0, Locale.headerfont, Text.CENTER);
+				textfield[0].drawtranslate(xp + 180, yp + 130 - Locale.headerfont.pixelsize / 2, charactertemplate.name, Col.WHITE, 1.0, Locale.headerfont, Text.LEFT);
 			}
 		}
 	}
 	
 	public function monstermode_showstatusbar(position:Float, xp:Float = 0, yp:Float = 0, remixmode:Bool = false) {
-		var alignment:Int = Gfx.LEFT;
-		
 		if (position == Gfx.LEFT){
 			xp += 60;
 			yp += Screen.height - 260;
 		}else if (position == Gfx.RIGHT){
-			alignment = Gfx.RIGHT;
 			xp += Screen.width - 1320;
 			yp += 60;
 		}else if (position == Gfx.CENTER){
-			alignment = Gfx.RIGHT;
 			xp += Screen.width - 1320;
 			yp += Screen.height - 222;
 		}
@@ -3162,11 +3628,11 @@ class Fighter{
 		//Just show dice
 		Text.align = Text.RIGHT;
 		if (extradice + bonusdice > 0){
-			textfield[2].drawno_translate(xp + 100 * 6, yp, "[dice]x" + Locale.inttostring(dice) + " [yellow](+" + Locale.inttostring(Std.int(extradice + bonusdice)) + ")", Col.WHITE);
+			textfield[2].drawno_translate(xp + 100 * 6, yp, "[force_shaping][dice]x" + Locale.inttostring(dice) + " [yellow](+" + Locale.inttostring(Std.int(extradice + bonusdice)) + ")", Col.WHITE);
 		}else if (extradice + bonusdice < 0){
-			textfield[2].drawno_translate(xp + 100 * 6, yp, "[dice]x" + Locale.inttostring(dice) + " [gray](-" +Locale.inttostring(Std.int(-(extradice + bonusdice))) + ")", Col.WHITE);
+			textfield[2].drawno_translate(xp + 100 * 6, yp, "[force_shaping][dice]x" + Locale.inttostring(dice) + " [gray](-" +Locale.inttostring(Std.int(-(extradice + bonusdice))) + ")", Col.WHITE);
 		}else{
-			textfield[2].drawno_translate(xp + 100 * 6, yp, "[dice]x" + Locale.inttostring(dice), Col.WHITE);
+			textfield[2].drawno_translate(xp + 100 * 6, yp, "[force_shaping][dice]x" + Locale.inttostring(dice), Col.WHITE);
 		}
 		Text.align = Text.LEFT;
 		
@@ -3190,17 +3656,13 @@ class Fighter{
 	}
 
 	public function showstatusbarstats(position:Float, xp:Float = 0, yp:Float = 0, remixmode:Bool = false) {
-		var alignment:Int = Gfx.LEFT;
-		
 		if (position == Gfx.LEFT){
 			xp += 60;
 			yp += Screen.height - 260;
 		}else if (position == Gfx.RIGHT){
-			alignment = Gfx.RIGHT;
 			xp += Screen.width - 1320;
 			yp += 60;
 		}else if (position == Gfx.CENTER){
-			alignment = Gfx.RIGHT;
 			xp += Screen.width - 1320;
 			yp += Screen.height - 222;
 		}
@@ -3221,18 +3683,20 @@ class Fighter{
 		healthbar.draw(xp, yp, hp, maxhp, 0);
 		
 		// gold and dice/cpu
-		textfield[1].drawno_translate(xp, yp + 120, "[gold]" + Locale.inttostring(gold), Col.WHITE, 1.0, Locale.gamefontsmall, Text.LEFT);
+		textfield[1].drawno_translate(xp, yp + 120, "[force_shaping][gold]" + Locale.inttostring(gold), Col.WHITE, 1.0, Locale.gamefontsmall, Text.LEFT);
 
 		if (usecpuinsteadofdice){
 			//was healthbarback.width, changed to 597
-			textfield[2].drawno_translate(xp + 597, yp + 120, "[gray]" + Locale.translate("CPU") + "[] " + Locale.inttostring(roll_target), Col.WHITE, 1.0, Locale.gamefontsmall, Text.RIGHT);
+			if(Rules.robot_requestodds == 100){ //Don't show when YCYL rules are active
+				textfield[2].drawno_translate(xp + 597, yp + 120, "[force_shaping][gray]" + Locale.translate("CPU") + "[] " + Locale.inttostring(roll_target), Col.WHITE, 1.0, Locale.gamefontsmall, Text.RIGHT);
+			}
 		}else{
 			if (extradice + bonusdice > 0){
-				textfield[2].drawno_translate(xp + 597, yp + 120, "[dice]x" + Locale.inttostring(dice) + " [yellow](+" +(extradice + bonusdice) + ")", Col.WHITE, 1.0, Locale.gamefontsmall, Text.RIGHT);
+				textfield[2].drawno_translate(xp + 597, yp + 120, "[force_shaping][dice]x" + Locale.inttostring(dice) + " [yellow](+" +(extradice + bonusdice) + ")", Col.WHITE, 1.0, Locale.gamefontsmall, Text.RIGHT);
 			}else if (extradice + bonusdice < 0){
-				textfield[2].drawno_translate(xp + 597, yp + 120, "[dice]x" + Locale.inttostring(dice) + " [gray](-" + Std.int(-(extradice + bonusdice)) + ")", Col.WHITE, 1.0, Locale.gamefontsmall, Text.RIGHT);
+				textfield[2].drawno_translate(xp + 597, yp + 120, "[force_shaping][dice]x" + Locale.inttostring(dice) + " [gray](-" + Std.int(-(extradice + bonusdice)) + ")", Col.WHITE, 1.0, Locale.gamefontsmall, Text.RIGHT);
 			}else{
-				textfield[2].drawno_translate(xp + 597, yp + 120, "[dice]x" + Locale.inttostring(dice), Col.WHITE, 1.0, Locale.gamefontsmall, Text.RIGHT);
+				textfield[2].drawno_translate(xp + 597, yp + 120, "[force_shaping][dice]x" + Locale.inttostring(dice), Col.WHITE, 1.0, Locale.gamefontsmall, Text.RIGHT);
 			}
 		}
 
@@ -3243,7 +3707,13 @@ class Fighter{
 				textfield[4].drawno_translate(xp + 315, yp + 36, Locale.translate("Level") + " " + Locale.inttostring(level), Col.WHITE, 1.0, Locale.headerfont, Text.CENTER);
 				
 				// next level
-				textfield[5].drawno_translate(xp + 315, yp + 100, Locale.translate("Level up in [star][]") + Locale.inttostring(LevelUpScreen.nextlevelexp), Col.WHITE, 1.0, Locale.gamefont, Text.CENTER);
+				var text;
+				if(Locale.currentlanguage == DiceyLanguage.ARABIC) {
+					text = Locale.variabletranslate("Level up in [star][] {value}", {value: LevelUpScreen.nextlevelexp});
+				} else {
+					text = Locale.translate("Level up in [star][]") + Locale.inttostring(LevelUpScreen.nextlevelexp);
+				}
+				textfield[5].drawno_translate(xp + 315, yp + 100, text, Col.WHITE, 1.0, Locale.gamefont, Text.CENTER);
 			}
 		}
 	}
@@ -3594,12 +4064,12 @@ class Fighter{
 		showhploss = 0.25;
 	}
 	
-	public function symbolparticle(sym:String){
-		if(battlevfx.issupported(sym)) {
+	public function symbolparticle(sym:String, forcesupported:Bool = false){
+		if(battlevfx.issupported(sym) || forcesupported) {
 			if(sym.indexOf("attack_") > -1 && battlevfx.isplaying()) {
 				// skip
 			} else {
-				battlevfx.play(sym, x + particlex + vfxoffset.x, y + particley + vfxoffset.y);
+				battlevfx.play(sym, x + particlex + vfxoffset.x, y + particley + vfxoffset.y, forcesupported);
 			}
 			/*
 			battlevfx.play(sym, 
@@ -3615,11 +4085,41 @@ class Fighter{
 		}
 	}
 	
-	public function reducehp(amount:Int){
+	public function reducehp(amount:Int, ?dmgtype:String = "none"){
 		hp -= amount;
 		
-		for (i in 0 ... equipment.length){
-			equipment[i].charge += amount;
+		if(equipment != null) {
+			for (i in 0 ... equipment.length){
+				if(equipment[i] == null) continue;
+	
+				equipment[i].charge += amount;
+			}
+		}
+		
+		//On damage scripts from status effects
+		if(status != null) {
+			for (i in 0 ... status.length){
+				if(status[i] == null) continue;
+
+				if (status[i].value > 0) status[i].runondamagetakenscript(amount, dmgtype, this);
+			}
+		}
+		if (isplayer){
+			if (Game.monster != null && Game.monster.status != null){
+				for (i in 0 ... Game.monster.status.length){
+					if(Game.monster.status[i] == null) continue;
+
+					if (Game.monster.status[i].value > 0) Game.monster.status[i].runondamageinflictedscript(amount, dmgtype, Game.monster);
+				}
+			}
+		}else{
+			if (Game.player != null && Game.player.status != null){
+				for (i in 0 ... Game.player.status.length){
+					if(Game.player.status[i] == null) continue;
+
+					if (Game.player.status[i].value > 0) Game.player.status[i].runondamageinflictedscript(amount, dmgtype, Game.player);
+				}
+			}
 		}
 		
 		if (limitbreak != null){
@@ -3628,6 +4128,7 @@ class Fighter{
 				limitvalue = limitmax;
 			}
 		}
+		
 		Combat.checktargetdeath();
 	}
 	
@@ -3646,9 +4147,10 @@ class Fighter{
 		for (i in 0 ... equipment.length){
 			equipment[i].dispose();
 		}
+		if (stolencard != null) stolencard.dispose();
 		
 		if (limitbreak != null){
-			limitbreak.remove();
+			limitbreak.dispose();
 		}
 
 		if (graphic != null) {
@@ -3662,6 +4164,14 @@ class Fighter{
 			shadow = null;
 		}
 
+		if (dicepool != null) {
+			for (i in 0 ... dicepool.length){
+				dicepool[i].dispose();
+				dicepool[i] = null;
+			}
+			dicepool = null;
+		}
+		
 		statsicon.dispose();
 		for(p in textfield) {
 			p.dispose();
@@ -3696,7 +4206,7 @@ class Fighter{
 	}
 	
 	public function removestats(){
-		for (i in 0 ... textfield.length) textfield[i].dispose();
+		for (i in 0 ... textfield.length) textfield[i].remove();
 		healthbar.remove();
 		limitbarback.remove();
 		limitbarfront.remove();
@@ -3707,6 +4217,7 @@ class Fighter{
 	}
 	
 	public function show(frame:Int, xoff:Float, yoff:Float){
+		if (!Screen.enabledisplay_fighters) return;
 		if (graphic == null) return;
 		var tx:Int = Std.int(x + xoff + graphicxoff);
 		var ty:Int = Std.int(y + yoff + graphicyoff);
@@ -3751,6 +4262,20 @@ class Fighter{
 		}
 	}
 	
+	public function updatelimitbreaktooltip(forceredraw:Bool = false) {
+		TooltipManager.updatehotspot('player_limitbreak', limitbarback.x, limitbarback.y, limitbarback.width, limitbarback.height);
+		
+		if (limitvalue != cachedlimitvalue || limitmax != cachedlimitmax || forceredraw) {
+			if (limitvalue >= limitmax){
+				TooltipManager.updatetooltipline('player_limitbreak', 2, {text:"[yellow]Ready to use[]"}, Col.WHITE, "gamefontsmall", Text.CENTER);
+			}else{
+				TooltipManager.updatetooltipline('player_limitbreak', 2, {text:"[gray][medium](ready in {limitbreakhp} hp)[]", variables:{ limitbreakhp: Locale.inttostring(Std.int(limitmax - limitvalue)) }}, Col.WHITE, "gamefontsmall", Text.CENTER);
+			}
+			cachedlimitvalue = limitvalue;
+			cachedlimitmax = limitmax;
+		}
+	}
+	
 	public function drawlimitbreak(tx:Float, ty:Float) {
 		if (limitbreak == null) return;
 		
@@ -3767,12 +4292,7 @@ class Fighter{
 		limitbarback.y = ty;
 		limitbarback.draw();
 
-		TooltipManager.updatehotspot('player_limitbreak', limitbarback.x, limitbarback.y, limitbarback.width, limitbarback.height);
-		if (limitvalue >= limitmax){
-			TooltipManager.updatetooltipline('player_limitbreak', 2, {text:"[yellow]Ready to use[]"}, Col.WHITE, "gamefontsmall", Text.CENTER);
-		}else{
-			TooltipManager.updatetooltipline('player_limitbreak', 2, {text:"[gray][medium](ready in {limitbreakhp} hp)[]", variables:{ limitbreakhp: Locale.inttostring(Std.int(limitmax - limitvalue)) }}, Col.WHITE, "gamefontsmall", Text.CENTER);
-		}
+		updatelimitbreaktooltip();
 		
 		limitbarfront.alpha = 0.75;
 		
@@ -3801,7 +4321,12 @@ class Fighter{
 				
 				limitbarhighlight.remove();
 
-				var showbuttonprompt:Bool = ControlMode.showgamepadui() && !Combat.previewingequipment && !Combat.previewtransition && !Combat.flee_showprompt && !Input.suppress
+				var showbuttonprompt:Bool = ControlMode.showgamepadui() && 
+				                           !Combat.previewingequipment && 
+				                           !Combat.previewingspellbook && 
+																	 !Combat.previewtransition && 
+																	 !Combat.flee_showprompt && 
+																	 !Input.suppress
 										&& !Game.player.hasstatus("silence") && !Combat.preventfurtheractions && Combat.playerequipmentready;
 				
 				if (limitvalue < limitmax){
@@ -3879,7 +4404,7 @@ class Fighter{
 		if (limitbreak != null){
 			if (skillname != limitbreak.name){
 				displayobjects.TooltipManager.removetooltip("player_limitbreak");		
-				limitbreak.remove();
+				limitbreak.dispose();
 				
 				limitbreak = new Skill(skillname, 0);
 				var tooltiptext = [
@@ -3888,7 +4413,7 @@ class Fighter{
 					{text: ""},
 				];
 				displayobjects.TooltipManager.addtooltip("player_limitbreak", tooltiptext, "limitbreak", "gamefontsmall", Col.WHITE, Text.CENTER);
-				displayobjects.TooltipManager.updatetooltipline("player_limitbreak", 0, {func: function() return "[yellow]" + Locale.translate(limitbreak.name) + "[]"}, Col.WHITE, "headerfont", Text.CENTER);
+				displayobjects.TooltipManager.updatetooltipline("player_limitbreak", 0, {func: function() return "[yellow]" + Locale.removesymbols(Locale.translate(limitbreak.name)) + "[]"}, Col.WHITE, "headerfont", Text.CENTER);
 			}
 		}	
 	}
@@ -3917,15 +4442,16 @@ class Fighter{
 			}
 			
 			if (gamevar.exists(v)){
-				gamevar.set(v, 0);
+				gamevar.remove(v);
 			}
 		}
 	}
+	
 	public function getvar(v:String):Dynamic{
 		if (gamevar != null){
 			if (gamevar.exists(v)){
 				return gamevar.get(v); 
-			} 
+			}
 		}
 		
 		return 0; 
@@ -3936,19 +4462,33 @@ class Fighter{
 		gamevar.set(v, newvalue);
 	}
 	
+	public function varexists(v:String):Bool {
+		if (gamevar == null) return false;
+		return gamevar.exists(v);
+	}
+	
 	public function endturnnow(){
-		doendturnnow = true;
-		AudioControl.play("clicked_nextturn");
-		Tutorial.reportevent("playerendturn");
+		//Only do this if the current phase is "allocatedice"
+		if (Combat.commandqueue != null){
+			if (Combat.commandqueue.length > 0){
+				if (Combat.commandqueue[0] != null){
+					if (Combat.commandqueue[0].cmd == "playerturn" && Combat.commandqueue[0].contents == "allocatedice"){
+						doendturnnow = true;
+						AudioControl.play("clicked_nextturn");
+						Tutorial.reportevent("playerendturn");
 
-		if (isplayer) {
-			Combat.gamepad_dicemode = false;
-			Combat.gamepad_buttonmode = false;
+						if (isplayer) {
+							Combat.gamepad_dicemode = false;
+							Combat.gamepad_buttonmode = false;
+						}
+						
+						Combat.equipmentfreezekludge = 0;
+						Combat.addcommand("wait", "playerequipmentanimating");
+						Combat.addcommand("playertidyup");
+					}
+				}
+			}
 		}
-		
-		Combat.equipmentfreezekludge = 0;
-		Combat.addcommand("wait", "playerequipmentanimating");
-		Combat.addcommand("playertidyup");
 	}
 	
 	public function spaceleft():Int{
@@ -3963,6 +4503,34 @@ class Fighter{
 		return space;
 	}
 
+	public function modifydamage(dmg:Float, dmgtype:String):Float{
+		if (status != null){
+			if (status.length > 0){
+				for (i in 0 ... status.length){
+					if (status[i].scriptmodifydamage != ""){
+						//It's just easier to make a new little script object here tbh
+						var tempscript = new DiceyScript(status[i].scriptmodifydamage);
+						if (this == Game.player){
+							tempscript.set("target", Game.monster); tempscript.target = Game.monster;
+							tempscript.set("self", Game.player);    tempscript.self = Game.player;
+						}else{
+							tempscript.set("target", Game.player); tempscript.target = Game.player;
+							tempscript.set("self", Game.monster);    tempscript.self = Game.monster;
+						}
+						tempscript.set("dmg", dmg);
+						tempscript.set("dmgtype", dmgtype);
+						tempscript.set("status", status[i]);
+						//var dmgbefore:Float = dmg;
+						dmg = tempscript.execute();
+						
+						//trace("damage modified: before = " + dmgbefore + ", after = " + dmg);
+					}
+				}
+			}
+		}
+		
+		return dmg;
+	}
 	
 	public var doendturnnow:Bool;
 	
@@ -4026,6 +4594,59 @@ class Fighter{
 		return output;
 	}
 	
+	public function changetodecklayout(deckcards:Array<String>){
+		layout = EquipmentLayout.DECK;
+		
+		var equipmentstash:String = "";
+		var equipmentupgraded:String = "";
+		for (e in equipment){
+			if (e.skillcard == ""){
+				equipmentstash += e.name + ",";
+				equipmentupgraded += (e.upgraded?"+":"_");
+			}
+		}
+		if (S.right(equipmentstash, 1) == ","){
+			equipmentstash = S.removefromright(equipmentstash, 1);
+		}
+		
+		setvar("equipmentstash", equipmentstash);
+		setvar("equipmentupgraded", equipmentupgraded);
+		
+		Deck.reset();
+		for (i in 0 ... deckcards.length){
+			Deck.addtodiscard(Deck.createcard(deckcards[i]));
+		}
+	}
+	
+	public function reverttoequipmentlayout(){
+		trace("reverting to equipment layout");
+		layout = EquipmentLayout.EQUIPMENT;
+		
+		Deck.reset();
+		
+		//Recreate equipment
+		for (e in equipment) e.dispose();
+		equipment = [];
+		
+		var equipmentstash:Array<String> = getvar("equipmentstash").split(",");
+		var equipmentupgraded:String = getvar("equipmentupgraded");
+		
+		for (i in 0 ... equipmentupgraded.length){
+			equipment.push(new Equipment(equipmentstash[i], S.mid(equipmentupgraded, i, 1) == "+"));
+		}
+	}
+	
+	public function addinnate(newinnate:String){
+		if (innate == null) innate = [];
+		innate.push(newinnate);
+		
+		if (innateypos < 0){
+			AudioControl.play("showinnate");
+			Actuate.tween(this, 0.5 / BuildConfig.speed, {  innateypos: 2 })
+				.ease(motion.easing.Back.easeOut);
+		}
+	}
+	
 	public var charactertemplate:CharacterTemplate;
 	public var statsicon:HaxegonSprite;
 	public var textfield:Array<Print>;
@@ -4072,6 +4693,8 @@ class Fighter{
 	public var alternatelimitbreak:Skill;
 	public var limitvalue:Int;
 	public var limitmax:Int;
+	public var cachedlimitvalue:Int; // Store value/max to reduce tooltip updates.
+	public var cachedlimitmax:Int;
 	//public var limitbar:Float;
 	
 	public var roll_total:Int;
@@ -4084,6 +4707,10 @@ class Fighter{
 	public var roll_offset:Int; //Modifier to CPU values on roll, e.g. -1 will add 1 less CPU per roll
 	public var roll_error:Bool;
 	public var roll_jackpotbonus:Int;
+	
+	//Reunion coin stuff
+	public var coins_heads:Int;
+	public var coins_tails:Int;
 	
 	public var equipment:Array<Equipment>;
 	public var lastequipmentused:Equipment;
@@ -4107,6 +4734,7 @@ class Fighter{
 	public var canspeaklastwords:Bool;
 	public var lastwords_selected:String;
 	public var usecpuinsteadofdice:Bool;
+	public var reducenextthornsdamage:Int;
 	
 	public var firstwords:String;
 	public var alwaysspeakfirstwords:Bool;
@@ -4119,8 +4747,10 @@ class Fighter{
 	
 	public var finderskeepers:Int;
 	public var template:FighterTemplate;
+	public var requestflee:Bool;
 	
 	public var isplayer:Bool;
+	public var is_a_transformed_character:Bool;
 	
 	public var turnhistory:Array<TurnHistory>;
 	

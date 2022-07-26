@@ -126,55 +126,75 @@ class Animation{
 					}else if (para == Status.SHOCK){
 						if(equipment.equippedby == Game.player){
 							if (Rules.shocktype == "EVEN"){
-								equipment.shockedtype = DiceSlotType.EVEN;
+								equipment.shockedtype = "EVEN";
 							}else if (Rules.shocktype == "ODD"){
-								equipment.shockedtype = DiceSlotType.ODD;
+								equipment.shockedtype = "ODD";
 							}else if (Rules.shocktype == "RANDOM"){
 								equipment.shockedtype = Random.pick([
-									DiceSlotType.EVEN, DiceSlotType.ODD,
-									DiceSlotType.REQUIRE1, DiceSlotType.REQUIRE2,
-									DiceSlotType.REQUIRE3, DiceSlotType.REQUIRE4,
-									DiceSlotType.REQUIRE5, DiceSlotType.REQUIRE6
+									"EVEN", "ODD",
+									"REQUIRE1", "REQUIRE2", "REQUIRE3", "REQUIRE4", "REQUIRE5", "REQUIRE6"
 								]);
 							}else{
-								equipment.shockedtype = DiceSlotType.NORMAL;
+								equipment.shockedtype = "NORMAL";
 							}
 						}else{
-							equipment.shockedtype = DiceSlotType.NORMAL;
+							equipment.shockedtype = "NORMAL";
 						}
 						equipment.shockedsetting = 1;
-						equipment.shockedtext = "Place a dice|to release shock";
+						if (Rules.reunioncoinmode){
+							equipment.shockedtext = "Place a coin|to release shock";
+						}else{
+							equipment.shockedtext = "Place a dice|to release shock";
+						}
 						equipment.shockedcol = Pal.BLACK;
 						equipment.shocked_showtitle = true;
+						equipment.shocked_returndice = false;
+						equipment.shocked_needstotal = 0;
 						equipment.positionshockslots();
 					}else if (para == Status.ALTERNATE_SHOCK){
-						equipment.shockedtype = DiceSlotType.SKILL;
+						equipment.shockedtype = "SKILL";
 						equipment.shockedsetting = 1;
 						equipment.shockedtext = "";
 						equipment.shockedcol = Pal.BLACK;
 						equipment.shocked_showtitle = true;
+						equipment.shocked_returndice = false;
+						equipment.shocked_needstotal = 0;
 						equipment.positionshockslots();
 					}else if (para == Status.ALTERNATE + Status.POISON){
-						equipment.shockedtype = DiceSlotType.COUNTDOWN;
+						equipment.shockedtype = "COUNTDOWN";
 						equipment.shockedsetting = Std.int(v1);
 						equipment.shockedtext = "Take [poison]<countdown> damage at the|end of this turn";
 						equipment.shockedcol = Pal.PURPLE;
 						equipment.shocked_showtitle = false;
+						equipment.shocked_returndice = false;
+						equipment.shocked_needstotal = 0;
 						equipment.positionshockslots();
 					}else if (para == Status.SILENCE){
 						if (Game.player.hasstolencard){
-							Game.player.stolencard.shockedtype = DiceSlotType.NORMAL;
+							Game.player.stolencard.shockedtype = "NORMAL";
 							Game.player.stolencard.shockedsetting = 2;
-							Game.player.stolencard.shockedtext = "Place two dice|to break silence";
+							if (Rules.reunioncoinmode){
+								Game.player.stolencard.shockedtext = "Place two coins|to break silence";
+							}else{
+								Game.player.stolencard.shockedtext = "Place two dice|to break silence";
+							}
 							Game.player.stolencard.shockedcol = Pal.BLACK;
 							Game.player.stolencard.shocked_showtitle = false;
+							Game.player.stolencard.shocked_returndice = false;
+							Game.player.stolencard.shocked_needstotal = 0;
 							Game.player.stolencard.positionshockslots();
 						}else{
-							equipment.shockedtype = DiceSlotType.NORMAL;
+							equipment.shockedtype = "NORMAL";
 							equipment.shockedsetting = 2;
-							equipment.shockedtext = "Place two dice|to break silence";
+							if (Rules.reunioncoinmode){
+								equipment.shockedtext = "Place two coins|to break silence";
+							}else{
+								equipment.shockedtext = "Place two dice|to break silence";
+							}
 							equipment.shockedcol = Pal.BLACK;
 							equipment.shocked_showtitle = false;
+							equipment.shocked_returndice = false;
+							equipment.shocked_needstotal = 0;
 							equipment.positionshockslots();
 						}
 					}
@@ -195,6 +215,11 @@ class Animation{
 						self.dicepool.push(newdice[0]);
 						newdice[1].basevalue = dicevalue[1];
 						self.dicepool.push(newdice[1]);
+						
+						//Check for counterspell
+						self.checkfordicecounter(newdice);
+						//run onrolldice script hooks
+						self.runonrolldicescripts(newdice);
 						
 						if (self == Game.player) {
 							if (!Combat.gamepad_dicemode) {
@@ -303,6 +328,16 @@ class Animation{
 			case "changetovalue":
 				if (type == "dice"){
 				  dice.basevalue = Std.int(v1);
+					//Figure out the current fighter
+					if (Combat.turn == "player"){
+						if (Game.player != null){
+							Game.player.checkfordicecounter([dice], true);
+						}
+					}else{
+						if (Game.monster != null){
+							Game.monster.checkfordicecounter([dice], true);
+						}
+					}
 				}
 			case "alphafadeout":
 				if (type == "dice"){
